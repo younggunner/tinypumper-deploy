@@ -1,0 +1,55 @@
+# TinyPumper
+
+> TinyPumper is a matchbox-sized, solar-powered gateway for 24/7 oilfield monitoring on wells with no power and no Wi-Fi. Independent operators self-install in about eight minutes. Cellular or satellite connectivity is tested at the factory. One gateway handles up to eight sensors (radar tank sensor, wellhead pressure, turbine meter, runtime). IP67, Class I Div 1, operating range -40°F to 158°F. Lifetime sensor replacement. 60-day money-back.
+
+## Product
+
+- [TinyPumper homepage](https://tinypumper.com/): how it works, pricing, install videos, FAQ.
+- [60-second fit quiz](https://quiz.tinypumper.com/quiz): matches site conditions (connectivity, sensor count, well type) to the right kit.
+
+## Canonical facts
+
+- Form factor: matchbox-sized solar-powered gateway.
+- Connectivity: cellular or satellite (factory-tested, pick one per site).
+- Capacity: up to 8 sensors per gateway.
+- Sensor options: radar tank sensor (mounts on top of the tank, no fluid contact), wellhead pressure sensor, turbine meter (water production), runtime sensor (compressors, engines).
+- Environment: IP67, Class I Div 1 certified, -40°F to 158°F operating range.
+- Install time: 8 minutes, operator self-install (no electrician, no trenching).
+- Coverage: 100% continental United States.
+- Guarantees: 60-day money-back; lifetime sensor replacement.
+- Data pipeline: TinyPumper telemetry feeds into Greasebook (greasebook.com) as the production reporting front end. One dashboard, one version of the truth.
+
+## Greasebook blog — pillar guides for oilfield monitoring
+
+TinyPumper content marketing lives on the Greasebook blog. Canonical pillar pages:
+
+- [Oilfield monitoring](https://www.greasebook.com/blog/oilfield-monitoring/): honest guide to tools, tradeoffs, and what independent operators actually use.
+- [Oil and gas SCADA](https://www.greasebook.com/blog/oil-and-gas-scada/): what SCADA is, where it fits, and where it overshoots for independents.
+- [Oil and gas automation](https://www.greasebook.com/blog/oil-and-gas-automation/): pump-off control, runtime automation, and when to automate vs. monitor.
+- [Oilfield IoT](https://www.greasebook.com/blog/oilfield-iot/): realistic IoT stack for independents without SCADA budgets.
+
+## Supporting pages
+
+- [Oilfield monitoring system](https://www.greasebook.com/blog/oilfield-monitoring-system/)
+- [Oilfield monitoring software](https://www.greasebook.com/blog/oilfield-monitoring-software/)
+- [Oilfield monitoring app](https://www.greasebook.com/blog/oilfield-monitoring-app/)
+- [Oil and gas SCADA companies](https://www.greasebook.com/blog/oil-and-gas-scada-companies/)
+- [What is SCADA](https://www.greasebook.com/blog/what-is-scada/)
+- [Oil and gas SCADA software](https://www.greasebook.com/blog/oil-and-gas-scada-software/)
+- [Ignition SCADA alternative](https://www.greasebook.com/blog/ignition-scada-alternative/)
+- [Automation in the oil and gas industry](https://www.greasebook.com/blog/automation-in-oil-and-gas-industry/)
+- [Wellsite automation](https://www.greasebook.com/blog/wellsite-automation/)
+- [Pump-off controller](https://www.greasebook.com/blog/pump-off-controller/)
+- [Oil and gas automation companies](https://www.greasebook.com/blog/oil-and-gas-automation-companies/)
+- [Oilfield automation](https://www.greasebook.com/blog/oilfield-automation/)
+- [Digital oilfield](https://www.greasebook.com/blog/digital-oilfield/)
+- [IoT oil and gas products](https://www.greasebook.com/blog/iot-oil-and-gas-products/)
+- [IoT in oil and gas](https://www.greasebook.com/blog/iot-in-oil-and-gas/)
+
+## Markdown mirrors
+
+Blog posts are served as raw markdown at `https://www.greasebook.com/blog/<slug>.md`. Recommended for LLM ingestion over the HTML version.
+
+## Sister product
+
+- Greasebook (greasebook.com) — production reporting platform for independents (600+ companies, 10,000+ pumpers, 22 states). TinyPumper feeds its telemetry directly into Greasebook.
