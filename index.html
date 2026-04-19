@@ -1132,5 +1132,23 @@ document.querySelectorAll('.faq-q').forEach(function(q){
   </div>
 </div>
 
+<script>
+(function(){
+  if (window.parent === window) return;
+  function postHeight(){
+    var h = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
+    window.parent.postMessage({ type: 'tp-home-height', height: h }, '*');
+  }
+  window.addEventListener('load', postHeight);
+  window.addEventListener('resize', postHeight);
+  setTimeout(postHeight, 500);
+  setTimeout(postHeight, 1500);
+  setTimeout(postHeight, 3500);
+  if (window.ResizeObserver) {
+    new ResizeObserver(postHeight).observe(document.body);
+  }
+})();
+</script>
+
 </body>
 </html>
