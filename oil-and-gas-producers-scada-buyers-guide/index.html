@@ -357,7 +357,11 @@ ul{list-style:none}
     data.append("submittedAt", new Date().toISOString());
 
     // Fire conversion events before navigation so they don't get cancelled.
-    try { if (typeof fbq === 'function') fbq('track', 'Lead'); } catch(_){}
+    // content_name: 'TP | Email Captured' matches the rule on custom conversion
+    // 1477521190001266 (the original from the WordPress era — kept intact for
+    // continuous historical reporting). Any change to this string requires
+    // archiving and recreating the custom conversion since Meta rules are immutable.
+    try { if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'TP | Email Captured' }); } catch(_){}
     try { if (typeof gtag === 'function') gtag('event', 'generate_lead', { event_category: 'lead_magnet', event_label: 'scada_buyers_guide' }); } catch(_){}
 
     fetch(APPS_SCRIPT_URL, { method: "POST", body: data, mode: 'no-cors' })
