@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Unavoidable Economics of Remote Monitoring | TinyPumper</title>
+<meta name="description" content="The financial audit that proves legacy SCADA is a guaranteed source of loss for low-volume wells. 3-year cost breakdowns, decline curve math, and the third path. Free PDF.">
+<link rel="canonical" href="https://www.tinypumper.com/oil-and-gas-producers-scada-buyers-guide/">
+<link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
+
+<!-- ============================================
+     TRACKING PIXELS — DO NOT REMOVE
+     ============================================ -->
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5PQGM83');</script>
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PRKJMBM46B"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-PRKJMBM46B');
+</script>
+
+<!-- Google Ads -->
+<script async src="https://www.googletagmanager.com/gtag/destination?id=AW-940234751&cx=c&gtm=4e6291"></script>
+
+<!-- Facebook / Meta Pixel: 946177232080454 -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','946177232080454');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=946177232080454&ev=PageView&noscript=1"></noscript>
+
+<!-- ============================================
+     END TRACKING PIXELS
+     ============================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#FAF8F5;--bg-warm:#F3EFE9;--bg-dark:#1C1B18;--bg-dark-mid:#26241F;--bg-card:#FFF;
+  --ink:#1C1B18;--ink-light:#FAF8F5;--ink-muted:#78736B;--ink-muted-lt:#A8A29E;
+  --gold:#C8993B;--gold-hover:#B58A2F;--gold-light:rgba(200,153,59,0.12);--gold-highlight:rgba(200,153,59,0.15);
+  --green:#4D7C5A;--red:#994848;--border:#E2DDD5;--border-dk:#3A3730;
+  --f-display:'Libre Baskerville',Georgia,serif;
+  --f-body:'Outfit',-apple-system,BlinkMacSystemFont,sans-serif;
+  --gutter:24px;--max-w:1080px;
+  --r-sm:4px;--r-md:8px;--r-lg:16px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{font-family:var(--f-body);font-size:17px;line-height:1.7;color:var(--ink);background:var(--bg)}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+strong,b{font-weight:700}
+ul{list-style:none}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 var(--gutter)}
+
+.sh{font-family:var(--f-display);line-height:1.2;letter-spacing:-0.015em;color:var(--ink)}
+.sh--hero{font-size:clamp(32px,5.5vw,52px)}
+.sh--lg{font-size:clamp(26px,4.5vw,40px)}
+.sh--md{font-size:clamp(22px,3.5vw,30px)}
+
+/* Nav (matches homepage) */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(28,27,24,0.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border-dk)}
+.nav__inner{max-width:var(--max-w);margin:0 auto;padding:0 var(--gutter);display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav__logo{display:flex;align-items:center}
+.nav__logo img{height:42px;width:auto}
+.nav__lock{font-family:var(--f-body);font-size:11px;font-weight:600;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(200,153,59,0.4);padding:6px 12px;border-radius:var(--r-sm);background:var(--gold-light);display:flex;align-items:center;gap:8px}
+.nav__lock-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+@media (max-width:640px){.nav__lock{display:none}}
+
+/* Hero */
+.hero{padding:120px 0 80px;background:var(--bg)}
+@media (min-width:900px){.hero{padding:140px 0 96px}}
+.hero__grid{display:grid;grid-template-columns:1fr;gap:48px}
+@media (min-width:900px){.hero__grid{grid-template-columns:1.15fr 1fr;gap:64px;align-items:start}}
+.hero__pill{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;padding:8px 14px;border:1px solid rgba(200,153,59,0.4);background:var(--gold-light);border-radius:var(--r-sm);margin-bottom:24px}
+.hero h1{margin-bottom:24px}
+.hero h1 .accent{color:var(--gold);font-style:italic}
+.hero__lede{font-size:19px;line-height:1.55;color:var(--ink-muted);border-left:3px solid var(--gold);padding:8px 0 8px 20px;margin-bottom:32px;max-width:640px}
+.hero__lede strong{color:var(--ink);background:var(--gold-highlight);padding:2px 4px}
+
+/* Executive Summary card */
+.summary{background:var(--bg-card);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:var(--r-md);padding:28px 32px;margin-bottom:24px;box-shadow:0 4px 24px rgba(28,27,24,0.04)}
+.summary__label{font-family:var(--f-body);font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+.summary__row{display:flex;flex-direction:column;gap:18px;align-items:flex-start}
+@media (min-width:600px){.summary__row{flex-direction:row;justify-content:space-between;align-items:flex-end}}
+.summary__big{font-family:var(--f-display);font-size:clamp(36px,6vw,52px);font-weight:700;color:var(--ink);line-height:1;letter-spacing:-0.02em}
+.summary__big-sub{font-size:13px;color:var(--ink-muted);margin-top:8px}
+.summary__split{text-align:left;font-size:14px}
+@media (min-width:600px){.summary__split{text-align:right}}
+.summary__split-row{display:flex;align-items:center;gap:6px;justify-content:flex-start;margin-top:4px}
+@media (min-width:600px){.summary__split-row{justify-content:flex-end}}
+.summary__loss{color:var(--red);font-weight:600}
+.summary__profit{color:var(--green);font-weight:600}
+.hero__caption{font-size:13px;color:var(--ink-muted);display:flex;align-items:center;gap:8px}
+
+/* Form */
+.form-card{background:var(--bg-card);border:1px solid var(--border);border-top:4px solid var(--gold);border-radius:var(--r-md);overflow:hidden;box-shadow:0 16px 40px rgba(28,27,24,0.08)}
+.form-card__hdr{background:var(--bg-dark);padding:20px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-dk)}
+.form-card__hdr-title{font-family:var(--f-body);color:var(--ink-light);font-size:17px;font-weight:600;display:flex;align-items:center;gap:10px}
+.form-card__hdr-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);animation:pulse 2s ease-in-out infinite}
+.form-card__body{padding:32px 28px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+.form-field{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+.form-field--inrow{margin-bottom:0}
+.form-field label{font-family:var(--f-body);font-size:11px;font-weight:700;color:var(--ink);letter-spacing:.08em;text-transform:uppercase}
+.form-field input{font-family:var(--f-body);font-size:16px;color:var(--ink);background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-sm);padding:12px 14px;transition:border-color .15s,box-shadow .15s;width:100%}
+.form-field input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-light)}
+.form-submit{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:16px 24px;margin-top:10px;font-family:var(--f-body);font-size:16px;font-weight:600;color:var(--bg-dark);background:var(--gold);border:none;border-radius:var(--r-md);cursor:pointer;transition:background .2s,transform .15s;letter-spacing:.04em;text-transform:uppercase}
+.form-submit:hover:not(:disabled){background:var(--gold-hover);transform:translateY(-1px)}
+.form-submit:disabled{opacity:.7;cursor:not-allowed}
+.form-submit__spinner{display:none;width:16px;height:16px;border:2px solid var(--bg-dark);border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite}
+.form-submit.is-loading .form-submit__spinner{display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+.form-secure{margin-top:14px;font-size:12px;color:var(--ink-muted);text-align:center;display:flex;align-items:center;justify-content:center;gap:6px}
+
+/* Section: Structural Flaw */
+.s-flaw{padding:96px 0;background:var(--bg-warm);border-top:1px solid var(--border)}
+.s-flaw__grid{display:grid;grid-template-columns:1fr;gap:40px;max-width:880px;margin:0 auto}
+@media (min-width:900px){.s-flaw__grid{grid-template-columns:1fr 1fr;gap:56px}}
+.s-flaw h2{margin-bottom:28px}
+.s-flaw h2 .accent{color:var(--gold);background:var(--gold-light);padding:0 8px;border-radius:var(--r-sm)}
+.s-flaw p{font-size:18px;color:var(--ink-muted);margin-bottom:20px;line-height:1.65}
+.s-flaw p strong{color:var(--ink)}
+.killers{background:var(--bg-card);border:1px solid var(--border);border-left:4px solid var(--red);border-radius:var(--r-md);padding:24px 28px;margin-top:24px}
+.killers__label{font-family:var(--f-body);font-size:11px;font-weight:700;color:var(--red);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+.killers li{display:flex;gap:12px;align-items:flex-start;padding:10px 0;font-size:15px;color:var(--ink)}
+.killers li + li{border-top:1px solid var(--border)}
+.killers__icon{width:18px;height:18px;flex-shrink:0;margin-top:3px;color:var(--red)}
+
+.preview-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-md);padding:32px;box-shadow:0 8px 24px rgba(28,27,24,0.06);position:relative}
+.preview-card__label{font-family:var(--f-body);font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.preview-card__quote{font-family:var(--f-display);font-style:italic;font-size:20px;line-height:1.5;color:var(--ink);margin-bottom:24px;border-left:3px solid var(--gold);padding-left:20px}
+.preview-card__list{margin-top:16px}
+.preview-card__list li{padding:10px 0;font-size:14px;color:var(--ink-muted);display:flex;gap:10px;align-items:flex-start}
+.preview-card__list li + li{border-top:1px solid var(--border)}
+.preview-card__bullet{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:8px}
+
+/* Section: Evidence */
+.s-evidence{padding:96px 0;background:var(--bg)}
+.s-evidence__head{text-align:center;margin-bottom:56px}
+.s-evidence__eyebrow{font-family:var(--f-body);font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid var(--gold);padding-bottom:8px}
+.s-evidence h2{margin-top:24px}
+.cards{display:grid;grid-template-columns:1fr;gap:24px}
+@media (min-width:760px){.cards{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r-md);padding:32px 28px;transition:border-color .2s,transform .2s;box-shadow:0 4px 16px rgba(28,27,24,0.04)}
+.card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.card__num{font-family:var(--f-display);font-size:48px;font-weight:700;color:var(--border);line-height:1;margin-bottom:20px}
+.card:hover .card__num{color:var(--gold-light)}
+.card h3{font-family:var(--f-display);font-size:22px;font-weight:700;color:var(--ink);margin-bottom:14px;line-height:1.25}
+.card p{font-size:15px;color:var(--ink-muted);margin-bottom:24px;line-height:1.6}
+.card__stat{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-body);font-size:12px;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase}
+
+.cta-block{margin-top:64px;text-align:center}
+.cta-btn{display:inline-flex;align-items:center;gap:10px;padding:18px 40px;font-family:var(--f-body);font-size:16px;font-weight:600;color:var(--bg-dark);background:var(--gold);border:none;border-radius:var(--r-md);cursor:pointer;transition:background .2s,transform .15s;letter-spacing:.04em;text-transform:uppercase}
+.cta-btn:hover{background:var(--gold-hover);transform:translateY(-1px)}
+.cta-block__sub{margin-top:18px;font-size:13px;color:var(--ink-muted);letter-spacing:.04em}
+
+/* Footer */
+.footer{background:var(--bg-dark);color:var(--ink-light);padding:64px 0 48px;text-align:center}
+.footer img{height:40px;margin:0 auto 24px;opacity:.85}
+.footer__line{font-size:13px;color:var(--ink-muted-lt);margin-bottom:6px}
+.footer__fine{font-size:11px;color:var(--ink-muted);letter-spacing:.16em;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" role="navigation">
+  <div class="nav__inner">
+    <a href="https://www.tinypumper.com/" class="nav__logo"><img src="/wp-content/uploads/2023/03/logo_yellow.svg" alt="TinyPumper"></a>
+    <span class="nav__lock"><span class="nav__lock-dot"></span> Restricted Access — Financial Audit</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero__grid">
+      <div>
+        <div class="hero__pill">⚠ Warning · Financial Audit Inside</div>
+        <h1 class="sh sh--hero">The Unavoidable Economics of <span class="accent">Remote Monitoring</span></h1>
+        <p class="hero__lede">For a low-volume well, your existing SCADA system is not a profit center—it is a <strong>guaranteed, non-negotiable source of loss.</strong></p>
+
+        <div class="summary">
+          <div class="summary__label">⚡ Executive Summary Finding</div>
+          <div class="summary__row">
+            <div>
+              <div class="summary__big">+$645,600</div>
+              <div class="summary__big-sub">3-year difference on 100 wells</div>
+            </div>
+            <div class="summary__split">
+              <div class="summary__split-row summary__loss">↓ Legacy: −$36k Loss</div>
+              <div class="summary__split-row summary__profit">↑ New Model: +$609k Profit</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__caption">📊 Includes full 3-year operational cost breakdowns.</div>
+      </div>
+
+      <div id="access-report">
+        <div class="form-card">
+          <div class="form-card__hdr">
+            <div class="form-card__hdr-title">🔒 Restricted Report</div>
+            <div class="form-card__hdr-dot"></div>
+          </div>
+          <div class="form-card__body">
+            <form id="lead-form" novalidate>
+              <div class="form-row">
+                <div class="form-field form-field--inrow">
+                  <label for="firstName">First Name</label>
+                  <input type="text" id="firstName" name="firstName" autocomplete="given-name" required>
+                </div>
+                <div class="form-field form-field--inrow">
+                  <label for="lastName">Last Name</label>
+                  <input type="text" id="lastName" name="lastName" autocomplete="family-name" required>
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="email">Work Email</label>
+                <input type="email" id="email" name="email" autocomplete="email" required>
+              </div>
+              <div class="form-field">
+                <label for="wellsOperated">Wells Operated</label>
+                <input type="number" id="wellsOperated" name="wellsOperated" min="1" placeholder="e.g. 50" required>
+              </div>
+              <button type="submit" class="form-submit" id="submit-btn">
+                <span class="form-submit__spinner" aria-hidden="true"></span>
+                <span class="form-submit__label">Reveal the Data</span>
+              </button>
+              <div class="form-secure">🔒 Secure transfer · PDF delivered by email</div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRUCTURAL FLAW -->
+<section class="s-flaw">
+  <div class="container">
+    <div class="s-flaw__grid">
+      <div>
+        <h2 class="sh sh--lg">Why your current model is <span class="accent">mathematically defeated.</span></h2>
+        <p>The structural flaw is simple: the fixed and escalating operational costs of legacy SCADA <strong>do not decline with your well's production.</strong></p>
+        <p>This creates a "Structural Mismatch" that inevitably makes the system cost more to operate than the savings it provides.</p>
+
+        <div class="killers">
+          <div class="killers__label">⚠ The Guaranteed Killers</div>
+          <ul>
+            <li><span class="killers__icon">▸</span><div><strong>Aging Hardware Decay</strong> — the hidden ~$2,200/year per well burden.</div></li>
+            <li><span class="killers__icon">▸</span><div><strong>Key-Person Dependency</strong> — the catastrophic risk of a single specialist leaving.</div></li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="preview-card">
+          <div class="preview-card__label">📋 Inside the Report</div>
+          <p class="preview-card__quote">"At 3 BOPD, your SCADA stack is taking more from the lease than the lease is producing. The math doesn't care how much you paid for it five years ago."</p>
+          <ul class="preview-card__list">
+            <li><span class="preview-card__bullet"></span><div>Single-Well Cost Comparison table (Page 14)</div></li>
+            <li><span class="preview-card__bullet"></span><div>The 3-year decline curve killer chart</div></li>
+            <li><span class="preview-card__bullet"></span><div>"The Third Path" — neither hosted nor self-hosted</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVIDENCE -->
+<section class="s-evidence">
+  <div class="container">
+    <div class="s-evidence__head">
+      <span class="s-evidence__eyebrow">Inside the Report</span>
+      <h2 class="sh sh--lg">Stop Rationalizing the Loss.<br>Audit the Cost.</h2>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card__num">01</div>
+        <h3>The Decline Curve Killer</h3>
+        <p>Why SCADA pencils out at 50 BOPD but becomes a financial cancer at 3 BOPD.</p>
+        <div class="card__stat">↓ 95% Decline</div>
+      </div>
+      <div class="card">
+        <div class="card__num">02</div>
+        <h3>The "Sunk Cost" Trap</h3>
+        <p>Why keeping "free" paid-off legacy equipment costs you more than buying new.</p>
+        <div class="card__stat">↓ OpEx &gt; CapEx</div>
+      </div>
+      <div class="card">
+        <div class="card__num">03</div>
+        <h3>The Third Path</h3>
+        <p>Not hosted. Not self-hosted. A new economic model built strictly for stripper wells.</p>
+        <div class="card__stat">↓ Guaranteed ROI</div>
+      </div>
+    </div>
+
+    <div class="cta-block">
+      <a href="#access-report" class="cta-btn">Get the Full Financial Breakdown →</a>
+      <div class="cta-block__sub">Includes "Single-Well Cost Comparison" table (Page 14)</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <img src="/wp-content/uploads/2023/03/logo_yellow.svg" alt="TinyPumper">
+    <div class="footer__line">&copy; <span id="yr">2026</span> TinyPumper by Greasebook. All rights reserved.</div>
+    <div class="footer__fine">The Unavoidable Economics of Remote Monitoring</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Form submit handler
+  // Posts to Apps Script (writes a row to the SCADA Buyers Guide Google Sheet),
+  // fires Meta Lead event + GA generate_lead, redirects to thank-you page.
+  // The existing Zapier flow watches the sheet and pushes leads into the
+  // "MKT | SCADA Buyer's Guide White Paper Send Out" Instantly drip.
+  var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyOW3miN9x5TBIMwsuGuw1vLgvvQwnIeasfdJ0fhoZ3AbYteOcJRjXI_qpIodmNEAy2uA/exec";
+  var THANKS_URL = "/scada-buyers-guide-thanks/";
+
+  document.getElementById('lead-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var form = e.target;
+    var btn = document.getElementById('submit-btn');
+    btn.classList.add('is-loading');
+    btn.disabled = true;
+
+    var data = new FormData();
+    data.append("firstName", form.firstName.value.trim());
+    data.append("lastName",  form.lastName.value.trim());
+    data.append("email",     form.email.value.trim());
+    data.append("wellsOperated", form.wellsOperated.value);
+    data.append("submittedAt", new Date().toISOString());
+
+    // Fire conversion events before navigation so they don't get cancelled.
+    try { if (typeof fbq === 'function') fbq('track', 'Lead'); } catch(_){}
+    try { if (typeof gtag === 'function') gtag('event', 'generate_lead', { event_category: 'lead_magnet', event_label: 'scada_buyers_guide' }); } catch(_){}
+
+    fetch(APPS_SCRIPT_URL, { method: "POST", body: data, mode: 'no-cors' })
+      .catch(function(err){ console.error('Sheet POST error:', err); })
+      .finally(function(){ window.location.href = THANKS_URL; });
+  });
+</script>
+
+</body>
+</html>
