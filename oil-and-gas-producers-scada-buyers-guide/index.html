@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Unavoidable Economics of Remote Monitoring | TinyPumper</title>
-<meta name="description" content="The financial audit that proves legacy SCADA is a guaranteed source of loss for low-volume wells. 3-year cost breakdowns, decline curve math, and the third path. Free PDF.">
+<title>Stop Rationalizing. The Capital Is Gone. | TinyPumper Executive Briefing</title>
+<meta name="description" content="An Executive Briefing for oil producers. The audit that proves your legacy SCADA stack is a guaranteed source of loss. Year 1 vs Year 5 economics, the Zero-OpEx reality, and the Rotation Strategy that pivots a $303k loss into profitability.">
 <link rel="canonical" href="https://www.tinypumper.com/oil-and-gas-producers-scada-buyers-guide/">
 <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
 
@@ -88,11 +88,16 @@ ul{list-style:none}
 @media (min-width:900px){.hero{padding:140px 0 96px}}
 .hero__grid{display:grid;grid-template-columns:1fr;gap:48px}
 @media (min-width:900px){.hero__grid{grid-template-columns:1.15fr 1fr;gap:64px;align-items:start}}
+.hero__asset{margin-bottom:20px;border-radius:var(--r-md);overflow:hidden;border:1px solid var(--border);box-shadow:0 8px 24px rgba(28,27,24,0.10);max-width:360px}
+@media (max-width:899px){.hero__asset{max-width:280px;margin-left:auto;margin-right:auto}}
+.hero__asset img{display:block;width:100%;height:auto}
 .hero__pill{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;padding:8px 14px;border:1px solid rgba(200,153,59,0.4);background:var(--gold-light);border-radius:var(--r-sm);margin-bottom:24px}
 .hero h1{margin-bottom:24px}
 .hero h1 .accent{color:var(--gold);font-style:italic}
-.hero__lede{font-size:19px;line-height:1.55;color:var(--ink-muted);border-left:3px solid var(--gold);padding:8px 0 8px 20px;margin-bottom:32px;max-width:640px}
+.hero__lede{font-size:19px;line-height:1.55;color:var(--ink-muted);border-left:3px solid var(--gold);padding:8px 0 8px 20px;margin-bottom:16px;max-width:640px}
 .hero__lede strong{color:var(--ink);background:var(--gold-highlight);padding:2px 4px}
+.hero__notfor{font-size:14px;line-height:1.55;color:var(--ink-muted);padding:0 0 0 20px;margin-bottom:32px;max-width:640px;font-style:italic}
+.hero__notfor strong{color:var(--red);font-style:normal;font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:13px}
 
 /* Executive Summary card */
 .summary{background:var(--bg-card);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:var(--r-md);padding:28px 32px;margin-bottom:24px;box-shadow:0 4px 24px rgba(28,27,24,0.04)}
@@ -184,7 +189,7 @@ ul{list-style:none}
 <nav class="nav" role="navigation">
   <div class="nav__inner">
     <a href="https://www.tinypumper.com/" class="nav__logo"><img src="/wp-content/uploads/2023/03/logo_yellow.svg" alt="TinyPumper"></a>
-    <span class="nav__lock"><span class="nav__lock-dot"></span> Restricted Access — Financial Audit</span>
+    <span class="nav__lock"><span class="nav__lock-dot"></span> Executive Briefing · Financial Audit</span>
   </div>
 </nav>
 
@@ -193,56 +198,50 @@ ul{list-style:none}
   <div class="container">
     <div class="hero__grid">
       <div>
-        <div class="hero__pill">⚠ Warning · Financial Audit Inside</div>
-        <h1 class="sh sh--hero">The Unavoidable Economics of <span class="accent">Remote Monitoring</span></h1>
-        <p class="hero__lede">For a low-volume well, your existing SCADA system is not a profit center—it is a <strong>guaranteed, non-negotiable source of loss.</strong></p>
+        <div class="hero__pill">⚠ Executive Briefing · Financial Audit Inside</div>
+        <h1 class="sh sh--hero">Stop Rationalizing.<br><span class="accent">The Capital Is Gone.</span></h1>
+        <p class="hero__lede">You spent <strong>$20k to $50k per facility</strong> on SCADA years ago. That money is gone. It is a sunk cost. The question isn't what you paid. It's <strong>what your SCADA host invoice and the next sensor swap are costing you right now.</strong></p>
+        <p class="hero__notfor">Built for producers running mature, declined wells. <strong>Not</strong> for Year-1 flush production where SCADA still pencils.</p>
 
         <div class="summary">
           <div class="summary__label">⚡ Executive Summary Finding</div>
           <div class="summary__row">
             <div>
-              <div class="summary__big">+$645,600</div>
-              <div class="summary__big-sub">3-year difference on 100 wells</div>
+              <div class="summary__big">$303k Loss → Profit</div>
+              <div class="summary__big-sub">The Rotation Strategy, 3-year horizon</div>
             </div>
             <div class="summary__split">
-              <div class="summary__split-row summary__loss">↓ Legacy: −$36k Loss</div>
-              <div class="summary__split-row summary__profit">↑ New Model: +$609k Profit</div>
+              <div class="summary__split-row summary__loss">↓ Legacy SCADA: bleeding by Year 5</div>
+              <div class="summary__split-row summary__profit">↑ Same monitoring, zero SCADA OpEx</div>
             </div>
           </div>
         </div>
 
-        <div class="hero__caption">📊 Includes full 3-year operational cost breakdowns.</div>
+        <div class="hero__caption">📊 Includes full 3-year cost breakdowns and the Year 1 vs Year 5 decline math.</div>
       </div>
 
       <div id="access-report">
+        <div class="hero__asset">
+          <img src="/assets/scada-buyers-guide-hero.jpg" alt="Pumpjack with SCADA cost curve and rising loss — the unavoidable economics of remote monitoring" loading="eager" fetchpriority="high">
+        </div>
         <div class="form-card">
           <div class="form-card__hdr">
-            <div class="form-card__hdr-title">🔒 Restricted Report</div>
+            <div class="form-card__hdr-title">🔒 Executive Briefing — For Producers Only</div>
             <div class="form-card__hdr-dot"></div>
           </div>
           <div class="form-card__body">
             <form id="lead-form" novalidate>
-              <div class="form-row">
-                <div class="form-field form-field--inrow">
-                  <label for="firstName">First Name</label>
-                  <input type="text" id="firstName" name="firstName" autocomplete="given-name" required>
-                </div>
-                <div class="form-field form-field--inrow">
-                  <label for="lastName">Last Name</label>
-                  <input type="text" id="lastName" name="lastName" autocomplete="family-name" required>
-                </div>
+              <div class="form-field">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" autocomplete="given-name" required>
               </div>
               <div class="form-field">
                 <label for="email">Work Email</label>
                 <input type="email" id="email" name="email" autocomplete="email" required>
               </div>
-              <div class="form-field">
-                <label for="wellsOperated">Wells Operated</label>
-                <input type="number" id="wellsOperated" name="wellsOperated" min="1" placeholder="e.g. 50" required>
-              </div>
               <button type="submit" class="form-submit" id="submit-btn">
                 <span class="form-submit__spinner" aria-hidden="true"></span>
-                <span class="form-submit__label">Reveal the Data</span>
+                <span class="form-submit__label">Download the Briefing</span>
               </button>
               <div class="form-secure">🔒 Secure transfer · PDF delivered by email</div>
             </form>
@@ -258,27 +257,28 @@ ul{list-style:none}
   <div class="container">
     <div class="s-flaw__grid">
       <div>
-        <h2 class="sh sh--lg">Why your current model is <span class="accent">mathematically defeated.</span></h2>
-        <p>The structural flaw is simple: the fixed and escalating operational costs of legacy SCADA <strong>do not decline with your well's production.</strong></p>
-        <p>This creates a "Structural Mismatch" that inevitably makes the system cost more to operate than the savings it provides.</p>
+        <h2 class="sh sh--lg">The perfect storm is <span class="accent">already on your lease.</span></h2>
+        <p>Labor costs are exploding. The workforce is aging. Your equipment is running harder for less oil.</p>
+        <p>Continuing to pay <strong>legacy SCADA maintenance</strong> on mature assets isn't "staying the course." It's <strong>negligence.</strong></p>
+        <p>Most operators let the original remote monitoring purchase blind them to the loss they are paying today. This briefing is the audit they've been avoiding.</p>
 
         <div class="killers">
-          <div class="killers__label">⚠ The Guaranteed Killers</div>
+          <div class="killers__label">⚠ The Guaranteed SCADA Killers</div>
           <ul>
-            <li><span class="killers__icon">▸</span><div><strong>Aging Hardware Decay</strong> — the hidden ~$2,200/year per well burden.</div></li>
-            <li><span class="killers__icon">▸</span><div><strong>Key-Person Dependency</strong> — the catastrophic risk of a single specialist leaving.</div></li>
+            <li><span class="killers__icon">▸</span><div><strong>Aging SCADA Hardware Decay</strong> — the hidden ~$2,200/year per well burden you stopped seeing on the budget.</div></li>
+            <li><span class="killers__icon">▸</span><div><strong>Key-Person Dependency</strong> — your SCADA specialist walks out the door, the whole telemetry stack goes dark.</div></li>
           </ul>
         </div>
       </div>
 
       <div>
         <div class="preview-card">
-          <div class="preview-card__label">📋 Inside the Report</div>
-          <p class="preview-card__quote">"At 3 BOPD, your SCADA stack is taking more from the lease than the lease is producing. The math doesn't care how much you paid for it five years ago."</p>
+          <div class="preview-card__label">📋 Inside the Briefing</div>
+          <p class="preview-card__quote">"We won't argue your SCADA was a bad call when you signed for it. It probably wasn't. The audit starts where the economics flipped: somewhere between Year 1 flush production and the declined, harder-running well you're operating today."</p>
           <ul class="preview-card__list">
-            <li><span class="preview-card__bullet"></span><div>Single-Well Cost Comparison table (Page 14)</div></li>
-            <li><span class="preview-card__bullet"></span><div>The 3-year decline curve killer chart</div></li>
-            <li><span class="preview-card__bullet"></span><div>"The Third Path" — neither hosted nor self-hosted</div></li>
+            <li><span class="preview-card__bullet"></span><div>Single-facility SCADA vs telemetry-as-a-service cost comparison (Page 14)</div></li>
+            <li><span class="preview-card__bullet"></span><div>The decline curve chart — Year 1 flush vs the well you're running today</div></li>
+            <li><span class="preview-card__bullet"></span><div>The Rotation Strategy: $303k loss to profit, remote monitoring stays live</div></li>
           </ul>
         </div>
       </div>
@@ -290,34 +290,34 @@ ul{list-style:none}
 <section class="s-evidence">
   <div class="container">
     <div class="s-evidence__head">
-      <span class="s-evidence__eyebrow">Inside the Report</span>
-      <h2 class="sh sh--lg">Stop Rationalizing the Loss.<br>Audit the Cost.</h2>
+      <span class="s-evidence__eyebrow">Inside the Briefing</span>
+      <h2 class="sh sh--lg">Stop Rationalizing the Loss.<br>Rotate the Strategy.</h2>
     </div>
 
     <div class="cards">
       <div class="card">
         <div class="card__num">01</div>
-        <h3>The Decline Curve Killer</h3>
-        <p>Why SCADA pencils out at 50 BOPD but becomes a financial cancer at 3 BOPD.</p>
-        <div class="card__stat">↓ 95% Decline</div>
+        <h3>The Flush Phase Is Over</h3>
+        <p>Why the SCADA economics that worked in Year 1 flush production are bankrupting you on the same wells today. The decline curve hits your telemetry bill harder than it hits your tank.</p>
+        <div class="card__stat">↓ Year 1 vs Today</div>
       </div>
       <div class="card">
         <div class="card__num">02</div>
-        <h3>The "Sunk Cost" Trap</h3>
-        <p>Why keeping "free" paid-off legacy equipment costs you more than buying new.</p>
-        <div class="card__stat">↓ OpEx &gt; CapEx</div>
+        <h3>The "Zero-OpEx" Reality</h3>
+        <p>How to eliminate the <strong>SCADA maintenance burden</strong> entirely with a Hardware-as-a-Service model. Same remote monitoring. Same telemetry data. No service calls. No replacement parts on your tab. No key-person risk.</p>
+        <div class="card__stat">↓ Zero SCADA OpEx</div>
       </div>
       <div class="card">
         <div class="card__num">03</div>
-        <h3>The Third Path</h3>
-        <p>Not hosted. Not self-hosted. A new economic model built strictly for stripper wells.</p>
-        <div class="card__stat">↓ Guaranteed ROI</div>
+        <h3>The Rotation Strategy</h3>
+        <p>How to pivot from a $303k SCADA loss to profitability while keeping the real-time visibility your operation runs on. Wells stay on. Remote monitoring stays live. The <strong>telemetry maintenance drag</strong> goes away.</p>
+        <div class="card__stat">↑ $303k Swing</div>
       </div>
     </div>
 
     <div class="cta-block">
-      <a href="#access-report" class="cta-btn">Get the Full Financial Breakdown →</a>
-      <div class="cta-block__sub">Includes "Single-Well Cost Comparison" table (Page 14)</div>
+      <a href="#access-report" class="cta-btn">Download the Briefing →</a>
+      <div class="cta-block__sub">Don't let your "investment" drag you under.</div>
     </div>
   </div>
 </section>
@@ -327,7 +327,7 @@ ul{list-style:none}
   <div class="container">
     <img src="/wp-content/uploads/2023/03/logo_yellow.svg" alt="TinyPumper">
     <div class="footer__line">&copy; <span id="yr">2026</span> TinyPumper by Greasebook. All rights reserved.</div>
-    <div class="footer__fine">The Unavoidable Economics of Remote Monitoring</div>
+    <div class="footer__fine">Executive Briefing · Stop Rationalizing. The Capital Is Gone.</div>
   </div>
 </footer>
 
@@ -351,9 +351,7 @@ ul{list-style:none}
 
     var data = new FormData();
     data.append("firstName", form.firstName.value.trim());
-    data.append("lastName",  form.lastName.value.trim());
     data.append("email",     form.email.value.trim());
-    data.append("wellsOperated", form.wellsOperated.value);
     data.append("submittedAt", new Date().toISOString());
 
     // Fire conversion events before navigation so they don't get cancelled.
