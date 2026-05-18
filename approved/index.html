@@ -837,6 +837,31 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
   var phone   = params.get('a2') || '';
   var info    = params.get('a3') || '';
   var source  = params.get('source') || params.get('utm_source') || 'Not Set';
+  var medium   = params.get('utm_medium')   || '';
+  var campaign = params.get('utm_campaign') || '';
+  var term     = params.get('utm_term')     || '';
+  var content  = params.get('utm_content')  || '';
+  var gclid    = params.get('gclid')        || '';
+  var fbclid   = params.get('fbclid')       || '';
+
+  // T6 — real GA4 client_id from _ga cookie (format: GA1.1.<cid>.<ts>)
+  function getGaClientId(){
+    var m = (document.cookie || '').match(/(?:^|;\s*)_ga=GA\d+\.\d+\.([^;]+)/);
+    return m ? m[1] : '';
+  }
+  var gaClientId = getGaClientId();
+
+  // Build a compact attribution token stuffed into utm_content so the
+  // Calendly webhook can recover it after the booking POST.
+  function buildAttrToken(){
+    var parts = [];
+    if (content)    parts.push(content);
+    if (gaClientId) parts.push('gacid_' + gaClientId);
+    if (gclid)      parts.push('gclid_' + gclid);
+    if (fbclid)     parts.push('fbclid_' + fbclid);
+    return parts.join('|');
+  }
+  var attrToken = buildAttrToken();
 
   var baseUrl = 'https://calendly.com/d/cxdj-jw4-tr7/tinypumper-intro'
     + '?hide_event_type_details=1'
@@ -844,7 +869,40 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
     + '&primary_color=C8993B'
     + '&embed_domain=' + encodeURIComponent(window.location.hostname)
     + '&embed_type=Inline'
-    + '&utm_source=' + encodeURIComponent(source);
+    + '&utm_source=' + encodeURIComponent(source)
+    + (medium   ? '&utm_medium='   + encodeURIComponent(medium)   : '')
+    + (campaign ? '&utm_campaign=' + encodeURIComponent(campaign) : '')
+    + (term     ? '&utm_term='     + encodeURIComponent(term)     : '')
+    + (attrToken ? '&utm_content=' + encodeURIComponent(attrToken) : '');
+
+  // Fire first-touch attribution to Apps Script (idempotent, first-touch wins).
+  if (email) {
+    try {
+      var attrPayload = {
+        type: 'attribution',
+        data: {
+          email: email,
+          ga_client_id: gaClientId,
+          gclid: gclid,
+          fbclid: fbclid,
+          utm_source:   source,
+          utm_medium:   medium,
+          utm_campaign: campaign,
+          utm_term:     term,
+          utm_content:  content,
+          referrer:     document.referrer || '',
+          landing_page: window.location.href
+        }
+      };
+      var attrUrl = 'https://script.google.com/macros/s/AKfycbyKf_TeD4lSxWl0ablWQXgVQbsQZUsiXtp8M0vbJeBZM20Ax8lBY2fCQur_w3L7JxuIzg/exec';
+      fetch(attrUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(attrPayload)
+      }).catch(function(){ /* fire-and-forget */ });
+    } catch(_) { /* never break the booking flow */ }
+  }
 
   var prefill = {
     name: name,
