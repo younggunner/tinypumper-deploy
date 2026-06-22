@@ -52,7 +52,10 @@
       var j = localStorage.getItem(JOURNEY_KEY);
       if (j) journey = JSON.parse(j) || [];
     } catch (e) { journey = []; }
-    var path = window.location.pathname + window.location.search;
+    // Pathname only — query strings (utm_*, comet_*, embed=, gclid, fbclid) are
+    // captured separately on prev.* and would otherwise make the journey
+    // breadcrumb unreadable (e.g. "/?utm_source=google&utm_medium=paid…").
+    var path = window.location.pathname || '/';
     var last = journey[journey.length - 1];
     if (!last || last.u !== path) {
       journey.push({ u: path, t: now });
