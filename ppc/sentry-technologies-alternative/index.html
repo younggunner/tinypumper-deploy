@@ -613,6 +613,18 @@ ul,ol{list-style:none}
         <p style="margin-top:12px;font-size:14px;font-weight:600;color:var(--gold);cursor:pointer" onclick="document.getElementById('ryan-modal').classList.add('active');document.getElementById('ryan-modal-vid').play()">&#9654; Click the video to watch the full install</p>
       </div>
     </div>
+    <div class="field-install reveal" style="margin-top:32px">
+      <div class="field-install__video">
+        <div class="field-install__phone" onclick="document.getElementById('travis-modal').classList.add('active');document.getElementById('travis-modal-iframe').src='https://www.youtube.com/embed/MsUf7K8_vjA?autoplay=1&rel=0&playsinline=1'" style="cursor:pointer;position:relative">
+          <div class="field-install__screen"><img src="https://i.ytimg.com/vi/MsUf7K8_vjA/hq2.jpg" style="width:100%;display:block" alt="Travis from Illinois TinyPumper install" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="field-install__caption">
+        <h3>See It in Action</h3>
+        <p>Travis from Illinois getting live readings from a tank battery he set up that morning. Three sensors. One gateway. One bar of cell signal. He knows what his wells are doing &mdash; without setting foot on the lease.</p>
+        <p style="margin-top:12px;font-size:14px;font-weight:600;color:var(--gold);cursor:pointer" onclick="document.getElementById('travis-modal').classList.add('active');document.getElementById('travis-modal-iframe').src='https://www.youtube.com/embed/MsUf7K8_vjA?autoplay=1&rel=0&playsinline=1'">&#9654; Click the video to watch the full install</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1148,5 +1160,12 @@ document.querySelectorAll('.faq-q').forEach(function(q){
   </div>
 </div>
 
+
+<div class="video-modal" id="travis-modal" onclick="this.classList.remove('active');document.getElementById('travis-modal-iframe').src=''">
+  <div class="video-modal__inner" onclick="event.stopPropagation()">
+    <div class="video-modal__close" onclick="document.getElementById('travis-modal').classList.remove('active');document.getElementById('travis-modal-iframe').src=''">&times;</div>
+    <iframe id="travis-modal-iframe" src="" style="width:100%;aspect-ratio:16/9;border:0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
+</div>
 </body>
 </html>
