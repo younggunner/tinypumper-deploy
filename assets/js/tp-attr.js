@@ -116,7 +116,8 @@
           visit_id: vid, brand: BRAND, page: window.location.pathname,
           utm_term: p.get('utm_term') || '', utm_source: p.get('utm_source') || '',
           utm_campaign: p.get('utm_campaign') || '',
-          max_scroll_pct: maxScroll, active_seconds: active, word_count: words
+          max_scroll_pct: maxScroll, active_seconds: active, word_count: words,
+          entry_hash: (window.location.hash || '').slice(0, 40)
         });
         if (navigator.sendBeacon) {
           navigator.sendBeacon(EP, new Blob([payload], { type: 'text/plain' }));
