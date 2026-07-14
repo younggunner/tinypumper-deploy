@@ -70,3 +70,60 @@
     writeCookie(COOKIE, JSON.stringify(prev));
   } catch (e) { /* never break the page */ }
 })();
+
+/* --- KVS engagement telemetry (added 2026-07-14, Greg-approved) ---
+   /ppc/ landers only. Measures ACTIVE dwell (visibility + recent-interaction
+   gated heartbeat — a tab left open 14h records only real attention), max
+   scroll %, and the page's own word count (for read-ratio scoring server-side).
+   Beacons to the lander-engagement Supabase edge function on tab-hide/pagehide;
+   text/plain avoids CORS preflight with sendBeacon. Never breaks the page. */
+(function () {
+  try {
+    if (!/^\/ppc\//.test(window.location.pathname)) return;
+    var EP = 'https://nhdethynnmgrqlswqiqj.supabase.co/functions/v1/lander-engagement';
+    var BRAND = 'tp';
+    var vid = 'v' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+    var active = 0, lastAct = Date.now(), maxScroll = 0, words = 0;
+    function onAct() { lastAct = Date.now(); }
+    ['scroll', 'mousemove', 'keydown', 'touchstart', 'click'].forEach(function (e) {
+      window.addEventListener(e, onAct, { passive: true });
+    });
+    setInterval(function () {
+      if (document.visibilityState === 'visible' && Date.now() - lastAct < 60000) {
+        active += 5;
+        if (active > 1800) active = 1800;
+      }
+    }, 5000);
+    function measure() {
+      var d = document.documentElement;
+      var h = Math.max(d.scrollHeight, document.body ? document.body.scrollHeight : 0);
+      if (h > 0) {
+        var pct = Math.round(100 * (window.scrollY + window.innerHeight) / h);
+        if (pct > maxScroll) maxScroll = pct > 100 ? 100 : pct;
+      }
+    }
+    window.addEventListener('scroll', measure, { passive: true });
+    function send() {
+      try {
+        measure();
+        if (!words && document.body) {
+          words = (document.body.innerText || '').split(/\s+/).filter(Boolean).length;
+        }
+        var p = new URLSearchParams(window.location.search);
+        var payload = JSON.stringify({
+          visit_id: vid, brand: BRAND, page: window.location.pathname,
+          utm_term: p.get('utm_term') || '', utm_source: p.get('utm_source') || '',
+          utm_campaign: p.get('utm_campaign') || '',
+          max_scroll_pct: maxScroll, active_seconds: active, word_count: words
+        });
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon(EP, new Blob([payload], { type: 'text/plain' }));
+        }
+      } catch (e) {}
+    }
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'hidden') send();
+    });
+    window.addEventListener('pagehide', send);
+  } catch (e) { /* never break the page */ }
+})();
