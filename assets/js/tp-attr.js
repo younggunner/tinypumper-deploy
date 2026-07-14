@@ -79,7 +79,9 @@
    text/plain avoids CORS preflight with sendBeacon. Never breaks the page. */
 (function () {
   try {
-    if (!/^\/ppc\//.test(window.location.pathname)) return;
+    // Site-wide since 2026-07-14 (was /ppc/-only): platform traffic-quality
+    // scoring needs homepage + lead-magnet + BOF pages too. Note: #pricing
+    // anchor arrivals register instant deep scroll (Capterra Pricing CTA).
     var EP = 'https://nhdethynnmgrqlswqiqj.supabase.co/functions/v1/lander-engagement';
     var BRAND = 'tp';
     var vid = 'v' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
