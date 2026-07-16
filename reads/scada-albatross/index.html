@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>How Independent Producers Are Getting SCADA-Level Eyes on Every Well Without the SCADA Price Tag or the Complexity</title>
+<meta name="description" content="The inherited SCADA system, the lost passwords, the 2007 PLCs. How the albatross got here, what it really costs, and the right-sized way out.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5PQGM83');</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PRKJMBM46B"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PRKJMBM46B');</script>
+<style>
+:root{--bg:#FAF8F5;--bg-warm:#F3EFE9;--card:#FFF;--ink:#1C1B18;--muted:#78736B;--gold:#C8993B;--gold-hover:#B58A2F;--green:#4D7C5A;--red:#994848;--border:#E2DDD5}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:'Outfit',sans-serif;font-weight:300;font-size:1.15rem;line-height:1.75;-webkit-font-smoothing:antialiased}
+.masthead{border-bottom:1px solid var(--border);padding:1.1rem 1.4rem;display:flex;justify-content:space-between;gap:1rem;font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.masthead span:first-child{color:var(--ink)}
+.wrap{max-width:700px;margin:0 auto;padding:0 1.4rem}
+header.article-head{padding:3.2rem 0 2.2rem;border-bottom:1px solid var(--border)}
+.kicker{font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:1.2rem}
+h1{font-family:'Libre Baskerville',Georgia,serif;font-weight:700;font-size:clamp(1.9rem,4.8vw,2.9rem);line-height:1.22}
+.standfirst{margin-top:1.2rem;font-size:1.2rem;line-height:1.6;color:var(--muted);font-weight:300}
+.byline{margin-top:1.6rem;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.byline b{color:var(--ink);font-weight:600}
+article{padding:2rem 0 1rem}
+article p{margin:0 0 1.4rem}
+article h2{font-family:'Libre Baskerville',Georgia,serif;font-weight:700;font-size:1.5rem;margin:2.6rem 0 1rem;line-height:1.3}
+article h2::before{content:"";display:block;width:36px;height:3px;background:var(--gold);margin-bottom:.85rem;border-radius:2px}
+.pull{margin:2.3rem 0;padding:1.4rem 1.6rem;background:var(--card);border:1px solid var(--border);border-left:5px solid var(--gold);border-radius:0 8px 8px 0;font-family:'Libre Baskerville',Georgia,serif;font-style:italic;font-size:1.3rem;line-height:1.5}
+figure{margin:2.5rem 0}
+figure svg{width:100%;height:auto;display:block;border:1px solid var(--border);border-radius:8px}
+figcaption{font-size:.82rem;color:var(--muted);padding-top:.65rem}
+figcaption b{color:var(--ink);font-weight:600}
+.end-photo{max-width:520px;margin:2.4rem auto}
+.end-photo img{width:100%;display:block;border-radius:8px;border:1px solid var(--border)}
+.cta-line{margin:1.6rem 0 3rem}
+a.textlink{color:var(--gold-hover);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px;font-weight:500}
+a.textlink:hover{color:var(--ink)}
+article>p:last-of-type{margin:2.2rem 0 3rem}
+footer.page-foot{border-top:1px solid var(--border);color:var(--muted);text-align:center;padding:1.4rem;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;font-weight:500}
+.hero-fig{margin:2.2rem 0 0}
+.hero-fig img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:8px;border:1px solid var(--border)}
+@media(min-width:640px){.hero-fig img{aspect-ratio:4/3;object-position:50% 55%}}
+@media(max-width:560px){body{font-size:1.05rem}.pull{font-size:1.12rem}}
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5PQGM83" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div class="masthead"><span>Field Journal</span><span>Notes from the Oil Patch</span></div>
+
+<div class="wrap">
+<header class="article-head">
+  <div class="kicker">Essay · The Albatross</div>
+  <h1>How Independent Producers Are Getting SCADA-Level Eyes on Every Well Without the SCADA Price Tag or the&nbsp;Complexity</h1>
+  <p class="standfirst">The inherited system, the lost passwords, the PLCs running code from 2007. How the albatross got around your neck, and the right-sized way out from under it.</p>
+  <div class="byline">By <b>Greg Archbald</b> · Founder of TinyPumper</div>
+</header>
+
+<figure class="hero-fig">
+<img src="scada-cabinet-dusk.jpeg" alt="A rusted SCADA control cabinet with its door open and wiring spilling out, a pumpjack still working in the background at dusk" width="1600" height="1600">
+<figcaption><b>The albatross, at rest.</b> The wells kept pumping. The system that was supposed to watch them didn&rsquo;t.</figcaption>
+</figure>
+
+<article>
+<p>Say you pick up a package of wells. Good acquisition, solid production, and a bonus: they come with a SCADA system already installed. Remote monitoring, day one. On paper, you just got ahead.</p>
+<p>Then you drive out to meet your new equipment.</p>
+<p>The system hasn&rsquo;t been updated in years. Nobody left at the company knows the passwords. The solar panels are glitchy, the radios drop out past the caliche pit, and the PLCs are running custom code some contractor wrote in 2007 and took to his grave, professionally speaking. To get any of it talking again, you need a specialist to drive out, bill by the hour, and deliver a diagnosis that sounds a lot like a ransom note.</p>
+<p>Congratulations. You didn&rsquo;t inherit an asset. You inherited an albatross.</p>
+
+<h2>How the albatross got here</h2>
+<p>Here&rsquo;s the part nobody says out loud: that system was never designed for an operation like yours.</p>
+<p>SCADA came out of a world of control rooms and staff engineers. It was sized for thousand-barrel-a-day wells, refineries, and gas plants, places where closed-loop control earns its keep and there&rsquo;s a technician on payroll to feed the thing. Real technology, doing a real job, for the operations it was built for.</p>
+<p>Then the vendors discovered a bigger market: everybody else. The feature sheet stayed the same. The sales pitch just changed audiences. And a generation of independents got sold a control-room system for wells that needed a lookout, not a cockpit.</p>
+<div class="pull">You were never the customer it was designed for. Just the one it was sold to.</div>
+
+<h2>The honest inventory</h2>
+<p>Strip it down and ask what you actually need to know about a conventional well, tank battery, or facility:</p>
+<p>What are my tank levels? What are my pressures doing? Is the compressor running or did it die Friday night? Did anything cross a line I care about while nobody was standing there?</p>
+<p>That&rsquo;s the whole list. It&rsquo;s maybe five percent of a SCADA feature sheet, and it&rsquo;s about ninety-nine percent of the value. The rest of the stack, the historian, the integration bus, the licensing tiers, the HMI screens nobody configures, exists because it was built for someone else&rsquo;s problem, and you&rsquo;re paying to haul it around.</p>
+<p>In the oil patch, complexity is a cancer. Every layer is another thing that breaks, another password that walks off, another specialist on the phone. Simple scales. Fancy fails.</p>
+
+<figure>
+<svg viewBox="0 0 720 430" role="img" aria-label="Diagram comparing the full SCADA stack to the thin slice of it an operator actually needs, and TinyPumper covering exactly that slice">
+  <rect width="720" height="430" fill="#FFFFFF"/>
+  <text x="36" y="44" font-family="Outfit,Arial,sans-serif" font-weight="600" font-size="16" fill="#1C1B18">THE LEGACY SCADA FEATURE SHEET VS. WHAT YOU ACTUALLY USE</text>
+  <!-- SCADA stack -->
+  <text x="36" y="80" font-family="Outfit,Arial,sans-serif" font-weight="600" font-size="12" letter-spacing="2" fill="#78736B">THE SCADA STACK</text>
+  <g font-family="Outfit,Arial,sans-serif" font-size="12.5" fill="#78736B">
+    <rect x="36" y="92" width="300" height="34" fill="#F7EAE7" stroke="#DDBDB6"/><text x="52" y="114">closed-loop control · PLC programming</text>
+    <rect x="36" y="130" width="300" height="34" fill="#F7EAE7" stroke="#DDBDB6"/><text x="52" y="152">historian &amp; integration bus</text>
+    <rect x="36" y="168" width="300" height="34" fill="#F7EAE7" stroke="#DDBDB6"/><text x="52" y="190">HMI screens · licensing tiers</text>
+    <rect x="36" y="206" width="300" height="34" fill="#F7EAE7" stroke="#DDBDB6"/><text x="52" y="228">engineered installs · trenched wire</text>
+    <rect x="36" y="244" width="300" height="34" fill="#F7EAE7" stroke="#DDBDB6"/><text x="52" y="266">IT stack · service contracts · the specialist</text>
+  </g>
+  <path d="M346,92 h9 v186 h-9" fill="none" stroke="#994848" stroke-width="2"/>
+  <g font-family="Outfit,Arial,sans-serif" font-weight="600" font-size="12.5" fill="#994848">
+    <text x="368" y="158">all the cost.</text>
+    <text x="368" y="178">all the expertise.</text>
+    <text x="368" y="198">all the complexity.</text>
+  </g>
+  <text x="368" y="220" font-family="Outfit,Arial,sans-serif" font-size="11.5" fill="#78736B">the price of admission to the one slice you wanted.</text>
+  <rect x="36" y="282" width="300" height="46" fill="#C8993B" opacity="0.18" stroke="#C8993B" stroke-width="2"/>
+  <text x="52" y="302" font-family="Outfit,Arial,sans-serif" font-weight="600" font-size="12.5" fill="#1C1B18">tank levels · pressures · runtime · alerts</text>
+  <text x="52" y="319" font-family="Outfit,Arial,sans-serif" font-size="11.5" fill="#8a6f28">the part you actually needed</text>
+  <text x="36" y="360" font-family="Outfit,Arial,sans-serif" font-size="12" fill="#78736B">~5% of the feature sheet. ~99% of the value.</text>
+  <!-- TinyPumper column -->
+  <text x="420" y="80" font-family="Outfit,Arial,sans-serif" font-weight="600" font-size="12" letter-spacing="2" fill="#B58A2F">THE RIGHT-SIZED VERSION</text>
+  <rect x="420" y="282" width="264" height="46" fill="#C8993B" rx="4"/>
+  <text x="436" y="302" font-family="Outfit,Arial,sans-serif" font-weight="600" font-size="12.5" fill="#FFFFFF">tank levels · pressures · runtime · alerts</text>
+  <text x="436" y="319" font-family="Outfit,Arial,sans-serif" font-size="11.5" fill="#f3e7d0">that slice. nothing else.</text>
+  <g font-family="Outfit,Arial,sans-serif" font-size="12" fill="#4D7C5A">
+    <text x="420" y="356">self-installed in ~10 minutes</text>
+    <text x="420" y="374">a few hundred bucks a device, one time</text>
+    <text x="420" y="392">one flat monthly rate per site, unlimited sensors</text>
+  </g>
+  <line x1="336" y1="305" x2="416" y2="305" stroke="#C8993B" stroke-width="2" stroke-dasharray="5 4"/>
+  <path d="M410,300 L419,305 L410,310 Z" fill="#C8993B"/>
+</svg>
+<figcaption><b>The honest inventory.</b> The highlighted slice is the whole job. Everything above it is somebody else&rsquo;s problem, sold to you at their price.</figcaption>
+</figure>
+
+<h2>What the albatross really costs</h2>
+<p>The maintenance line is the part you can see: the service calls, the replacement parts for hardware they stopped making, the annual licensing that reads like a car payment for a car you don&rsquo;t like.</p>
+<p>The part most folks miss is worse. The longer you keep legacy SCADA alive, the more your operation bends around its limitations. Which wells get monitored is decided by where the old wiring runs, not where the risk is. Whether you expand to a new lease gets weighed against what the integration will cost. Somewhere along the way, the system stopped serving you and started controlling you.</p>
+<p>And the knowledge problem never goes away. That one guy who understands the system, in-house or contracted, is a six-figure dependency whose expertise leaves in the truck with him. A monitoring setup that requires a priesthood isn&rsquo;t infrastructure. It&rsquo;s a hostage situation with uptime charts.</p>
+<p>Meanwhile the operator with no system at all isn&rsquo;t any better off. He&rsquo;s flying blind between pumper visits, finding out about Friday&rsquo;s dead compressor on Monday and about the stolen oil when the run ticket comes up light. One neighbor pays too much to know. The other pays by not knowing. Neither one is winning.</p>
+
+<h2>The right-sized answer</h2>
+<p>Think about what happened to home security. The old alarm systems were the same story: a technician at your house all day, holes drilled in the walls, wires everywhere, a contract, a call center. Then somebody figured out the whole job could be done by a box you order, stick on the wall yourself, and control from your phone. Same protection. None of the priesthood.</p>
+<p>That&rsquo;s TinyPumper. A gateway the size of a matchbox, solar powered, that pushes everything to the cloud over cellular or satellite, both included, no dead zones. A radar sensor that sits on top of the tank, so it never touches the fluid, never corrodes, never gunks up, never freezes. Pressure sensors for the wellhead or flowline. A runtime read on the compressor or engine, so Friday night&rsquo;s failure sends an alert Friday night.</p>
+<p>You install it yourself in about ten minutes. If you can change a lightbulb, you&rsquo;re qualified. No trenching, no wiring harness, no tech visit, no IT department. And it&rsquo;s one flat monthly rate per site with unlimited sensors, hardware that runs a few hundred bucks a device, one time. Monitor everything at the location for the price the old world charged you to monitor one thing badly.</p>
+<p>Between the sensor checks, the system sanity-checks itself every few minutes against the thresholds you set. Something crosses a line at 2 a.m., your phone knows at 2 a.m. Not Monday.</p>
+
+<h2>One sensor at a time</h2>
+<p>Here&rsquo;s the part that surprises people: I&rsquo;m not going to tell you to rip anything out.</p>
+<p>If some of that inherited SCADA still works, let it keep working. You&rsquo;ve already paid for it. The move isn&rsquo;t a heart transplant, it&rsquo;s attrition on your terms: when the next piece of the old system dies, and it will, you don&rsquo;t rebuild it. You replace that one function with a sensor you can install before lunch. And if you want a yardstick for the economics: an entire TinyPumper sensor costs less than one of the specialized batteries the old system makes you buy every couple of years just to keep it alive. The replacement part costs more than the replacement. And the new sensor&rsquo;s readings go wherever you want them: piped into the software you already run, sitting right next to the numbers the old system still sends. Bolting on TinyPumper doesn&rsquo;t mean a second place to look. One screen, not another login. The albatross shrinks one feather at a time, and no capital budget meeting ever has to hear about it.</p>
+<figure>
+<svg viewBox="0 0 720 330" role="img" aria-label="Diagram: the legacy SCADA system retired by attrition over time, one sensor at a time, with no rip-out day">
+  <rect width="720" height="330" fill="#FFFFFF"/>
+  <text x="36" y="42" font-family="Outfit,Arial,sans-serif" font-weight="600" font-size="16" fill="#1C1B18">ONE FEATHER AT A TIME (YOUR ACQUIRED SCADA STACK)</text>
+  <g font-family="Outfit,Arial,sans-serif" font-size="11.5" letter-spacing="2" font-weight="600" fill="#78736B">
+    <text x="36" y="86">TODAY</text><text x="36" y="166">WHEN THE NEXT PIECE DIES</text><text x="36" y="246">A YEAR OR TWO ON</text>
+  </g>
+  <!-- row 1: full legacy bar -->
+  <g>
+    <rect x="36" y="96" width="88" height="30" fill="#F7EAE7" stroke="#DDBDB6"/><rect x="128" y="96" width="88" height="30" fill="#F7EAE7" stroke="#DDBDB6"/><rect x="220" y="96" width="88" height="30" fill="#F7EAE7" stroke="#DDBDB6"/><rect x="312" y="96" width="88" height="30" fill="#F7EAE7" stroke="#DDBDB6"/><rect x="404" y="96" width="88" height="30" fill="#F7EAE7" stroke="#DDBDB6"/>
+    <text x="510" y="116" font-family="Outfit,Arial,sans-serif" font-size="12" fill="#78736B">the inherited system. Keep what works.</text>
+  </g>
+  <!-- row 2: one segment dead, one sensor -->
+  <g>
+    <rect x="36" y="176" width="88" height="30" fill="#F7EAE7" stroke="#DDBDB6"/><rect x="128" y="176" width="88" height="30" fill="#F7EAE7" stroke="#DDBDB6"/><rect x="220" y="176" width="88" height="30" fill="#FAF8F5" stroke="#994848" stroke-dasharray="4 3"/><rect x="312" y="176" width="88" height="30" fill="#F7EAE7" stroke="#DDBDB6"/><rect x="404" y="176" width="88" height="30" fill="#F7EAE7" stroke="#DDBDB6"/>
+    <text x="264" y="196" text-anchor="middle" font-family="Outfit,Arial,sans-serif" font-weight="600" font-size="13" fill="#994848">✕</text>
+    <circle cx="264" cy="222" r="7" fill="#C8993B"/>
+    <text x="278" y="226" font-family="Outfit,Arial,sans-serif" font-size="11.5" fill="#B58A2F">one sensor, installed before lunch</text>
+    <text x="510" y="196" font-family="Outfit,Arial,sans-serif" font-size="12" fill="#78736B">don&rsquo;t rebuild it. Replace the function.</text>
+  </g>
+  <!-- row 3: mostly sensors -->
+  <g>
+    <rect x="36" y="256" width="88" height="30" fill="#F7EAE7" stroke="#DDBDB6"/>
+    <g fill="#C8993B"><circle cx="150" cy="271" r="7"/><circle cx="180" cy="271" r="7"/><circle cx="210" cy="271" r="7"/><circle cx="240" cy="271" r="7"/><circle cx="270" cy="271" r="7"/><circle cx="300" cy="271" r="7"/><circle cx="330" cy="271" r="7"/><circle cx="360" cy="271" r="7"/></g>
+    <text x="382" y="268" font-family="Outfit,Arial,sans-serif" font-size="12" fill="#78736B">the albatross, retired by attrition.</text>
+    <text x="382" y="286" font-family="Outfit,Arial,sans-serif" font-size="12" fill="#78736B">No rip-out day. No capital meeting.</text>
+  </g>
+</svg>
+<figcaption><b>Attrition on your terms.</b> The last piece of legacy gear that still works can keep working. It just never gets a successor. And the new sensors&rsquo; readings go wherever you want them, straight into the software you already run, right alongside the numbers the old system still sends. One screen, not another login.</figcaption>
+</figure>
+
+<p>Start with one lease. Pick the one that keeps you up at night, the saltwater tank that likes to run over or the compressor that dies on weekends. Put a gateway and a couple of sensors on it and see what a month of always-knowing feels like.</p>
+<p>And if it isn&rsquo;t for you, send it back inside 60 days for your money back. We pay the return shipping. No retention department, no hard feelings. The sensors you do keep carry a lifetime replacement: if one ever breaks, we send a new one, no questions, no fine print. We can offer that because the hardware is simple enough to deserve it. Nobody selling you a control room ever offered to take it back.</p>
+<p>The best independents aren&rsquo;t buying complexity anymore. They&rsquo;re buying exactly what the job needs and not one layer more, because they&rsquo;ve learned what the albatross taught the hard way: in this business, the system that wins is the one you never have to think about.</p>
+
+<p>If this sounds like your situation, inherited albatross or flying blind, <a class="textlink" href="https://www.tinypumper.com/">take a look at TinyPumper</a> and take the quiz while you&rsquo;re there. It runs about a minute, and it&rsquo;ll tell you straight whether your operation is a fit. The install will take you longer. Barely.</p>
+
+<figure class="end-photo">
+<img src="sensor-storm.jpeg" alt="A TinyPumper sensor mounted on a tank thief hatch, reporting in through a storm, pumpjack in the distance" loading="lazy">
+<figcaption><b>The right-sized version, installed.</b> The slice you actually needed, screwed onto the tank, reporting in through the weather.</figcaption>
+</figure>
+<p class="cta-line"><a class="textlink" href="https://www.tinypumper.com/">Click here to check out TinyPumper &rarr; www.tinypumper.com</a></p>
+</article>
+</div>
+
+<footer class="page-foot">Field Journal</footer>
+<script src="/assets/js/tp-attr.js"></script>
+<script>
+/* headline-swap: ad-variant message match. utm_content like "...-h2-..." (or ?h=2) swaps the H1
+   so the page mirrors whichever test ad was clicked. Default (no param / h1) = the hard-coded H1. */
+(function(){try{
+  var q=location.search;
+  var m=q.match(/[?&]h=([23])\b/)||q.match(/[?&]utm_content=[^&]*?\bh([23])\b/);
+  if(!m)return;
+  var H={"2": "The Truth About Why SCADA Never Made Sense for the Marginal Well Producer (And the Matchbox-Size Box That Finally Does)", "3": "Why the Oil Producers Who Said No to SCADA Are About to Look Like Geniuses (And the 10-Minute Gadget They're Saying Yes To)"};
+  var t=H[m[1]];if(!t)return;
+  var el=document.querySelector("h1");if(el)el.textContent=t;
+  document.title=t;
+}catch(e){}})();
+</script>
+<script>
+/* cta-tracking: pushes advertorial_cta_click to the dataLayer on any .textlink click.
+   One event, one meaning: a reader clicked through to the site.
+   Needs the matching GTM custom-event trigger + GA4 event tag (see launch checklist). */
+(function(){
+  var slug=location.pathname.split('/').filter(Boolean).pop()||'';
+  var m=location.search.match(/[?&]h=([0-9])\b/)||location.search.match(/[?&]utm_content=[^&]*?\bh([0-9])\b/);
+  var v='h'+((m&&m[1])||'1');
+  document.addEventListener('click',function(e){
+    var a=e.target&&e.target.closest?e.target.closest('a.textlink'):null;
+    if(!a)return;
+    window.dataLayer=window.dataLayer||[];
+    window.dataLayer.push({event:'advertorial_cta_click',article:slug,variant:v});
+  },true);
+})();
+</script>
+</body>
+</html>
