@@ -41,7 +41,7 @@
     }
 
     var p = new URLSearchParams(window.location.search);
-    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid']
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'msclkid', 'fbclid']
       .forEach(function (k) {
         var v = p.get(k);
         if (v && !prev[k]) prev[k] = v;
