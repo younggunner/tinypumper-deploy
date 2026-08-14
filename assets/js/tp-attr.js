@@ -112,10 +112,30 @@
           words = (document.body.innerText || '').split(/\s+/).filter(Boolean).length;
         }
         var p = new URLSearchParams(window.location.search);
+        // Attribution: URL utms first; else fall back to the first-touch
+        // attribution cookie this same file maintains (added 2026-08-14 —
+        // before this, every follow-on pageview landed unattributed, ~53% of
+        // all rows, and deep reading mostly happens on the second page).
+        // attr_from tells the analysis which path attributed the row.
+        var us = p.get('utm_source') || '', uc = p.get('utm_campaign') || '',
+            ut = p.get('utm_term') || '', af = (us || uc) ? 'url' : '';
+        if (!af) {
+          try {
+            var cm = document.cookie.match(/(?:^|; )tp_attr=([^;]*)/);
+            if (cm) {
+              var ck = JSON.parse(decodeURIComponent(cm[1])) || {};
+              us = ck.utm_source || ''; uc = ck.utm_campaign || '';
+              ut = ck.utm_term || '';
+              if (us || uc) af = 'cookie';
+            }
+          } catch (e) {}
+        }
+        // 404 pages set window.__attrPageOverride='/404/' so dead URLs stop
+        // logging phantom page paths (they still count as a 404 hit).
         var payload = JSON.stringify({
-          visit_id: vid, brand: BRAND, page: window.location.pathname,
-          utm_term: p.get('utm_term') || '', utm_source: p.get('utm_source') || '',
-          utm_campaign: p.get('utm_campaign') || '',
+          visit_id: vid, brand: BRAND,
+          page: window.__attrPageOverride || window.location.pathname,
+          utm_term: ut, utm_source: us, utm_campaign: uc, attr_from: af,
           max_scroll_pct: maxScroll, active_seconds: active, word_count: words,
           entry_hash: (window.location.hash || '').slice(0, 40)
         });

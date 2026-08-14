@@ -1,0 +1,33 @@
+# Engagement-beacon gate (Greg, 2026-08-14). Every published page must carry
+# tp-attr.js — the KVS/traffic-quality telemetry that paid-ads decisions read.
+# WHY: a page without it is invisible to engagement scoring (deep-read rate is
+# a first-class optimization signal per Paid-Ads.md); GB's booking + press
+# pages shipped dark for a month before the equivalent GB gate existed.
+# Exempt: meta-refresh redirect stubs (instant bounce, rows would be junk).
+# This repo publishes as-is (no build step), so the gate scans the source tree.
+name: Beacon gate
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  beacon-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Every published page carries tp-attr.js
+        run: |
+          fails=0
+          while IFS= read -r f; do
+            grep -q "tp-attr.js" "$f" && continue
+            grep -qi 'http-equiv="refresh"' "$f" && continue
+            echo "::error file=$f::published page missing tp-attr.js engagement beacon (rule of 2026-08-14)"
+            fails=$((fails+1))
+          done < <(find . -name '*.html' -not -path './.git/*' -not -path './assets/*')
+          if [ "$fails" -gt 0 ]; then
+            echo "$fails page(s) missing the beacon — add <script src=\"/assets/js/tp-attr.js\"></script> before </head>."
+            exit 1
+          fi
+          echo "beacon gate passed"
