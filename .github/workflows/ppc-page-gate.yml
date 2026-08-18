@@ -1,0 +1,45 @@
+# PPC page gate (Greg, 2026-08-18). Blocks the defect classes that reached
+# production, or nearly did, during the 2026-08-18 single-keyword lander build.
+#
+# WHY it exists — each rule is a failure that ACTUALLY happened:
+#   * 149 of 216 live /ppc/ pages were 16.5 MB each, because three MP4 videos
+#     were base64-inlined into the HTML. Inlined bytes sit in the initial
+#     document, so the browser downloads all 16.5 MB before rendering anything
+#     and lazy-loading is impossible. We pay for clicks to these pages, often on
+#     rural mobile connections. De-bloated 2026-08-18 (2.4 GB -> 34 MB, each page
+#     16.5 MB -> ~103 KB) by swapping every blob for a ../shared/<file> ref.
+#   * A copy agent's broken regex wrote literal \g<1> / \g<2> into two pages, so
+#     the hero primer and a section heading rendered as raw text. The agent
+#     reported success; only independent verification caught it.
+#   * Pages shipped without the hero producer primer. Since negative
+#     disambiguation is banned (Greg, 2026-07-22), that positive anchor is the
+#     ONLY thing gating consumer-intent traffic out.
+#
+# SCOPE: structural rules (bloat, artifacts, noindex, beacon, missing assets)
+# hard-fail repo-wide — all are currently clean, so any hit is a new regression.
+# Copy rules hard-fail only on pages this push touches; the legacy backlog is
+# reported as a warning every run. WHY split: the legacy corpus carries ~310
+# pre-existing copy issues, and a gate that fails every deploy gets disabled,
+# and a disabled gate protects nothing.
+name: PPC page gate
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  ppc-page-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2      # need HEAD~1 to diff which pages this push touched
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Gate /ppc/ pages
+        env:
+          GATE_DIFF_BASE: ${{ github.event.pull_request.base.sha || 'HEAD~1' }}
+        run: python3 .github/scripts/ppc_page_gate.py
