@@ -34,6 +34,12 @@ import os, re, sys
 
 MAX_PAGE_BYTES = 1_500_000     # ~103 KB is normal; 1.5 MB is a generous ceiling
                                # that still catches a re-inlined video instantly.
+# New-page source budget (spec §4.14B, Greg 2026-08-19). The 1.5 MB ceiling is
+# a corpus regression backstop; new/changed pages get the tighter budget so
+# LP Experience never re-degrades by drift. WARN at the current template
+# weight (~480 KB); hard-fail at 600 KB.
+NEW_PAGE_WARN_BYTES = 480_000
+NEW_PAGE_MAX_BYTES = 600_000
 ROOT = os.environ.get("GITHUB_WORKSPACE", ".")
 
 # STRUCTURAL rules — enforced repo-wide, hard fail. All currently clean, so any
@@ -74,6 +80,61 @@ REQUIRED = [
      "/ppc/ pages must be noindex,nofollow"),
     ("tp-attr.js", "missing the engagement beacon (see beacon-gate)"),
 ]
+
+
+def _strip_tags(html: str) -> str:
+    t = re.sub(r"(?is)<[^>]+>", " ", html or "")
+    t = re.sub(r"&amp;", "&", t)
+    t = re.sub(r"&nbsp;", " ", t)
+    return re.sub(r"\s+", " ", t).strip()
+
+
+def claimed_phrase(html: str, path: str) -> str:
+    """The phrase this page claims to target.
+
+    Spec §4.14B: read it from the page's own H1/title, not a sidecar. Prefer
+    the <title> text before a `|` brand suffix; fall back to the H1; last
+    resort the directory slug. Competitor landers (`*-alternative`) return
+    empty — Rule 9, never rebuild or re-key those from a template.
+    """
+    base = os.path.basename(os.path.dirname(os.path.abspath(path)))
+    if "/ppc/" not in path.replace("\\", "/"):
+        return ""
+    if base.endswith("-alternative") or base == "ppc" or base.startswith("_"):
+        # `_`-prefixed dirs are previews/scaffolding, not landers.
+        return ""
+    title = ""
+    m = re.search(r"(?is)<title[^>]*>(.*?)</title>", html or "")
+    if m:
+        title = _strip_tags(m.group(1))
+        title = re.split(r"\s+\|\s+", title)[0].strip()
+    h1 = ""
+    m = re.search(r"(?is)<h1\b[^>]*>(.*?)</h1>", html or "")
+    if m:
+        h1 = _strip_tags(m.group(1))
+    # The canonical phrase is the slug (one-keyword lander). Title/H1 must
+    # CONTAIN it; we don't take the whole H1 as the phrase (H1s are longer).
+    slug_phrase = re.sub(r"[-_]+", " ", base).strip().lower()
+    return slug_phrase
+
+
+def _contains_phrase(hay: str, phrase: str) -> bool:
+    """Alphanumeric-fold both sides so punctuation never fakes a miss:
+    slug `247-oilfield-data` must match page text "24/7 Oilfield Data"
+    (found live 2026-08-19 — the slash made an honest page a false positive)."""
+    if not phrase:
+        return True
+    import re as _re
+    fold = lambda s: _re.sub(r"[^a-z0-9]+", " ", (s or "").lower()
+                             .replace("&", " and ")).split()
+    h, p = fold(hay), fold(phrase)
+    if p and any(h[i:i + len(p)] == p for i in range(len(h) - len(p) + 1)):
+        return True
+    # Squashed fallback: slug `247` is one token but the page writes "24/7"
+    # (two tokens after folding). Comparing with all non-alphanumerics removed
+    # entirely catches digit/punctuation splits without loosening word order.
+    squash = lambda toks: "".join(toks)
+    return squash(p) in squash(h) if p else True
 
 
 def visible_text(html: str) -> str:
@@ -123,6 +184,45 @@ def check_page(path: str) -> tuple[list[str], list[str]]:
     for ref in set(re.findall(r'\.\./shared/([A-Za-z0-9._-]+)', raw)):
         if not os.path.isfile(os.path.join(shared_dir, ref)):
             problems.append(f"references missing asset ../shared/{ref}")
+
+    # QS-serving copy rules (spec §4.14B) — applied to changed/new pages by
+    # main() the same way as the other copy rules. Viewport is an LP
+    # Experience input; canonical-in-four-places is the LP-relevance half of
+    # message match. Competitor landers skip the phrase check (Rule 9).
+    if not re.search(r'(?i)<meta[^>]+name=["\']viewport["\'][^>]+width\s*=\s*device-width',
+                     raw) and not re.search(
+                         r'(?i)<meta[^>]+content=["\'][^"\']*width\s*=\s*device-width', raw):
+        copy_problems.append("missing viewport meta (width=device-width) — "
+                             "mobile usability is an LP Experience input")
+    phrase = claimed_phrase(raw, path)
+    if phrase:
+        title = ""
+        m = re.search(r"(?is)<title[^>]*>(.*?)</title>", raw)
+        if m:
+            title = _strip_tags(m.group(1))
+        meta = ""
+        m = re.search(r'(?is)<meta[^>]+name=["\']description["\'][^>]+content=["\'](.*?)["\']',
+                      raw)
+        if not m:
+            m = re.search(r'(?is)<meta[^>]+content=["\'](.*?)["\'][^>]+name=["\']description["\']',
+                          raw)
+        if m:
+            meta = _strip_tags(m.group(1))
+        h1 = ""
+        m = re.search(r"(?is)<h1\b[^>]*>(.*?)</h1>", raw)
+        if m:
+            h1 = _strip_tags(m.group(1))
+        hero = ""
+        m = re.search(r'(?is)<p[^>]*class=["\'][^"\']*hero__sub[^"\']*["\'][^>]*>(.*?)</p>', raw)
+        if m:
+            hero = _strip_tags(m.group(1))
+        missing = [name for name, text in (("title", title), ("meta description", meta),
+                                           ("H1", h1), ("hero subtext", hero))
+                   if not _contains_phrase(text, phrase)]
+        if missing:
+            copy_problems.append(
+                f"canonical phrase {phrase!r} missing from {', '.join(missing)} "
+                "(LP-relevance half of message match)")
     return problems, copy_problems
 
 
@@ -164,6 +264,17 @@ def main() -> int:
             print(f"::error file={rel}::{msg}")
             fails += 1
         is_new = os.path.normpath(p) in touched
+        if is_new:
+            size = os.path.getsize(p)
+            if size > NEW_PAGE_MAX_BYTES:
+                print(f"::error file={rel}::new/changed page is "
+                      f"{size/1024:.0f} KB (ceiling {NEW_PAGE_MAX_BYTES/1024:.0f} KB)")
+                fails += 1
+            elif size > NEW_PAGE_WARN_BYTES:
+                print(f"::warning file={rel}::new/changed page is "
+                      f"{size/1024:.0f} KB (template weight ~"
+                      f"{NEW_PAGE_WARN_BYTES/1024:.0f} KB; ceiling "
+                      f"{NEW_PAGE_MAX_BYTES/1024:.0f} KB)")
         for msg in copy:
             if is_new:                           # changed page: hard
                 print(f"::error file={rel}::{msg}")
@@ -204,6 +315,7 @@ def self_test() -> int:
         fails = []
         clean = (
             '<!doctype html><html><head>'
+            '<meta name="viewport" content="width=device-width, initial-scale=1">'
             '<meta name="robots" content="noindex, nofollow">'
             '<script src="/assets/js/tp-attr.js"></script>'
             '</head><body>'
