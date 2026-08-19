@@ -39,6 +39,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+      - name: Planted-violation self-test
+        run: python3 .github/scripts/ppc_page_gate.py --self-test
       - name: Gate /ppc/ pages
         env:
           GATE_DIFF_BASE: ${{ github.event.pull_request.base.sha || 'HEAD~1' }}

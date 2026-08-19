@@ -185,5 +185,58 @@ def main() -> int:
     return 0
 
 
+def self_test() -> int:
+    """Planted-violation self-test (spec §6.1). Exit 1 if any plant is missed
+    or did not land. A no-op plant makes a broken checker look clean — this
+    false-negative mode occurred twice during the 2026-08-18 build."""
+    # Import sibling-machine helper when running from Mission_Control; fall
+    # back to an inline copy of the plants if ppc_machine isn't on sys.path.
+    try:
+        sys.path.insert(0, os.path.abspath(os.path.join(
+            os.path.dirname(__file__), "..", "..", "..", "..", "..",
+            ".github", "scripts")))
+        import ppc_machine as PM
+        fails = PM.page_planted_self_test(sys.modules[__name__])
+    except Exception:
+        # Running inside tinypumper-deploy CI — inline a minimal plant set so
+        # the gate still proves itself without the sibling module.
+        import tempfile
+        fails = []
+        clean = (
+            '<!doctype html><html><head>'
+            '<meta name="robots" content="noindex, nofollow">'
+            '<script src="/assets/js/tp-attr.js"></script>'
+            '</head><body>'
+            '<p class="hero__primer">Built for oil and gas producers.</p>'
+            '<p>Wells at any scale.</p></body></html>'
+        )
+        with tempfile.TemporaryDirectory() as td:
+            def w(name, html):
+                p = os.path.join(td, name + ".html")
+                open(p, "w").write(html)
+                return p
+            p = w("b64", clean.replace("</body>", "data:video/mp4;base64,AAAA</body>"))
+            s, _ = check_page(p)
+            if not s:
+                fails.append("missed planted base64 data URI")
+            p = w("re", clean.replace("producers.", r"\g<1> primer"))
+            s, _ = check_page(p)
+            if not s:
+                fails.append("missed planted \\g<1>")
+            p = w("em", clean.replace("producers.", "The leak — nobody talks about"))
+            _, c = check_page(p)
+            if not any("em dash" in x.lower() for x in c):
+                fails.append("missed planted em dash")
+    if fails:
+        print("PPC page gate self-test FAILED:")
+        for f in fails:
+            print("  " + f)
+        return 1
+    print("PPC page gate self-test passed — planted defects caught")
+    return 0
+
+
 if __name__ == "__main__":
+    if "--self-test" in sys.argv:
+        sys.exit(self_test())
     sys.exit(main())
