@@ -118,14 +118,15 @@
         // all rows, and deep reading mostly happens on the second page).
         // attr_from tells the analysis which path attributed the row.
         var us = p.get('utm_source') || '', uc = p.get('utm_campaign') || '',
-            ut = p.get('utm_term') || '', af = (us || uc) ? 'url' : '';
+            ut = p.get('utm_term') || '', uct = p.get('utm_content') || '',
+            af = (us || uc) ? 'url' : '';
         if (!af) {
           try {
             var cm = document.cookie.match(/(?:^|; )tp_attr=([^;]*)/);
             if (cm) {
               var ck = JSON.parse(decodeURIComponent(cm[1])) || {};
               us = ck.utm_source || ''; uc = ck.utm_campaign || '';
-              ut = ck.utm_term || '';
+              ut = ck.utm_term || ''; uct = ck.utm_content || '';
               if (us || uc) af = 'cookie';
             }
           } catch (e) {}
@@ -135,7 +136,7 @@
         var payload = JSON.stringify({
           visit_id: vid, brand: BRAND,
           page: window.__attrPageOverride || window.location.pathname,
-          utm_term: ut, utm_source: us, utm_campaign: uc, attr_from: af,
+          utm_term: ut, utm_content: uct, utm_source: us, utm_campaign: uc, attr_from: af,
           max_scroll_pct: maxScroll, active_seconds: active, word_count: words,
           entry_hash: (window.location.hash || '').slice(0, 40)
         });
