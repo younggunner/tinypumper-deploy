@@ -281,6 +281,36 @@ def main() -> int:
                 fails += 1
             else:
                 legacy += 1
+    # New/changed HTML outside /ppc/ (homepage, /reads/, legal, etc.) gets
+    # the lightweight-payload rules so a non-lander GitHub Page cannot
+    # re-introduce the 16.5 MB inlined-asset scar. Untouched legacy files
+    # (the 3 MB homepage still carries data URIs) are NOT blocked until edited.
+    ppc_norm = {os.path.normpath(p) for p in targets}
+    for p in sorted(touched):
+        if os.path.normpath(p) in ppc_norm:
+            continue
+        if not p.endswith(".html"):
+            continue
+        rel = os.path.relpath(p, ROOT)
+        if rel.startswith(".github/") or "/assets/" in rel.replace("\\", "/"):
+            continue
+        if not os.path.isfile(p):
+            continue
+        raw = open(p, encoding="utf-8", errors="replace").read()
+        size = os.path.getsize(p)
+        if size > NEW_PAGE_MAX_BYTES:
+            print(f"::error file={rel}::new/changed GitHub Page is "
+                  f"{size/1024:.0f} KB (ceiling {NEW_PAGE_MAX_BYTES/1024:.0f} KB)")
+            fails += 1
+        if re.search(r"data:(image|video)/[a-zA-Z0-9.+-]+;base64,", raw, re.I):
+            print(f"::error file={rel}::inlined base64 data URI — "
+                  "assets must be files (2026-08-18 /ppc/ 16.5 MB scar)")
+            fails += 1
+        if not re.search(r'(?i)<meta[^>]+name=["\']viewport["\'][^>]+width\s*=\s*device-width',
+                         raw) and not re.search(
+                             r'(?i)<meta[^>]+content=["\'][^"\']*width\s*=\s*device-width', raw):
+            print(f"::error file={rel}::missing viewport meta (width=device-width)")
+            fails += 1
     if legacy:
         print(f"::warning::{legacy} copy issue(s) on legacy pages not touched by "
               "this change (em dashes / well-count gating predating the rules). "
