@@ -184,6 +184,16 @@ def check_page(path: str) -> tuple[list[str], list[str]]:
     for ref in set(re.findall(r'\.\./shared/([A-Za-z0-9._-]+)', raw)):
         if not os.path.isfile(os.path.join(shared_dir, ref)):
             problems.append(f"references missing asset ../shared/{ref}")
+    # Relative shared/ MUST start with ../ — href="shared/ppc.css" (no ../)
+    # passes the asset-exists check above (it only looks at ../shared/) but
+    # 404s at /ppc/<slug>/ (found live 2026-08-27 on the scada-data build).
+    # template-lite.html is copied into ppc/<slug>/, so it must also use ../.
+    for m in re.finditer(
+            r'''(?i)(?:href|src)=["'](?!https?:|//|/|\.\./)([^"']*shared/[^"']+)["']''',
+            raw):
+        problems.append(
+            f"relative shared/ ref {m.group(1)!r} must start with ../ "
+            "(href='shared/ppc.css' 404s on /ppc/<slug>/)")
 
     # QS-serving copy rules (spec §4.14B) — applied to changed/new pages by
     # main() the same way as the other copy rules. Viewport is an LP
@@ -369,6 +379,11 @@ def self_test() -> int:
             _, c = check_page(p)
             if not any("em dash" in x.lower() for x in c):
                 fails.append("missed planted em dash")
+            p = w("sharedrel", clean.replace(
+                "</head>", '<link rel="stylesheet" href="shared/ppc.css"></head>'))
+            s, _ = check_page(p)
+            if not s:
+                fails.append("missed planted shared/ without ../")
     if fails:
         print("PPC page gate self-test FAILED:")
         for f in fails:
