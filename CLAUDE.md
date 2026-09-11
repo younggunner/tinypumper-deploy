@@ -22,9 +22,19 @@ Paid-Ads.md.
 **Enforced:** `.github/workflows/beacon-gate.yml` fails the deploy on any
 HTML page missing the include.
 
-Design system rules for TinyPumper pages live in `Mission_Control/CLAUDE.md`
-(warm cream palette, Libre Baskerville + Outfit, gold CTAs). Canonical beacon
-rule + full WHY: `Mission_Control/docs/Infrastructure/Hosting/hosting_architecture.md`.
+Design system rules for TinyPumper pages live in
+`Mission_Control/docs/Infrastructure/Skills/tinypumper-design-system.md` (warm
+cream palette, Libre Baskerville + Outfit, gold CTAs, the full token table, and
+what must never cross over from Greasebook). That doc is the OWNER: do not
+restate its rules here or anywhere else. Moved out of `Mission_Control/CLAUDE.md`
+on 2026-09-11 so both brands' visual systems sit side by side in `Skills/`.
+
+The public brand page is `/brand/`, and `/brand/llms.txt` is the AI paste file,
+**generated** by `Mission_Control/scripts/build-brand-llm.py`. Never hand-edit
+`llms.txt`: change the rule at its owner doc and rebuild.
+
+Canonical beacon rule + full WHY:
+`Mission_Control/docs/Infrastructure/Hosting/hosting_architecture.md`.
 
 ## Assets are FILES, never base64 (HARD RULE, Greg 2026-08-18)
 

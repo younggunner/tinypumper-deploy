@@ -1,0 +1,1711 @@
+TINYPUMPER BRAND FILE
+GENERATED FILE - DO NOT EDIT BY HAND
+
+Source of truth for anyone, human or AI, building something that looks or sounds
+like TinyPumper. Everything below is compiled from the owner docs listed under
+PROVENANCE. Each rule lives in exactly one owner doc. To change a rule, change it
+at its owner and rebuild this file with:
+
+    python3 Mission_Control/scripts/build-brand-llm.py
+
+Built: 2026-09-11
+Human version of this file: https://tinypumper.com/brand/
+
+HOW TO USE THIS FILE
+--------------------
+Paste the whole thing into your AI tool before asking it to design a page, write
+an ad, draft an email, or generate an image for TinyPumper. It carries the exact
+color tokens, type scale, layout system, imagery rules, voice laws, kill list,
+value equation, guarantees, positioning doctrine, and the hard nos.
+
+THE SHORT VERSION
+-----------------
+TinyPumper is 24/7 remote well monitoring that installs in 10 minutes. A
+matchbox-sized solar-powered gateway plus radar tank, pressure and runtime
+sensors, cellular or satellite included, flat rate per site with unlimited
+sensors. It delivers roughly 99% of SCADA's upside without the cost or the
+complexity, and it feeds straight into the Greasebook dashboard.
+
+Positioning statement (alignment tool, not publication copy):
+  For producers running conventional wells where SCADA never penciled or where
+  aging SCADA costs more to keep alive than it returns, TinyPumper is the remote
+  monitoring system that delivers roughly 99% of SCADA's upside without the cost
+  or complexity. Unlike six-figure SCADA installs or telemetry that needs
+  babysitting, TinyPumper self-installs in 10 minutes, runs solar with
+  cellular/satellite included, one flat rate per site, 60-day money-back with
+  lifetime sensor replacement.
+
+Visual system in one breath:
+  Warm cream #FAF8F5 and warm black #1C1B18, one gold accent #C8993B and nothing
+  else. Libre Baskerville (400 and 700) for headings, Outfit (300-700) for
+  everything else. 8px radius, UPPERCASE buttons in gold with dark text, 1080px
+  container. Light theme only: dark is for contrast sections, never whole pages.
+
+Voice in one breath:
+  Talk like a peer, not a vendor. Picture an operator across a diner table in
+  Midland with 20 minutes to spare. Plain words, short sentences, 8th grade or
+  below. Show the moment, not the benefit. Prove it with numbers instead of
+  adjectives. No em dashes, ever.
+
+The brand name is written "TinyPumper": camel case, one word, capital T and
+capital P. Not Tinypumper, not Tiny Pumper, not TINYPUMPER.
+
+TWO TRAPS SPECIFIC TO THIS BRAND
+--------------------------------
+1. Never make a price admission. TinyPumper IS the cheap option, roughly 95%
+   cheaper than SCADA, so "we're not the cheapest" is factually false here. The
+   honest admission is that it watches rather than controls: no shut-ins, no
+   pump adjustments, but ~99% of what you'd pay SCADA for.
+2. Never use market-leader language ("the industry standard", "#1"). TinyPumper
+   is mid-chasm; pragmatists check, and one caught overclaim poisons the
+   reference chain. Claim product facts and guarantees, not throne-room language.
+
+TinyPumper's guarantee is 60-day money-back plus lifetime sensor replacement.
+Never borrow Greasebook's 200% guarantee, 6% lift, 98% success rate, or the
+under-10-minute training claim. And never gate TinyPumper by well count: the
+value prop holds for a 50-well operator and a 5,000-well operator alike.
+
+================================================================================
+PART 1 - VISUAL SYSTEM
+================================================================================
+
+## 1. Source of truth
+
+| Surface | File | Status |
+|---|---|---|
+| Homepage `:root` | `tinypumper-deploy/index.html` | **Canonical.** Every token originates here. |
+| PPC landers | `tinypumper-deploy/ppc/` | Must match. `ppc/template-lite.html` is the lean starting point. |
+| Competitor pages | `tinypumper-deploy/vs/` | Must match |
+| Quiz | `tp-quiz-deploy/` | TinyPumper system |
+
+**There is no build step.** This repo is plain static HTML: what is committed is what ships. Every page carries its own `<style>` block, so a token change means touching each page rather than one stylesheet.
+
+### GitHub Pages surface map
+
+| Repo | Domain | Runs this system |
+|---|---|---|
+| `tinypumper-deploy` | `www.tinypumper.com` | Yes. **Source of truth.** |
+| `tp-quiz-deploy` | `quiz.tinypumper.com` | Yes |
+| `greasebook-deploy` | `www.greasebook.com` | No. See [`greasebook-design-system.md`](greasebook-design-system.md). |
+| `gb-quiz-deploy` | `quiz.greasebook.com` | No. GreaseBook system. |
+
+### Two hard rules that fail the deploy
+
+- **Engagement beacon (Greg, 2026-08-14).** Every published HTML page loads `<script src="/assets/js/tp-attr.js"></script>` directly before `</head>`. There is no layout to inherit it from, so it goes in every page file. `.github/workflows/beacon-gate.yml` fails the deploy on any page missing it. Only meta-refresh redirect stubs are exempt. WHY: `tp-attr.js` feeds the `lander_engagement` telemetry that keyword scoring, the traffic-quality digest, and paid-ads cut/hold decisions read. A page without it is invisible to engagement scoring, and deep-read rate is a first-class optimization signal.
+- **Assets are FILES, never base64 (Greg, 2026-08-18).** Every image and video is referenced as `../shared/<content-hash>.<ext>`. Never inline a `data:image/...;base64,` or `data:video/...;base64,` URI. WHY: 149 of 216 live `/ppc/` pages were 16.5 MB each because three MP4s were base64-inlined, so the browser had to download all of it before rendering anything, on pages we pay for clicks to, often on rural mobile. Fixed 2026-08-18: 2.4 GB down to 34 MB, each page 16.5 MB down to ~103 KB. Enforced by `.github/workflows/ppc-page-gate.yml`, which also blocks `\g<1>` regex artifacts and unrendered `{{ placeholder }}`.
+
+**Deploys happen on `git push`.**
+
+---
+
+## 2. Name and wordmark
+
+| Rule | Detail |
+|---|---|
+| In body copy | **TinyPumper**. Camel case, one word, capital T and capital P. |
+| Logo wordmark | Lowercase script, `tinypumper`, with a lightning bolt replacing the `y` stem. Never retype it. |
+| Tagline | "the power to profit." Lowercase, with the full stop. It is part of the logo artwork, not live text. |
+| Never | `Tinypumper`, `Tiny Pumper`, `TINYPUMPER` in body copy, or the wordmark set in a live font. |
+
+Unlike GreaseBook, TinyPumper's spelling has never drifted: the site uses `TinyPumper` consistently.
+
+---
+
+## 3. Logo and mark
+
+**The logo is a self-contained badge**: a black hexagonal shield with a gold-yellow outline, the `tinypumper` script inside, and the tagline beneath. Because the black field is part of the artwork, the badge sits on any background without a reversed variant.
+
+| Asset | File | Format | Use |
+|---|---|---|---|
+| **Primary badge** | `tinypumper-deploy/wp-content/uploads/2023/03/logo_yellow.svg` | SVG, viewBox `0 0 375 225` | **Default everywhere.** True vector, 37 paths, no embedded raster. |
+| Marketing copy | `Mission_Control/docs/Infrastructure/assets/tinypumper-marketing/tinypumper-logo.svg` | SVG | Same artwork, decks and marketing |
+
+### Rules
+
+- The badge is **atomic**. Never separate the script from the shield, never drop the tagline, never re-colour the shield.
+- Never place the badge on a busy photograph. Its own black field gives it contrast, but a photo behind the gold outline kills it.
+- Clear space: at least the height of the lowercase `t` on all sides.
+- Never stretch, skew, outline, or add shadows.
+- TinyPumper **has genuine vector source art**, which GreaseBook did not. Always use the SVG. Never export a raster and ship that.
+
+> **OPEN ITEM (raised 2026-09-11, needs Greg):** the logo artwork's yellow is **`#FFDE59`**, a bright lemon yellow. The brand gold used across the entire site UI is **`#C8993B`**, a deeper antique gold. They are not the same colour and both are in production, exactly like GreaseBook's two teals.
+>
+> This is not necessarily a bug: a brighter yellow reads better inside a small black badge than the muted UI gold would. But it should be a decision rather than an accident.
+>
+> Until Greg calls it: **build UI with `#C8993B` and leave the logo file alone.** Do not "correct" either one, and do not sample the logo's yellow for a button.
+
+---
+
+## 4. Color
+
+The brand lives on a warm cream ground with a single gold accent, plus a near-black for contrast sections. Warm, not cool: every neutral has yellow in it. This is what separates TinyPumper from GreaseBook's cool off-white and near-black.
+
+### Tokens (exact, from the homepage `:root`)
+
+| Token | Hex | Role |
+|---|---|---|
+| `--gold` | `#C8993B` | The accent. CTAs, highlights, emphasis, active states. |
+| `--gold-hover` | `#B58A2F` | Button and link hover |
+| `--gold-light` | `rgba(200,153,59,0.12)` | Soft gold fill behind accent elements |
+| `--gold-highlight` | `rgba(200,153,59,0.15)` | Highlighted phrase background |
+| `--bg` | `#FAF8F5` | Warm cream page background |
+| `--bg-warm` | `#F3EFE9` | Alternate section background |
+| `--bg-card` | `#FFFFFF` | Card and panel backgrounds |
+| `--bg-dark` | `#1C1B18` | Nav, social proof, contrast sections |
+| `--bg-dark-mid` | `#26241F` | Raised panel inside a dark section |
+| `--ink` | `#1C1B18` | Primary text |
+| `--ink-light` | `#FAF8F5` | Text on dark |
+| `--ink-muted` | `#78736B` | Secondary text on light |
+| `--ink-muted-lt` | `#A8A29E` | Secondary text on dark |
+| `--ink-muted-lt-aa` | `#BDB8B2` | Secondary text on dark where AA contrast is required |
+| `--green` | `#4D7C5A` | Success, guarantee, approval |
+| `--red` | `#994848` | Urgency, warnings, the old way |
+| `--border` | `#E2DDD5` | Card borders, dividers on light |
+| `--border-dk` | `#3A3730` | Dividers on dark |
+| Logo yellow | `#FFDE59` | **Logo artwork only.** Never in UI. See the open item above. |
+
+### Rules
+
+- **One accent.** Gold is the only accent. Green and red are status colours, not brand colours.
+- **Never use GreaseBook teal (`#51A69D`) in a TinyPumper layout.** Two brands, two systems.
+- **Never put two brand accents in one image.**
+- **No dark-theme pages.** TinyPumper pages use the warm cream light theme. Dark is for specific contrast sections (nav, testimonials, proof bands), not whole pages.
+- Card shadow is warm too: `rgba(28,27,24,0.06)`, never a neutral grey shadow.
+- Reference every colour as a CSS custom property. Never hardcode a hex inline.
+
+---
+
+## 5. Typography
+
+Two families do all the work. There is no third font.
+
+| Family | Weights | Role | Fallback |
+|---|---|---|---|
+| **Libre Baskerville** | 400, 700, italic 400 | Headings (h1 to h3), pull quotes, big numbers | `Georgia, serif` |
+| **Outfit** | 300, 400, 500, 600, 700 | Body, UI, buttons, labels, nav, captions | `-apple-system, BlinkMacSystemFont, sans-serif` |
+
+Google Fonts load:
+
+```
+https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap
+```
+
+### Scale
+
+| Element | Setting |
+|---|---|
+| Body | `17px` / line-height `1.7` / Outfit 400 |
+| Hero subhead | `clamp(17px, 2.5vw, 21px)` / line-height `1.55` / muted-light on dark |
+| h3 | `22px` / Libre Baskerville **700** / margin-bottom `12px` |
+| Buttons | `16px` / Outfit 600 / uppercase / letter-spacing `0.02em` |
+
+### Rules
+
+- **Max weight is 700.** Libre Baskerville supports 400/700, Outfit 300 to 700. Never 800 or 900.
+- **Serif headlines, sans body.** No mixing in Inter, system fonts, or any other typeface.
+- Headings use Libre Baskerville **700**, unlike GreaseBook where the display face has a single 400 weight. Do not carry GreaseBook's "never bold the display face" rule across: here bold is correct.
+- Buttons are **uppercase**. GreaseBook's are not. This is a real difference between the two systems.
+
+---
+
+## 6. Layout and spacing
+
+| Token | Value | Use |
+|---|---|---|
+| `--sec` | `120px` | Section padding, desktop |
+| `--sec-m` | `72px` | Section padding, mobile |
+| `--gutter` | `24px` | Horizontal gutter |
+| `--max-w` | `1080px` | Content container |
+| `--r-sm` | `4px` | Small chips, tags |
+| `--r-md` | `8px` | **Standard.** Buttons, cards, panels |
+| `--r-lg` | `16px` | Large cards, media frames |
+
+Note the narrower container than GreaseBook (1080px vs 1200px) and the larger section rhythm (120px vs 80/100/120px).
+
+---
+
+## 7. Components
+
+### Primary CTA
+
+```css
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 36px;
+  font-family: var(--f-body);      /* Outfit */
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--bg-dark);           /* dark text on gold */
+  background: var(--gold);         /* #C8993B */
+  border: none;
+  border-radius: var(--r-md);      /* 8px */
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  transition: background .2s, transform .15s;
+}
+.cta:hover { background: var(--gold-hover); transform: translateY(-1px); }
+```
+
+**No pill-shaped buttons (999px radius) and no gradient glow effects.** Gold background, dark text, 8px radius, uppercase, Outfit.
+
+### Component vocabulary
+
+- **Card:** `#FFFFFF` fill, `#E2DDD5` border, warm shadow `rgba(28,27,24,0.06)`, `8px` or `16px` radius.
+- **Section rhythm:** `.section--dark` (`#1C1B18`) and `.section--warm` (`#F3EFE9`) alternate against the cream default. The hero is dark.
+- **Highlighted phrase:** `--gold-highlight` background behind the words that matter.
+
+---
+
+## 8. Imagery, as TinyPumper applies it
+
+The imagery system is owned by `~/.claude/skills/seo-content-operator/references/imagery-system.md`. Load it before generating or placing any image. Only the TinyPumper-specific bindings live here:
+
+- **Brand accent in illustrations: gold `#C8993B`.** Neutral warm base plus that single accent.
+- **Never gold and GreaseBook teal in the same image.**
+- **Real field photography is the strength here.** TinyPumper has a large library of actual installed-hardware photos from real leases. Use them. This is the one place where photography beats illustration by default, because the product is physical and the install claim ("10 minutes, no trenching") is proved by seeing it on a real tank.
+- Product shots must show the **actual gear**: matchbox-sized gateway, radar tank sensor on top of a tank, pressure sensor at the wellhead, turbine meter inline.
+
+### Approved asset libraries
+
+| Library | Contents | Approved use |
+|---|---|---|
+| `tinypumper-field-images/` | ~100 real install photos from customer leases | Install proof, hero, section imagery |
+| `tinypumper-marketing/` | Gateway product shots, pressure sensor, app screens, hero images, QR, logo SVG | Product demonstration |
+| `tinypumper-client-proof/` | Customer-supplied install photos | Social proof |
+| `as-seen-on-logos/` | Rigzone, SPE, The OGM, Oil & Gas Financial Journal, E&P Magazine, American Oil & Gas Reporter, OilVoice | Press credibility bar |
+
+**Never show a competitor's hardware.** And never stage a photo that implies we did the install: the client self-installs, which is the whole claim.
+
+---
+
+## 9. What must never cross from GreaseBook
+
+TinyPumper and GreaseBook share a buyer, a voice, and a dashboard. They share nothing visual, and they sit on **opposite sides of the chasm**, so they need opposite proof.
+
+| | TinyPumper | GreaseBook |
+|---|---|---|
+| Accent | Gold `#C8993B` | Teal `#51A69D` |
+| Ground | Warm cream `#FAF8F5` | Cool off-white `#FAFAF9` |
+| Dark | `#1C1B18` (warm black) | `#0F1114` (cool black) |
+| Display font | Libre Baskerville, 400 **and 700** | DM Serif Display, **400 only** |
+| Body font | Outfit | DM Sans |
+| Buttons | **Uppercase**, 8px radius | Sentence case, 6px radius |
+| Container | 1080px | 1200px |
+| Chasm stage | **Mid-chasm.** Triangulation and references. | Across it. Leadership and safety proof. |
+| Guarantee | 60-day money-back **plus lifetime sensor replacement** | 200% money-back |
+| Damaging admission | "It watches, it doesn't control." | "We're not the cheapest option out there." |
+
+**Two TinyPumper-specific traps:**
+
+1. **Never make a price admission for TinyPumper.** TinyPumper IS the cheap option: roughly 95% cheaper than SCADA. "We're not the cheapest" is factually false here, and Greg caught exactly that on a lander (2026-07-22). TinyPumper's honest admission is that it monitors rather than controls: no shut-ins, no pump adjustments, but ~99% of what you'd pay SCADA for.
+2. **Never use unearned market-leader language** ("the industry standard", "#1"). TinyPumper is mid-chasm; pragmatists check, and one caught overclaim poisons the reference chain. It claims product facts and guarantees, not throne-room language, until the reference base earns it.
+
+The four GreaseBook-only numbers that must never appear on a TinyPumper surface: **6% pump-to-net in 6 weeks, 98% success rate, 200% money-back, and the under-10-minute pumper training claim.**
+
+---
+================================================================================
+PART 2 - VOICE
+================================================================================
+
+## Who We're Talking To
+
+**Primary audience:** Small-to-mid-size oil & gas operators
+- Often owner-operators running 10-500 wells
+- Built their business with sweat, not spreadsheets
+- Been burned by software that overpromised and underdelivered
+- Skeptical of salespeople, allergic to corporate speak
+- Value practical solutions over fancy features
+- Time-poor — they've got wells to check, payroll to run, and a hundred fires to put out
+
+**Secondary audience:** Pumpers and field hands
+- Blue collar, boots-on-the-ground workers
+- Not "tech people" — they want tools that just work
+- Pride in their craft, loyal to operators who respect them
+- Many are ESL speakers
+
+**Geography & culture:** Texas, Oklahoma, New Mexico, North Dakota — oil patch through and through. These folks can spot a slick marketing pitch from a mile away, and they'll tune it out just as fast.
+
+---
+
+## The Core Principle
+
+**We talk like a peer, not a vendor.**
+
+Imagine you're sitting across from an operator at a diner in Midland. Coffee's hot, he's got 20 minutes before he needs to be somewhere. How would you explain what Greasebook or TinyPumper does?
+
+You wouldn't say "leverage our cloud-based solution to optimize your production workflows."
+
+You'd say "Your pumper calls in sick tomorrow (or doesn't call at all...) Do you know what happened on your wells yesterday?"
+
+That's the voice.
+
+---
+
+## The 7 Laws of External Copy
+
+### 1. Plain Words, Short Sentences
+
+Write like you talk. If you wouldn't say it out loud to an operator, don't write it.
+
+| Don't Write | Write Instead |
+|-------------|---------------|
+| "Optimize your production reporting workflow" | "Know what's happening on your wells" |
+| "Leverage real-time data analytics" | "See your tanks right now, from anywhere" |
+| "Our solution integrates seamlessly" | "It works with what you've already got" |
+| "Utilize our platform to maximize efficiency" | "Spend less time on paperwork" |
+
+**Reading level:** 8th grade or below. Simple words, short sentences, no jargon. Use the Hemingway App. If it flags a sentence, rewrite it.
+
+### 2. Show the Moment, Not the Benefit
+
+Don't tell them they'll "save time" or "reduce costs." Show them the exact moment they'll feel the difference.
+
+| Abstract Benefit | The Moment |
+|------------------|------------|
+| "Save time on reporting" | "Your pumper taps 'submit' and you see the gauge reading before he's back in his truck" |
+| "Reduce theft and losses" | "You're watching the tank level drop at 2am when nobody should be on that lease" |
+| "Better communication" | "No more calling three pumpers to find out why production's down" |
+| "Peace of mind" | "You're at your kid's baseball game and you check your wells from the bleachers" |
+
+**Ask yourself:** What's the specific moment when they'll realize this is working? Describe that moment.
+
+### 3. Acknowledge the Skepticism
+
+Our prospects have been sold to. A lot. They've bought software that promised the moon and delivered headaches. They've sat through demos that looked great and products that didn't work in the field.
+
+**Use damaging admissions to build trust:**
+
+- "We're not the cheapest option out there." **(GreaseBook contexts only — NEVER for TinyPumper: TP IS the cheapest, its whole pitch is 95% cheaper than SCADA; a price admission there is factually false. Greg caught it on a lander 2026-07-22. TP's true admission is "it watches, it doesn't control" — no shut-ins, no pump adjustments, but 99% of what you'd pay SCADA for.)**
+- "This won't replace your pumper — it makes him better."
+- "If you've only got 5 wells, you probably don't need this yet."
+- "The first week, your guys might grumble about it. By week three, they won't want to go back."
+
+**Structure:** [Honest limitation] + **but** + [Benefit you want them to believe]
+
+The statement after "but" is what sticks. What you sacrifice in promise, you gain in trust. And trust is everything with this audience.
+
+### 4. Prove It, Don't Claim It
+
+Operators trust proof, not promises. They've heard "best in class" and "industry-leading" a thousand times.
+
+**Weak (claims):**
+- "The best production software in the industry"
+- "Trusted by operators everywhere"
+- "Revolutionary technology"
+
+**Strong (proof):**
+- "600+ production companies. 10,000+ pumpers. 15 years in the oil patch."
+- "87 five-star reviews on Capterra — read 'em yourself."
+- "The fastest growing oil and gas production software in the patch today."
+
+**Specificity = credibility.** Numbers, names, facts. If you can't prove it, don't say it.
+
+### 5. Respect Their Time
+
+These folks are busy. They're not reading your email for fun. Get to the point.
+
+- **Emails:** Under 150 words for cold outreach. Say what you want in the first two sentences.
+- **Landing pages:** Lead with the payoff. Don't make them scroll to find out what you do.
+- **Ads:** 3 seconds to hook them. No buildup, no throat-clearing.
+
+**Delete these phrases:**
+- "I hope this email finds you well"
+- "I wanted to reach out because..."
+- "I'd love the opportunity to..."
+- "At [Company], we believe..."
+
+Just say the thing.
+
+### 6. Oilfield Flavor — Authentic, Not Hokey
+
+We're not putting on a costume. We're not writing "y'all" in every sentence or dropping fake cowboy slang to seem relatable.
+
+But we do speak the language:
+- "Lease" not "site"
+- "Pumper" not "field technician"
+- "Gauge" not "measure"
+- "Run tickets" not "delivery documentation"
+- "Stripper wells" — we know what they are and we're not scared to say it
+
+**The test:** Would an operator in Odessa roll his eyes at this? If yes, cut it.
+
+### 7. Confident, Not Arrogant
+
+We've been doing this for 15 years. We know our product works. We don't need to brag or oversell.
+
+**Arrogant:** "The only production software you'll ever need"
+**Confident:** "We've been doing this since 2009. We've seen what works."
+
+**Arrogant:** "Our competitors can't match our technology"
+**Confident:** "Ask our customers why they switched. We'll give you their numbers."
+
+**Arrogant:** "You need this"
+**Confident:** "This might not be for everyone. But if you're running 50+ wells and your pumper's handwriting gives you nightmares, let's talk."
+
+---
+
+## Voice by Channel
+
+### Cold Email
+- **Spirit:** Hormozi + Halbert
+- Under 100 words
+- One clear ask
+- No pitching in the first line — lead with a question or observation about their world
+- Sound like a person, not a company
+
+### Landing Pages
+- **Spirit:** Hormozi + Brunson
+- Headline = the moment they'll experience, not the feature
+- Damaging admission in the first scroll
+- Proof (numbers, testimonials) before the CTA
+- One action per page
+
+### Ads (Social/Digital)
+- **Spirit:** Hormozi + Caples
+- 3-second hook — get to the point
+- Show the moment, not the benefit
+- Call out who it's NOT for (specificity attracts)
+- No marketing lingo
+
+### Sales Emails / Follow-ups
+- **Spirit:** Halbert + Hopkins
+- Personal, conversational
+- Reference something specific about them
+- P.S. line with the core benefit restated
+- Never sound desperate
+
+### Website / Brand Copy
+- **Spirit:** Ogilvy + Godin (for positioning), Hormozi (for conversion pages)
+- Lead with who you help, not what you do
+- Proof and credibility front and center
+- Let testimonials do the heavy lifting
+
+---
+
+## Words We Use / Words We Don't
+
+### Kill List (Never Use)
+| Word/Phrase | Why |
+|-------------|-----|
+| "Revolutionary" | Everyone says it. Means nothing. |
+| "Best-in-class" | Prove it or cut it. |
+| "Leverage" | Corporate speak. Say "use." |
+| "Optimize" | Vague. Say what actually improves. |
+| "Seamless" | Nobody believes this. |
+| "Robust" | Tech jargon. |
+| "Solution" | Say what it actually is. |
+| "Synergy" | Just don't. |
+| "Empower" | Show the result instead. |
+| "I hope this finds you well" | Wasted words. |
+| Em dashes in copy | Dead giveaway of LLM output. Use parens, periods, or colons instead. |
+
+### Email Format Rules — Greg's Law (prospect-facing email ONLY)
+
+Every email a prospect receives (macros, Quick Replies, campaign sequences, automated follow-ups, one-off unibox replies) follows these rules. **Why:** Greg's direct feedback, twice — 2026-06-17 ("no paragraph should be longer then 1 sentence... space bt each paragraph for readability... note there shouldn't be a space bt the name and the comma") and 2026-01-09 ("people are becoming aware of GPT created messages and they do NOT like them. Stay away from Bolding words and em dashes"). Updated 2026-08-02: PS block exception. Revisit only if Greg changes the call.
+
+- **One sentence per paragraph. Maximum.** Blank line between every paragraph.
+- **PS exception:** The P.S. is never broken into separate paragraphs. Keep the full PS as one block. If the PS is 2–3 short sentences, they stay in that single paragraph (do not put a blank line between PS sentences). Longer than ~3 sentences: cut the PS down; do not multi-paragraph it.
+- **"Winston," never "Winston ,"** — no space before the comma after the name.
+- **No bold anywhere in the body.** No em dashes (already on the kill list).
+- **No background colors** — clear formatting before sending.
+- These are EMAIL rules. Landing pages, ads, and docs keep their own formatting rules from this guide.
+
+### Craft Rules
+- **Proper Case all names.** Pumper names, operator names, executive names. "John Smith", never "JOHN SMITH" or "john smith". No exceptions.
+- **Copy length:** no word counts. Every sentence earns its spot. If it does new work, it stays. Long copy is fine. Fluff is not.
+- **Second person.** Write in "you", not "they" or "our customers". Makes it personal. The reader is the operator sitting across the diner table.
+- **Short paragraphs.** 1 to 3 sentences max. White space is a feature, not a waste of pixels.
+- **Bold the key phrases.** Let the reader skim and still get the point. The eye should land on the thing that matters without having to read the full paragraph.
+- **Explain oilfield expressions for ESL readers.** Many readers (pumpers, field hands, teammates on the back office and support side) speak English as a second language. When you use an oilfield quip or regional expression, add a parenthetical so everyone gets it. Example: "That dog won't hunt (meaning: that idea won't work)."
+- **Acknowledge that it's hard. Then set clear expectations.** Real work is hard. Don't pretend it isn't. Name the friction, then tell the reader exactly what to expect. "The first week your pumpers might grumble. By week three they won't want to go back." is stronger than "seamless rollout."
+
+### Replacements
+| Instead of... | Say... |
+|---------------|--------|
+| "Our platform enables you to..." | "You can..." |
+| "We provide a solution for..." | "This does..." |
+| "Significant ROI" | "Pays for itself in [X]" |
+| "Streamline your operations" | "Less paperwork" or "Fewer phone calls" |
+| "Data-driven insights" | "You'll see exactly what's happening" |
+| "Cutting-edge technology" | [Just describe what it does] |
+
+---
+
+## Quick Gut-Check
+
+Before publishing any external copy, ask:
+
+1. **Would I say this out loud to an operator?** If it sounds weird spoken, rewrite it.
+2. **Is there a moment?** Or am I just listing features and benefits?
+3. **Where's the proof?** Claims without evidence get ignored.
+4. **Did I acknowledge the skepticism?** What's the damaging admission?
+5. **Can I cut 20%?** Probably yes. Do it.
+6. **Would an Odessa operator roll his eyes?** If yes, too slick. Dial it back.
+
+---
+
+## The Bottom Line
+
+We're not selling software. We're selling peace of mind to people who've got enough to worry about.
+
+Talk to them straight. Show them you understand their world. Prove you can help. Respect their time.
+
+That's it.
+
+---
+================================================================================
+PART 3 - AI TELLS TO STRIP
+================================================================================
+
+These are the fingerprints of AI-generated content. Every one erodes trust with an industry reader. The QA gate must flag any of these.
+
+## Sentence Openers to Ban
+- "In today's digital era" / "In today's fast-paced world" / "In an era of"
+- "When it comes to"
+- "It's worth noting that" / "It's important to note that"
+- "In conclusion" / "To conclude" / "To sum up" / "In summary"
+- "As we navigate" / "As we move forward"
+- "Let's dive into" / "Let's explore" / "Let's unpack"
+
+## Transition Words to Ban
+- "Furthermore" / "Moreover" / "Additionally" / "In addition"
+- "Notably" / "Importantly" / "Significantly"
+- "Indeed" (unless used sparingly and naturally)
+
+## Banned Verbs / Phrases
+- "Delve into" / "Delve deeper"
+- "Navigate the landscape"
+- "Landscape" (when describing an industry/market)
+- "Leverage" (when "use" works)
+- "Unlock" (as in "unlock insights", "unlock potential")
+- "Game-changer" / "Game-changing"
+- "Revolutionize" / "Revolutionary"
+- "Cutting-edge" / "State-of-the-art"
+- "Seamless" / "Seamlessly"
+- "Holistic" (unless clinically correct)
+- "Robust" (overused)
+- "Comprehensive" (usually filler)
+- "Tailored" / "Bespoke"
+- "Embark on a journey"
+- "Harness the power of"
+- "Elevate your [noun]"
+- "Empower"
+- "Transformative"
+
+## Structural Tells
+- Three-item lists where everything is alliterative or parallel to the point of pattern ("efficient, effective, and empowering")
+- Every paragraph ending with a one-sentence summary of itself
+- H2s that are all gerund phrases ("Understanding X", "Exploring Y", "Navigating Z")
+- Closing paragraphs that restate the intro
+- Bullet lists where every item is the same length
+- Perfect five-paragraph structure (intro, three body, conclusion)
+
+## Punctuation Tells
+- **Em dashes (—)**: dead giveaway. Use parentheses, a period, or a colon. Never em dashes.
+- Curly quotes inside code blocks
+- Oxford commas everywhere (not inherently bad but a pattern)
+
+## Content Tells
+- Paragraphs that warn about "potential challenges" without naming real ones
+- Generic "best practices" that apply to any industry
+- Made-up statistics (always cite a source or don't use the number)
+- Qualifying everything ("often", "typically", "generally", "usually") — commits to nothing
+- Restating the question before answering ("Great question! When it comes to…")
+- Closing the article with "I hope this helps" or equivalent
+
+## What Authentic Industry Writing Looks Like
+- Specific numbers tied to real scenarios ("a 15-well stripper operation running 3 bpd per well")
+- Named competitors, named products, named places
+- A real anecdote or scenario (even if composite)
+- Industry jargon used correctly without over-explaining
+- An opinion that a competitor would disagree with
+- Admitting limitations ("this won't help if you're running high-volume horizontals")
+================================================================================
+PART 4 - WHAT WE SAY
+================================================================================
+
+## 1. Who We Sell To
+
+### Bright-Line Rule: The Buyer Is The Producer. Always.
+
+For **both GreaseBook and TinyPumper**, the buyer is the **producer** — the operating company that owns the wells and signs the check. Never the pumper. Never the contract pumper.
+
+Pumpers and contract pumpers are **users** of the tools. The producer is the buyer. Copy, ads, landing pages, sales pitches, and every piece of marketing must be aimed at the producer's job, the producer's pain, and the producer's P&L. Everything else is a feature.
+
+- **Do not pitch TinyPumper as "for contract pumpers managing multiple operators."** Contract pumpers are not the buyer. The producer who hires them is. If a contract pumper is on the lease, TinyPumper is there because the *producer* bought it.
+- **Do not frame GreaseBook as "a tool for pumpers."** Pumpers use the app because their employer (the producer) bought it. The pitch lives in the operator's economics and the operator's risk, not pumper convenience. Pumper-side benefits (shorter days, no paper) are a feature, not the thesis.
+- **Do not segment copy by "operator vs contract pumper" as two buyer types.** There is one buyer type — the producer. Whether their field work is done by company pumpers or a contract pumping outfit is an implementation detail.
+- **When in doubt, picture the reader.** The reader of any piece of marketing is an owner, operator, engineer, ops supervisor, or back-office admin inside a producing company. Write to them.
+
+### The Company Profile
+
+Independent oil and gas producers running anywhere from **2 to 2,000 wells**. Texas, Oklahoma, New Mexico, Colorado, Kansas, North Dakota, Michigan, Appalachia, Illinois basin, California. Operators who built the business with sweat, not stock options. The wells Wall Street does not talk about but America still runs on.
+
+These companies typically have:
+
+- A small back office (1 to 10 people).
+- Somewhere between 3 and 30 pumpers (company, contract, or a blend).
+- Data flowing through paper gauge sheets, Excel spreadsheets, emails, texts, or a mix of all four.
+- No SCADA (too expensive) OR legacy SCADA they are tired of paying to maintain.
+- An owner or operations lead who knows their production numbers are 2 to 3 weeks behind reality.
+
+### Well-Count Range — Do Not Cap the Upper End
+
+Company profile is **2 to 2,000 wells**. Copy must reflect the full range. A meaningful slice of our book operates **1,000+ wells**, and plenty sit in the 1,000 to 2,000 band. We are comfortable serving them and we win business there.
+
+- **Do not cap scene-setting at 500 wells.** Lines like "a 500-well operator", "a 50-well operation", "small independents with a few dozen wells" anchor the reader to the low end and tell every larger operator the article is not for them. They bounce.
+- **Use ranges, not single numbers.** "15 to 500 wells", "a few dozen to a few thousand wells", "small and mid-size independents operating anywhere from a handful of wells to 2,000+" all keep the full audience in the room.
+- **When a pillar is genuinely scoped small** (e.g., stripper-well specific page), the small anchor is fine — but that must match the target keyword, not be incidental scene-dressing.
+- **Do not imply our upper limit is 500 or 1,000 wells.** We serve operators in excess of 1,000 wells and intend to keep serving them. The ceiling in copy is 2,000, not 500.
+
+### Horizontal Well Operators — Not Alienated
+
+GreaseBook serves a meaningful book of **horizontal well operators** and does it well. Copy must never imply GreaseBook is "for stripper / vertical ops only" or otherwise excommunicate the horizontal reader.
+
+- **GreaseBook integrates with SCADA.** Horizontal operators running SCADA on their best wells plug GreaseBook into the same environment. Field-entered data, SCADA-sourced data, and exec dashboards live in one screen. GreaseBook is the centralized production source of truth regardless of how the data got there.
+- **Product fit inside a horizontal op:** GreaseBook is the right fit when SCADA is already in play. GreaseBook lives alongside SCADA; it does not try to replace it.
+- **TinyPumper is anti-SCADA by design.** TinyPumper's pitch is "if you were going to spend a bunch of money on SCADA, don't — there's TinyPumper." That is correct positioning for TinyPumper. But that positioning **does not** extend to GreaseBook, and it **does not** mean horizontal operators are not welcome. The choice inside a horizontal shop is usually: keep SCADA + add GreaseBook for the production layer, or replace low-value SCADA installs with TinyPumper.
+- **Simple rule for any article:** if the copy knocks SCADA in a way that could read as "GreaseBook is not for you if you run SCADA," rewrite. GreaseBook is absolutely for them.
+
+### The Buyer Personas (Role-Based)
+
+Different roles inside the same company care about different things. Match the pitch to the person on the other end of the line.
+
+| Role | Core Focus | What They Care About | How We Pitch Them |
+|------|-----------|----------------------|-------------------|
+| **Owner** | A holistic business solution | Profit, transparency, accountability, employee oversight | High-level view: how GreaseBook lifts margin across the whole operation |
+| **Engineer** | Clean, quality-controlled data | PHDwin integration, custom reports, Alert Engine, API | Technical depth, but tie every feature back to a problem it solves |
+| **Operations Supervisor** | Simplicity for pumpers | Basic reports, scheduled reports, ease of use | Time-saving for the field team, not executive dashboards |
+| **Office Admin** | Automating tedious work | State reports, scheduled reports, custom reports | We automate the stuff that keeps them at their desk past 5 |
+| **Pumper** | Getting off the route faster | No paperwork, no phone calls, no mail-in tickets | Shorter days, less hassle, weekends back |
+
+### The Pain Profile (What Brings Them To Us)
+
+Pulled from hundreds of discovery calls. This is what operators tell us, in their own words:
+
+- "We need a centralized system for production reporting, taxes, and reconciliations. Managing Excel sheets is overwhelming."
+- "Our pumpers mail in tickets, and we are at the mercy of the mail system. We need real-time access to data."
+- "I want to streamline operations, eliminate paper processes, and make field data accessible in one place."
+- "With oil back at $60 a barrel, we need a tool to optimize our operations and capitalize on this price."
+- "We want to go digital from the start and simplify our production data management."
+
+The common threads:
+
+1. **Data is late.** Most operators are running 2 to 3 weeks behind on production numbers.
+2. **Data is messy.** Paper, Excel, text, email. Nothing ties together.
+3. **Pumpers are a black box.** No way to verify they showed up, no way to catch issues they missed.
+4. **Back office is drowning.** State reports, run ticket reconciliation, and tax filings eat hours every week.
+5. **SCADA is too expensive for marginal wells.** Big wells may get SCADA. The rest fly blind.
+
+---
+
+## 2. What Each Product Does
+
+### GreaseBook (the Production App)
+
+**In one sentence:** GreaseBook gets production data from your pumper's phone to your screen, instantly. No paper. No Excel. No chasing anyone down.
+
+**What it is:** A two-sided software platform.
+
+1. **The Pumper App** (iOS and Android). Pumpers log daily gauges, pressures, comments, run tickets, and photos. Works offline, auto-syncs when back in cell range. Geo-fencing confirms the pumper actually stepped foot on the lease. Learning curve is about 8 minutes. If the pumper can text, he can use GreaseBook.
+2. **The Executive Dashboard.** Owners, engineers, and office staff see live production, custom reports, state reports, alert engine, well history files, allocations, downtime tracker, and PHDwin integration. Think of it as mission control for the whole operation.
+
+**Setup:** Turnkey. We build the company out. Client sends tank sizes, well names, and pumper contact info. A production engineer handles the rest. Average pumper onboarding is a half day of training, done for you. Average office user is 99% proficient in about 20 minutes.
+
+**State Report Coverage (rule updated by Greg, 2026-07-11):** GreaseBook auto-files state production reports for **any oil and gas producing state**. On the rare chance a state's form isn't already built, GreaseBook builds it **at no cost to the operator** — "because if you need it, there's a good chance somebody else is going to need it" (Greg). **Copy rule: NEVER enumerate a short list of states as if it were the coverage** — naming TX/MS/AL/WY/MI reads as "we don't do Kansas/Oklahoma/Colorado" by negative space. The free-build promise is what makes the any-state claim honest. (Supersedes the fixed five-state list that stood here until 2026-07-11; revisit only if the free-build policy changes.)
+
+When writing any article, pillar, or page that touches state production reporting, the Texas report may be the headline (it is the biggest market), but **the copy must never imply Texas is the only state we support.** Name the full list, or use a phrase like "Texas and a growing set of other states including Mississippi, Alabama, Wyoming, and Michigan." Do not write copy that excommunicates operators in MS, AL, WY, or MI.
+
+**What it replaces:** Paper gauge sheets, Excel workbooks, Dropbox folders, group texts, email chains, and in some cases competing platforms like iWell, FieldDirect, Productioneer (Mi4), Wolfpack, and others.
+
+**Pricing anchor:** Based on well count and operator complexity. Quiz at `quiz.greasebook.com` returns a custom quote in 60 seconds.
+
+### TinyPumper (the Remote Monitoring Hardware)
+
+**In one sentence:** TinyPumper is 24/7 remote well monitoring that installs in 10 minutes. No wires. No SCADA. No kidding.
+
+**What it is:** A matchbox-sized, solar-powered gateway plus radar and pressure sensors.
+
+- **Gateway** connects up to 8 sensors over Bluetooth and pushes data to the cloud over cellular or satellite. Solar powered. IP67-rated. Class I Div 1 certified. Built-in shake counter detects whether an engine or compressor is running.
+- **Radar tank sensor** mounts on top of a tank. No fluid contact, no corrosion, no gunk, no freezing.
+- **Pressure sensor** at the wellhead, flowline, or injection well.
+- **Turbine meter** integration available.
+
+**What it monitors:**
+
+- Tank levels (oil, water, saltwater disposal).
+- Pressures (wellhead, flowline, injection).
+- Engine and compressor runtime (uptime monitoring).
+
+**It is not** just a tank monitor. It is a full site monitor.
+
+**Install:** The client self-installs in about 8 to 10 minutes. No electrician, no trenching, no third-party service call. If you can change a lightbulb, you can install TinyPumper. (Never say "we install it." The client does.)
+
+**Update frequency:** Sensor fires every hour (conserves battery). Between those reads, the sensor also wakes every 5 minutes to check threshold conditions. If something crosses the line, the gateway pushes an alert immediately, even outside the regular hourly report.
+
+**Pricing:**
+
+| Component | Price |
+|-----------|-------|
+| Hardware (cellular gateway, one-time) | $349 |
+| Hardware (satellite gateway, one-time) | $549 |
+| 3x per day polling (every 8 hours) | $79 / month |
+| 6x per day polling (every 4 hours) | $99 / month |
+| Hourly polling (cellular) | $129 / month |
+| Hourly polling (satellite) | $149 / month |
+
+Flat rate per site. Unlimited sensors at that location. Cellular connectivity included. No carrier bill, no dead zone worries, no setup fees, no training fees, no hidden charges.
+
+**Temperature range:** -40°C to 70°C (-38°F to 158°F). Deployed in North Dakota, Canada, Wisconsin, and Alaska with no cold weather issues.
+
+**What it replaces:** Legacy SCADA (eLynx, ZDScada, PetroPower, SignalFire), modern remote monitoring (iWell, Sensorfield, Innotech, Tank Sentinel, Amplified Industries, REIGN, Rulo, Tank to Cloud, Rugged Monitoring).
+
+### TinyPumper Is Not Well-Count Gated — It Is The SCADA Alternative
+
+**TinyPumper's fit is not about well count. It is about the economics and complexity of SCADA on conventional wells.** Commit this to memory before writing a single line about TinyPumper.
+
+The whole point of TinyPumper is this: it delivers roughly **99% of the upside of SCADA without the cost or the complexity**. That value prop is true for a 50-well operator and a 5,000-well operator. Scale does not change the math.
+
+Two scenarios where TinyPumper wins:
+
+1. **The operator never put SCADA in because it was always too expensive.** The capex, the wiring, the IT burden, the ongoing maintenance — the ROI never penciled, so the wells run blind. TinyPumper unlocks monitoring they were priced out of.
+2. **The operator has aging SCADA that is breaking down, and the cost to maintain it no longer justifies the upside.** Replacing sensors, servicing gear, paying hosts to babysit the stack. TinyPumper is the drop-in replacement that kills the maintenance drag.
+
+Either scenario applies at **any scale**. A 50-well conventional operator and a 5,000-well conventional operator both buy TinyPumper for the same reason.
+
+**What to never write for TinyPumper copy:**
+
+- **"TinyPumper is for small operators."** False. Operators well above 1,000 wells use TinyPumper.
+- **"Once you hit X wells, you need SCADA instead."** False. The SCADA threshold is about cost and complexity per site, not total well count. A 2,000-well operator running marginal conventional wells still finds SCADA uneconomic and still chooses TinyPumper.
+- **"TinyPumper fits best between 5 and 50 wells."** False. Do not bucket TinyPumper into a well-count band. Any copy that tries to will alienate the larger operators who are already our customers.
+- **"TinyPumper is the contract pumper's tool."** False. The producer is the buyer regardless of who does the field work. See Section 1 bright-line rule.
+
+**The segmentation that actually matters for TinyPumper:** is this a conventional well (or conventional tank battery, or conventional facility) where SCADA is either breaking down or never got installed because the math never worked? If yes, TinyPumper fits — whether the operator runs 50 wells or 5,000.
+
+### Together: GreaseBook + TinyPumper
+
+The TinyPumper data flows straight into the GreaseBook executive dashboard. So an operator using both gets:
+
+- Pumper-entered data (daily gauges, comments, run tickets).
+- Sensor-automated data (tank levels, pressures, runtime).
+- Alerts across both (pumper forgot to call in a tank, or pressure crossed a threshold at 2 a.m.).
+- One screen. One source of truth. Same platform.
+
+Operators running both typically see 50%+ fewer pumper site visits, a 10% production boost, and a meaningful number of field days freed up.
+
+---
+
+## 3. The Value Proposition
+
+### GreaseBook Value Prop (Homepage Hero)
+
+> **"Every decision you make about your wells is based on numbers you can't verify."**
+>
+> GreaseBook gets production data from your pumper's phone to your screen, instantly. No paper. No Excel. No chasing anyone down.
+>
+> - 8-minute pumper learning curve. If he can text, he can use GreaseBook.
+> - Turnkey setup. Our petroleum engineers build it all for you.
+> - 200% money-back guarantee. Doesn't work? We don't just refund you. We pay you double.
+
+**The Promise (homepage):** *How can we guarantee a 6% lift in profit margin? Because 6% is the average. Half our clients do better.*
+
+Here is what happens when production data goes from three weeks late and half-illegible to real-time, accurate, and in your pocket:
+
+- You catch wells slipping the **day** they slip, not two weeks later when the revenue check is light.
+- You stop losing production to downtime nobody told you about.
+- You stop overpaying on disposal because the numbers finally match.
+- Your state reports file themselves. No more last-minute scrambles.
+- Your back office stops re-keying numbers from paper gauge sheets into Excel at 10 p.m.
+
+### TinyPumper Value Prop (Homepage Hero)
+
+> **"Your pumper calls in sick tomorrow (or doesn't call at all...) Do you know what happened on your wells yesterday?"**
+>
+> 24/7 well monitoring that installs in 10 minutes. No wires. No SCADA. No kidding.
+>
+> - Installs in 10 minutes. No electrician, no trenching, no third parties.
+> - Zero dead zones. Auto-switching cellular + satellite. 100% continental US coverage.
+> - Unlimited sensors per site. Flat rate. No per-sensor gotchas.
+
+**The Positioning vs Legacy SCADA:**
+
+Think of traditional SCADA as one of those old ADP home alarm systems from the 1980s. Complex, expensive, requires a tech to spend all day at your house drilling holes and running wires. Total overkill.
+
+TinyPumper is more like SimpliSafe or Ring. Simple, affordable, DIY-friendly. Arrives ready to install. Five minutes, no specialized tools, instantly operational. No technician. No waiting. No hassle. Something breaks? Swap it out. No troubleshooting required.
+
+### The Three Pillars (GreaseBook Sales Script)
+
+This is how we frame the solution on every demo:
+
+| Pillar | What It Means |
+|--------|---------------|
+| **1. Simplicity** | Simple scales. Even 85-year-old pumpers are up and running in under 10 minutes. The simplest solution is the best solution. Only then is the upside actually realized. |
+| **2. Clean Data** | Garbage in, garbage out. "Fat Finger Technology" validates entries at the source so the data you make decisions on is squeaky clean. |
+| **3. Accountability** | The best app with the cleanest data means nothing if the pumper isn't accountable. Three ways we deliver: offline mode (no excuses), feedback loop (pumpers see their own history), geo-fencing (trust but verify). |
+
+Three-legged stool. Take any leg away and it tips over.
+
+---
+
+## 4. Risk Reversal and Guarantees
+
+### GreaseBook
+
+| Guarantee | Details |
+|-----------|---------|
+| **200% Money-Back Guarantee** | Run GreaseBook for a full 6 weeks. Let your pumpers use it. Watch the data flow. If you don't see results, we don't just refund you. **We double it.** We pay you twice what you paid us. |
+| **60-Day 2X Money Back (Sales Offer)** | Same structure. 60 days to prove it. Fully roll out and work it. If it doesn't deliver, you double your money. |
+| **30-Day Cold Feet Refund** | Cold feet inside 30 days? Full refund, no questions asked. |
+
+98% success rate with operator trials. Why we can offer dual guarantees.
+
+**Signed by Greg Archbald, founder.** "As the Founder, I take full responsibility for any customer's lack of success. If a client uncovers an issue or shortcoming in the product or their experience, the full weight of our development team will be behind resolving it. We find the holes, and we plug them. Time and time again."
+
+### TinyPumper
+
+| Guarantee | Details |
+|-----------|---------|
+| **60-Day Money-Back Trial** | Install it. Beat on it. Let your pumper beat on it. Check your tanks from your kid's soccer game. Pull it up at dinner with your partner. If after 60 days you don't think it's worth every penny, send it back. Full refund. **We pay the return shipping.** No hoops. No "retention department." No hard feelings. |
+| **Lifetime Hardware Replacement** | Every sensor ships with a lifetime replacement guarantee. If it breaks, we send a new one. No questions, no fine print, no expiration. Unheard of in the oil patch. |
+
+### GreaseBook Setup Bonuses (End-of-Month Offer Stack)
+
+Layered on top of the guarantee during closing:
+
+| Bonus | What It Is | Value |
+|-------|-----------|-------|
+| **Pain-Free Pumper Training** | 100% done for you. We have trained 3,000+ pumpers, even 75-year-olds without smartphones. Half a day. | Included |
+| **Special Ops Hotline** | 8 a.m. to 5 p.m. in-app chat, 24/7 help desk. Staffed by petroleum engineers, completions experts, and a geologist. | $1,995 / year |
+| **Historical Data Import** | We organize, scrub, and import your data. Free if signed up by end of month. | $1,495 |
+| **Done-For-You Company Build-Out** | Assigned petroleum engineer drives the setup. Client sends tank sizes, well names, pumper contacts. Free if on by deadline. | ~$1,495 |
+
+---
+
+## 5. Social Proof and Credibility
+
+### GreaseBook (Homepage Stats)
+
+- **600+** production companies trust us with their data.
+- **10,000+** pumpers in the field.
+- **15 years** in the oil patch.
+- **220 million+** barrels tracked.
+- **22** oil-producing states across the union.
+- **8 minutes** average pumper learning curve.
+- **20 minutes** for office users to be 99% proficient.
+- **6%** average profit margin lift in 6 weeks.
+- **98%** operator trial success rate.
+- **200%** money-back guarantee.
+
+### Press and Recognition
+
+As seen in Rigzone, Society of Petroleum Engineers (SPE), The OGM, Oil & Gas Financial Journal, E&P Magazine, The American Oil & Gas Reporter, OilVoice.
+
+Top-rated oil and gas production software on Capterra and G2. Five-star reviews on both.
+
+### Executive Testimonials
+
+18 producers on camera, named, with their company and location. No anonymous "Operations Manager, Large Independent." Real names, real operations, real results. Names like Travis Thompson (Travis Thompson Oil Corp., Mt. Carmel IL), Harrison Chamberlain (Energy Investments, Denver CO), Stetson Hall (Black Bandana LLC, Santo TX), Mark Plummer (AP Operating, Richardson TX), Luke Simon, and a dozen more.
+
+### TinyPumper Customer Stats (Homepage)
+
+- **8 sensors per gateway.**
+- **100%** continental US coverage (cellular + satellite auto-switching).
+- **60 days** money-back guarantee.
+- **Lifetime** replacement on every sensor.
+
+### The Wolfpack Validation Story (GreaseBook Only)
+
+Before Wolfpack rolled out their own production software, they approached GreaseBook first. Wolfpack is a well-funded accounting and finance company. They evaluated 5 to 6 platforms across the market.
+
+**GreaseBook came out on top.**
+
+Greg declined their offer because he is in this for the long haul. Wolfpack went with their second choice, the system they are now offering to customers.
+
+How to say it: *"Before Wolfpack acquired that system, they actually approached us. They evaluated all the major players, and GreaseBook was their first choice. Our founder declined their offer. He's in this for the long haul. So they went with their second choice. The one you're being offered now. Even the company you're about to work with thought GreaseBook was the better product. That's why they tried to buy us."*
+
+### Stat Usage Rules (Do Not Mix These Up)
+
+| Stat | Product |
+|------|---------|
+| 6% pump-to-net improvement in 6 weeks | **GreaseBook only** |
+| 98% success rate | **GreaseBook only** |
+| 200% money-back guarantee | **GreaseBook only** |
+| 60-day money-back + lifetime hardware replacement | **TinyPumper only** |
+
+---
+
+### The WolfePak acquisition story (approved for public use, Greg 2026-07-11)
+
+**The story:** WolfePak (today backed by East Coast private-equity money — Charlesbank, Boston, per their own press releases, though public copy says "East Coast private-equity money" without naming the fund) went shopping to acquire a field data capture system. They reviewed the entire market — every single system — dug into financials, and did a deep dive on the software itself. The one they reached out to and wanted to put their money on was GreaseBook, ahead of Scout FDC. GreaseBook declined: labor of love, in it for the long haul, here to serve independent operators, not to hand them to a fund. WolfePak then acquired Scout FDC — the pumper app they sell today.
+
+**Usage rules:** approved for landers/web (first deployed on the WolfePak Pumper + Scout FDC competitor pages, 2026-07-11) and sales calls. Founder-voice, first-person; NO deal specifics ever (no dates, numbers, terms — that's the discretion-attack inoculation). The sharpest framing ("they settled for their second choice") stays on the phone; web copy lets the reader finish the sentence. The "East Coast money" detail is the identity fork for this audience and is publicly verifiable; the approach story rides on Greg's word — he is the source of record.
+
+## 6. Positioning Against Competitors
+
+### Positioning Doctrine — Crossing the Chasm (Greg, 2026-07-14)
+
+Three rules from Geoffrey Moore's *Crossing the Chasm* govern everything below and every piece of marketing this doc feeds. **WHY they live here:** our buyers are pragmatists and conservatives, the psychographics Moore's book is about. Pragmatists cannot evaluate a product in a vacuum; they buy by triangulating against things they already know, and they buy different proof depending on which side of the chasm the product is on. (Decided by Greg 2026-07-14 during the advertorial project; revisit if either brand's market stage changes.)
+
+#### Rule 1 — Triangulate off two beacons, always
+
+Moore's terms: the **market alternative** (the old way the buyer already spends money on; we steal its budget) and the **product alternative** (the incumbent technology; it proves the category exists while we differentiate against it). Copy that names only one beacon leaves the reader an exit. Naming only paper/Excel invites "fine, we'll buy the established software." Naming only the incumbent invites "fine, we'll stay on paper." Name both, and the natural landing point is ours by construction.
+
+| Brand | Old way (market alternative) | Incumbent (product alternative) | Natural third point |
+|---|---|---|---|
+| **GreaseBook** | Paper gauge sheets, phone calls, a clerk retyping into Excel | Legacy production software: overpriced, overbuilt, parked on an office laptop, needs a clerk to feed it | The phone the pumper already carries. No new device, no training course. |
+| **TinyPumper** | Flying blind between pumper visits; finding out when the run ticket is light | SCADA / legacy remote monitoring / telemetry (rotate the anchor term per the anchor-rotation rule): six-figure installs, IT to babysit, maintenance drag | Right-sized hardware the operator self-installs in 10 minutes, flat rate per site |
+
+**Composition with the 2026-07-13 attack-lines rule (Section 8):** the two rules stack, they don't conflict. Triangulation says name both beacons **together** so the reader can't exit sideways. The attack-lines rule says each beacon gets attacked only with **its own** failure mode: Excel/paper fails on centralized visibility and double work; legacy software fails on lock-in, learning lift, and laptop-bound data entry. Never swap their failure modes, never name only one beacon. (Never name Pump Pilot.)
+
+**The incumbent stays UNNAMED in general marketing copy (Greg, 2026-07-14, refined same day):** ads, advertorials, and the homepage describe the incumbent, never name it: "legacy production software, laptop-based, contract lock-in." **WHY:** naming a competitor hands the reader a name to go research and injects a third party into the sales conversation; the description is damning enough, and anyone actually running one of these systems knows exactly who we mean without the name. Named-competitor content is reserved for the surfaces built to name names: the competitor lander/SKAG program and sales calls. For those surfaces, the grounded reference list is **IHS FieldDirect** (primary: the most common incumbent prospects name on the "what do you use today" Typeform question, and "been around forever" per sales recon), **WolfePak** (old), and **Productioneer (Mi4)**. **iWell is a modern peer, NOT a legacy incumbent — never use it as the old-software beacon anywhere.**
+
+**Excel is part of beacon one and gets its own failure modes (Greg, 2026-07-14):** the old-way beacon is paper AND Excel, and copy must touch both — never let Excel ride along implicitly under "paper." Excel's distinct failure modes: it's free and FEELS like software (digitized, centralized, backed up), which is exactly why operators trust it past its breaking point; the double entry survives (pumper still writes or texts, somebody still keys it in); version chaos (no single source of truth, per-route formats, FINAL_v3 files in inboxes); silent errors (bad sorts, fat-fingered cells, zero validation at the source). Paper's failure modes stay paper's (visibility, double work, accountability). House line: "Excel is paper with a power cord." **WHY:** a huge share of prospects sit on Excel believing they already modernized; copy that only attacks paper tells them the article isn't about them.
+
+**"Free" is Excel's biggest lie — say so (Greg, 2026-07-14):** Excel's price isn't zero, it's invisible: it never sends an invoice. Copy attacking the Excel beacon should name the real costs in production terms: clerk hours keying the same numbers twice, downtime hiding in stale files, run tickets that won't reconcile, wells that slip while the truth sits in an inbox. What falls through the cracks IS the subscription fee. House lines: "the most expensive free software in the oil patch" / "Excel never sends an invoice." **WHY:** "it's free" is the exact reason operators park on Excel past its breaking point; leaving the price myth unchallenged leaves their strongest objection standing.
+
+#### Rule 2 — Two brands, two sides of the chasm
+
+**GreaseBook crossed the chasm years ago.** Its buyer pool now includes late-majority conservatives, who buy the safe, complete, market-leading choice. GB marketing leans **leadership-and-safety proof**: 600+ companies, 10,000+ pumpers, 15 years, 220 million barrels, top-rated on Capterra/G2, turnkey setup, the 200% guarantee. The GB failure mode is scrappy-underdog copy: it surrenders the exact proof a conservative needs and makes the safe choice sound risky.
+
+**TinyPumper is mid-chasm right now.** Its game is the crossing playbook: named competition (the competitor lander/SKAG program), two-beacon triangulation, and peer references. The TP failure mode is unearned market-leader language ("the industry standard," "#1"): pragmatists check, and one caught overclaim poisons the reference chain we're trying to start. TP claims product facts and guarantees, not throne-room language, until the reference base earns it.
+
+**WHY:** pragmatists and conservatives buy opposite proof (references and whole-product completeness vs. leadership and ubiquity). Copy that borrows the other brand's playbook works against the buyer's psychology, even when every individual claim in it is true.
+
+#### Rule 3 — The two-sentence positioning statement (alignment tool, not publication copy)
+
+Moore's formula: *For (target customer) who (compelling reason to buy), (product) is a (category) that (key benefit). Unlike (old way / incumbent), we (primary differentiation).* Every ad, lander, advertorial, and cold email should read as a paraphrase of its brand's statement. If a draft can't be traced back to it, the draft is off-position. The formula forces both beacons into every piece by construction.
+
+**GreaseBook:** For independent producers (2 to 2,000 wells) who make decisions on production numbers that run two to three weeks behind the field, GreaseBook is the top-rated oil and gas production app that gets pumper data from the lease to your screen the same day. Unlike paper-and-Excel workflows or overpriced, office-bound legacy production software, GreaseBook runs on the phone your pumper already carries: 8-minute learning curve, turnkey setup, 200% guarantee.
+
+**TinyPumper:** For producers running conventional wells where SCADA never penciled or where aging SCADA costs more to keep alive than it returns, TinyPumper is the remote monitoring system that delivers roughly 99% of SCADA's upside without the cost or complexity. Unlike six-figure SCADA installs or telemetry that needs babysitting, TinyPumper self-installs in 10 minutes, runs solar with cellular/satellite included, one flat rate per site, 60-day money-back with lifetime sensor replacement.
+
+**How the doctrine feeds the value equation** (ties to the Hormozi framework in the sales engine): the two beacons raise the **dream outcome's** contrast; leadership/whole-product proof raises **perceived likelihood of achievement**; "same day" and "10 minutes" attack **time delay**; "the phone he already carries" and "if you can change a lightbulb" attack **effort and sacrifice**.
+
+### GreaseBook vs Legacy Production Software (IHS FieldDirect, WolfePak, Productioneer)
+
+*(List corrected by Greg, 2026-07-14: FieldDirect is the primary named incumbent; iWell removed — it's a modern peer, not legacy. See the incumbent-naming rule in the Positioning Doctrine above.)*
+
+Overarching themes:
+
+- You're just a number to them. They won't give you personalized attention.
+- Old, outdated, codebase locked. They are not actively pushing updates.
+- Founders have been out of the trenches for too long.
+- With GreaseBook, you get personalized attention and a team that ships features based on your feedback.
+
+### TinyPumper vs Legacy SCADA (eLynx, ZDScada, PetroPower, SignalFire)
+
+- SCADA requires IT to maintain, troubleshoot, and update. TinyPumper requires zero IT.
+- SCADA has massive upfront costs. TinyPumper is 95% cheaper.
+- SCADA maintenance is a hidden drain. TinyPumper swaps like a lightbulb.
+- SCADA hardware ages out. TinyPumper is a drop-in replacement.
+
+### TinyPumper vs Modern Remote Monitoring (iWell, Sensorfield, Innotech, Amplified)
+
+- **iWell:** Alerts only fire on the hour. TinyPumper's sensor checks every 5 minutes and fires an alert immediately if thresholds are crossed. Small difference, big consequence on a runaway water tank.
+- **Sensorfield / Innotech:** Submersible sensors that corrode, freeze, and foul. TinyPumper uses radar on top of the tank. No fluid contact, no failures.
+- **Amplified Industries:** Real moat is their load cell / dyno card (control, not measurement). We don't fight that battle. We flip it: if their basic tank measurements aren't even accurate (phantom drops, bad signals), how can you trust them to control the well? Lead with TinyPumper's measurement reliability, support responsiveness, and price ($79/mo/site vs $155/mo/battery).
+
+See `docs/Sales/TinyPumper_Sales/03_Sales_Reconnaissance.md` for the full competitor file.
+
+### GreaseBook and Accounting Software (both/and, not either/or)
+
+We target keywords like "production allocation software" and "production accounting software" because that is how operators search. We are **not** trying to replace oil and gas accounting platforms, and our copy should never frame it that way.
+
+**Framing rule:** accounting software is not the enemy. Most of our clients run GreaseBook **alongside** their accounting system, and that is the win-win we should be pitching.
+
+Here is the honest picture:
+
+- Oil and gas accounting platforms have their own production modules built in. Those modules exist to serve the accounting workflow, not the field.
+- Operators generally view their accounting software as a necessary evil. They tolerate it because the CPA or the back office needs it. They do not love it.
+- The production tools bolted on to those accounting suites are **jack of all trades, master of none**. They work if you squint, but they were never built for a pumper in a truck at 5 a.m.
+- GreaseBook is purpose-built for production data capture, gauge sheets, allocations, and pumper accountability. Simple, fast, field-first.
+- **GreaseBook integrates with all the major oil and gas accounting platforms and engineering / decline-curve tools like PHDwin.** Production data flows in. Accounting does what accounting does. Nobody has to pick a side.
+- A lot of operators with working interest partners came to us specifically because things got complex. GreaseBook handles the entire production gathering process cleanly, then hands a clean dataset off to whatever accounting system the operator already runs.
+
+**The pitch, in operator language:** "Keep your accounting software. We don't compete with it. We make it better by feeding it clean production data from the field. You get world-class production software that is simple to use, and it ties right into the accounting system you already pay for."
+
+**Accounting software tiers (know where our buyers actually sit):**
+
+| Tier | Platforms | Well-count fit | Our stance |
+|------|-----------|----------------|------------|
+| **Mid-range** (where most of our buyers live) | OGsys, Wolfpak, Bolo, SSI, Pac Energy | Operators running ~1,000 wells or fewer | Primary focus. GreaseBook integrates cleanly and solves the production-side pain these tools don't. |
+| **Next level up** | P2, Quorum, W Energy | Operators running ~1,000 to 10,000 wells | We work with plenty of these clients too. Bigger operations, same integration story. |
+| **Top level** | SAP | Majors and supermajors (not our buyer) | Ludicrous for an oil and gas producer. If someone is running SAP for production, the money-losing overhead alone is a story. We don't compete with it and we don't pretend to. |
+
+**Do not confuse the tiers.** Pac Energy, Wolfpak, OGsys, Bolo, and SSI serve operations in the ~1,000-wells-and-under band — they are not peers of P2 or Quorum. Putting a mid-range platform in the same sentence as P2/Quorum misreads the market and confuses the reader. Keep the tiers separate.
+
+When writing copy, anchor examples to the mid-range tier by default. Do not imply the reader is on P2/Quorum, and never imply they should be on SAP.
+
+**Complexity requires real oil and gas accounting software. Do not push QuickBooks as a substitute.**
+
+Any producing company with real complexity (working interest partners, JIB, multi-lease, royalty owners, AFE management, multi-state tax) needs purpose-built oil and gas accounting software. That is not a niche or a nice-to-have. It is table stakes. Copy should respect that and reflect it:
+
+- **Do not frame operators running OGsys, Wolfpak, Bolo, SSI, P2, or Quorum as doing something wrong or wasteful.** They made the right call. Those are the buyers with resources, process, and scale — they are exactly who we want as clients.
+- **Do not position QuickBooks as the "simple" alternative.** Operators still running QuickBooks for oil and gas operations are not ahead of the curve — they are setting themselves up for an audit, a missed JIB, or a compliance headache. If QuickBooks comes up at all, the honest line is that it is a stopgap that stops working the minute working-interest complexity enters the picture.
+- **Respect the sophisticated reader.** A company running P2 or Quorum has made deliberate, expensive decisions to handle real operational complexity. Copy that assumes the reader wishes they had something simpler is wrong and alienates the exact buyer we want.
+- **Complexity is a GreaseBook unlock, not a disqualifier.** Working interest partners, JIB, multi-lease operations are where GreaseBook's allocation and production-gathering earn their keep — because we clean up the production side of the equation before it ever hits the accounting suite.
+
+The honest positioning: **GreaseBook respects that you need real accounting software for a real oil and gas operation. We make the production side of that equation simple, clean, and field-first, so your accounting system (whatever tier you run) has clean data to work with.**
+
+**Comparison pages — component, not combatant.**
+
+Every comparison page that stacks GreaseBook against an oil and gas accounting platform (W Energy, OGsys, Wolfpak, Bolo, SSI, P2, Quorum) must use the **component** frame, not the head-to-head frame.
+
+- **We are not a replacement. We are a component.** We do the production side. They do the accounting side. We integrate seamlessly into whatever they run.
+- **If the page drifts into head-to-head territory (production module vs. GreaseBook), the honest position is simple:** on the production side specifically, GreaseBook is heads-and-tails above the bolt-on production modules these platforms ship. The vendor built a production module as a checkbox for the accounting suite; we built the whole company around production data. But we still integrate with their platform, so it is never either/or.
+- **Never write a comparison page that tries to win the accounting side of the fight.** We do not do that job. We do not want that job. The operator will still use [accounting vendor] for accounting.
+- **The pitch on a comparison page:** "We integrate seamlessly with [vendor]. On the production side we are heads and tails better than their bolt-on module — because that is the only thing we do. Use both. Why wouldn't you?"
+- **Article structure on comparison pages** should show the reader a two-column view: (1) what [accounting vendor] does best (accounting, JIB, revenue distribution, taxes), (2) what GreaseBook does best (field capture, pumper accountability, allocation, state reports, real-time production data). Then show the integration. No scoreboards, no "GreaseBook wins 8-to-3" grids.
+
+**By running GreaseBook alongside their accounting software, an operator:**
+
+1. **Saves money** — they don't have to pay to upgrade to the pricier "production module" tier of their accounting suite, and they stop losing production to invisible downtime.
+2. **Saves time** — pumpers are in and out faster, the back office stops re-keying numbers, and month-end reconciliations stop eating entire weekends.
+3. **Saves their sanity** — the production side finally works the way it is supposed to, so the accounting software stops being the thing that ruins their week.
+
+**What to say / what to never say:**
+
+| Do not say | Say instead |
+|------------|-------------|
+| "Ditch your accounting software." | "Keep your accounting software. We make it better." |
+| "[Accounting vendor] is garbage." | "[Accounting vendor] is fine for accounting. For production data, they are a jack of all trades, master of none." |
+| "Replace your production accounting module." | "Feed your accounting system clean production data from the field." |
+| "You don't need [accounting platform]." | "You still need accounting. We just handle the production side better, and it flows straight in." |
+
+If an article, ad, or email knocks the accounting software vendors by name or frames the choice as either/or, rewrite it. Both/and is the only honest positioning.
+
+---
+
+## 7. Message Pillars for Marketing
+
+When writing a cold email, ad, landing page, or piece of content, pull the angle from one of these pillars. Every message should ladder up to at least one. Every message also passes the two-beacon triangulation check and uses its brand's chasm-stage proof (leadership-and-safety for GreaseBook, triangulation-and-references for TinyPumper). See Positioning Doctrine, Section 6.
+
+### GreaseBook Pillars
+
+1. **End the 2-to-3 week data delay.** If your production data is more than 48 hours old, you are making decisions on stale numbers.
+2. **Stop losing production to invisible downtime.** Wells go down between pumper visits. Catch it the same day, not next week.
+3. **Automate the back office.** State reports, run tickets, reconciliations. All of it. Your admin goes home on time.
+4. **Trust but verify on pumpers.** Geo-fencing confirms every visit. No more kitchen table pumping.
+5. **We stand behind it with 200%.** Not a typo. Doesn't work, we pay you double.
+
+### The Switcher Play — GreaseBook for Producers Already Running Production Software (Greg, 2026-07-18)
+
+When the target already runs a production system, the pitch is NOT the paper/Excel story — he left paper years ago. He is solution-aware: he fights his system to get data in, then fights it to get answers out, and the invoice nickel-and-dimes him. His real objection is never the upside; it is the lift. **Every switcher piece is built on the Hormozi value equation with the weight in the denominator.** These are the canonical points — hit them every time; do not re-derive them per piece:
+
+**Value = (Dream Outcome × Perceived Likelihood) ÷ (Time Delay × Effort & Sacrifice)**
+
+| Lever | The points to hit |
+|---|---|
+| **Effort ↓ (the headline lever)** | The producer's entire job is handing over a login to the existing system. GreaseBook takes care of the rest: our petroleum engineers do the whole conversion — wells, surface equipment, everything needed to start entering data. The producer never lifts a finger. |
+| **Effort ↓ (gear + management)** | No laptops to buy, no new gear, nothing for the office to manage. Pumpers run the app on the smartphones they already carry. |
+| **Sacrifice ↓ (sunk cost killer)** | **Contract buyout program:** GreaseBook buys out the months remaining on the old provider's contract in exchange for a minimum one-year term plus the bought-out months (5 months left → a 1-year-5-month term). The old contract is never a reason to stay stuck. |
+| **Time ↓** | Most operators fully rolled out **within a week**. Pumpers learn it in **about 8 minutes**. Office users 99% proficient in ~20 minutes. |
+| **Likelihood ↑ (has GB done this before?)** | 600+ producers, 10,000+ pumpers, **98% rollout success rate**. This is a repeatable process, not a project. |
+| **Likelihood ↑ (risk reversal)** | **200% money-back guarantee.** Doesn't work, we pay you double. |
+| **Dream Outcome** | Clean, live production data without fighting the system — and without the invoice surprises. |
+
+**Conversion sequencing — say it right (Greg, 2026-07-18):** GreaseBook imports the wells, surface equipment, and everything needed to *start adding data* first. Pumpers give feedback on their routes, the supervisor signs off, and **then** GreaseBook scrubs, cleans, and backfills the historical production and existing records. Never say "we import everything before the first pumper logs in" — that is not the sequence.
+
+**The switcher's felt moments (use these, never marketing labels):** fighting the system to get data in, then fighting it to get answers out; invoice line items he doesn't recognize; support tickets that go nowhere. Remember the standing rule: software owners are **lukewarm, not burned** — they "deal with it." The workaround indicts the design, never the man.
+
+**Canonical execution (2026-07-18):** the E&M advertorial (`greasebook.com/energy-and-mining-magazine-exclusive-feature/`) is the switcher article — it carries every row of the table above. Live ad angles against it: "One-Login Switch" (effort lever) and "Contract Buyout" (sacrifice lever).
+
+### TinyPumper Pillars
+
+1. **SCADA is overkill. TinyPumper is the right-sized answer.** 10 minutes to install, 95% cheaper, no IT required.
+2. **No submersibles. No corrosion. No replacements.** Radar on top of the tank. Lifetime replacement anyway.
+3. **Flat rate per site. Unlimited sensors.** No per-sensor gotchas. One price covers everything you want to monitor at that location.
+4. **Monitor more than tanks.** Pressures, compressor runtime, engine uptime. It is a full site monitor, not a tank gauge.
+5. **60 days to try it. We pay the return shipping.** If it doesn't earn its keep, send it back.
+
+### Shared Pillars (Use for Either Product)
+
+1. **Built in the oil patch, by operators, for operators.** 15 years of feedback from the people who actually do the work.
+2. **Independent operators first.** 2 to 2,000 wells. Not the majors. Not the supermajors. The ones who built the business with sweat, not stock options.
+3. **Petroleum engineers on the help desk.** Not a call center. Not an offshore team.
+
+---
+
+## 8. Product Claim Rules
+
+> **Voice, kill list, and craft rules (em dashes, Proper Case, copy length, etc.) live in the brand tone guide:** `docs/Infrastructure/Skills/gb-tp-brand-tone-for-llm.md`. This section covers product claim rules only — what we do and don't say about the products themselves.
+
+- **Never quote per-sensor pricing for TinyPumper.** It is flat rate per lease.
+- **Never say "we install it" for TinyPumper.** The client does. Self-install in 8 to 10 minutes.
+- **Never say TinyPumper is "a tank monitor."** It monitors pressures, tanks, and runtime.
+- **Never say cellular is extra.** It is included.
+- **Never use the 6% profit margin stat for TinyPumper.** That is a GreaseBook-only number.
+- **Never use the 200% money-back guarantee for TinyPumper.** That is a GreaseBook offer. TinyPumper is a straight 60-day money-back.
+- **GreaseBook is a PURE PRODUCTION app. It does NOTHING financial, monetary, or accounting (Greg, 2026-07-12).** Never say GreaseBook tracks profit, profitability, revenue, JIB, disbursements, lifting cost, LOE, money, or "makes/loses money." It tracks PRODUCTION: gauges, run tickets, allocated production by well and lease, decline curves, downtime, and state/partner reports. When a money-adjacent term must appear (e.g. someone searched "production accounting software"), use the both/and integration frame: GreaseBook FEEDS your accounting system clean production data, it never does the accounting itself. Correct swaps: "see profit by lease" -> "see allocated production by well"; "which leases make money" -> "which wells are pulling their weight"; "lose money" -> "lose barrels." **WHY:** GreaseBook literally has no financial features; claiming any is false, invites a compliance/accuracy problem, and muddies the crisp positioning (production layer that feeds whatever accounting you already run). Origin: Claude wrote "See Profit By Lease" / "per-lease profitability" into GB asset-management copy; Greg caught it 2026-07-12. **THE ONE EXCEPTION (Greg, 2026-07-12): the "6-Week, 6% Net Profit Challenge" offer.** Profit language is allowed there and ONLY there — it is the sitewide guarantee (homepage promise section, CTA banner, sidebar, ad-landing/competitor layouts), not a product-capability claim. Greg's reasoning: "more production equals profit... increasing production, decreasing avoidable downtime, and running a leaner operation, we can get you six percent on your bottom line" — the offer describes the business OUTCOME of the production work; the product still does zero financial tracking. Rule of thumb: profit may appear in the guarantee/offer framing; it may NEVER appear as something GreaseBook shows, tracks, or reports.
+- **GreaseBook pricing communication — publish the MODEL, never a number or range (Greg, 2026-07-13).** GB has no public price because every operation is different and deals are negotiated (finite TAM — one bad anchor can kill a deal; a range makes every sales call start as a "why am I not at the bottom?" negotiation). The rule: (1) name the UNIT — GB is priced **per well OR per pumper, per month** (per-pumper often fits gas-heavy Northeast and shallow/low-production operations; per-well fits most oil operations); **office and in-house users are ALWAYS free**; (2) name the DRIVERS — **how many wells you run, how many pumpers cover your routes, what you need to track in your operation** — so a quote feels COMPUTED, not arbitrary (people accept computed prices and fight arbitrary ones). NEVER say "modules" (Greg, 2026-07-13: GreaseBook's whole identity is simple — module-menus create decision fatigue and read like the enterprise suites we position against; well-type/complexity folds into "what you need to track"); (3) anchor with a COMPARISON, never a dollar ("a fraction of one pumper-hour per well per month") — equivalence anchors reassure on magnitude without capping sales; (4) the QUIZ QUALIFIES, the CALL delivers the number — **never promise a price after the quiz** (the quiz outcome is a booking page; only sales can quote; promising "get your price, no salesman" then delivering a booking form makes people ANGRY — Greg caught Claude writing exactly this 2026-07-13). Honest framing: "take the 30-second quiz to see if you're a fit; if you are, grab 15 minutes with a real production engineer and walk out with your exact price. No pitch, no pressure."; (5) the 200% guarantee absorbs the price objection. Never write "starting at $X", never a range, never a specific dollar figure for GB. **Two more hard sub-rules (Greg, 2026-07-13):** (a) the model is per-well OR per-pumper — WE choose after qualifying questions; never promise the prospect a dual quote or "priced both ways, take the better deal" (the page's job is to PREP the unit so the number isn't a shock, not to offer a menu); (b) **never signal negotiating room in public copy** ("sharper pencil", "he'll fight for your number", "flexible pricing") — price-takers would have just taken the price; advertising flex converts them into negotiators. Those who want to negotiate will do it unprompted, and that's fine privately. (TinyPumper is different: TP has public-ish pricing language per its own rules — "a few hundred bucks a device," "$2/facility/day," exact pricing after quiz.) Sales-side requirement: quotes must be keyed to the same three drivers so marketing and sales sound like one model.
+- **Excel/paper vs legacy-software attack lines (Greg, 2026-07-13 — for LANDERS and homepage, NOT the booking page).** These are two different competitors with two different failure modes; never conflate them. **Excel & paper:** the real pain is no centralized visibility — data never merges into one spot, so you inevitably fall behind; you can't hold pumpers accountable because you can't keep up; when it's time to review, you're unorganized, and staying organized means paying someone for double work. **Legacy production software:** contract lock-in with hefty setup fees; a huge lift for the pumper — days to learn vs GreaseBook's minutes; requires laptops, so the pumper keys data from HOME instead of the field (everyone has a cell phone — no excuse not to enter data standing at the well; GreaseBook works offline). **The GreaseBook flip:** pumpers become MORE PROACTIVE because feedback lives in the field — they review historical comments and well production from the smartphone at the best possible time: on site, standing in front of the well. Placement rule: "dead wells discovered when the run ticket is light" is an Excel/paper problem, not a legacy-software problem. Booking-page rule (same date): the approved/booking page does NOT carry these arguments — post-qualification pages book, they don't sell; comparison content re-opens a debate the funnel already won.
+- **Never mention the paper/Excel old way without naming the legacy-software incumbent in the same breath, and vice versa (triangulation rule, Greg, 2026-07-14).** Two beacons, one landing point: the phone the pumper already carries. This COMPOSES with the attack-lines rule directly above: name both together, attack each only with its own failure mode. Same discipline for TinyPumper with its own beacons (flying blind + SCADA/telemetry → self-installed hardware). Never name Pump Pilot. **WHY:** *Crossing the Chasm* — pragmatists buy by triangulating; one beacon leaves an exit toward whichever alternative went unnamed. Full doctrine: Section 6.
+- **"Production accounting" refinement (Greg, 2026-07-21 — refines the 2026-07-12 production-only rule, does NOT relax it):** GreaseBook may be framed as a COMPLETE, STANDALONE production accounting suite: run ticket and oil purchaser reconciliation, allocation by well and lease, downtime tracking, all state production reports, management reporting and alerts on production. "You've come to the right place; no bulky, expensive suite required" is approved framing on production-accounting keyword pages. The boundary that never moves: the general accounting FUNCTION (the ledger: billing partners, cutting distributions, JIB, revenue) is a different job GreaseBook deliberately does not do — state that honestly and offer the feed to any accounting tool on the market (allusion pattern). WHY: many operators legitimately need nothing beyond the production side; telling them "we only feed accounting systems" undersold the product on its own keyword (Greg caught it on the /ppc/oil-and-gas-production-accounting-systems/ lander, 2026-07-21). First application: that lander, same day.
+- **Never bastardize oil and gas accounting software.** We target "production allocation" and "production accounting" keywords, but we do not compete with accounting platforms. Many clients run GreaseBook alongside their accounting system. Frame it as both/and, not either/or. If the accounting vendors' built-in production tools come up, the honest line is "jack of all trades, master of none" — never a hit piece on the vendor. See Section 6 for the full framing rule.
+- **Never alienate horizontal well operators.** GreaseBook serves plenty of horizontal operators and integrates with their SCADA systems. If copy knocks SCADA in a way that reads as "GreaseBook is not for you if you run SCADA," rewrite. TinyPumper's anti-SCADA positioning does not extend to GreaseBook. See Section 1 for the full framing.
+- **Never pitch the pumper or contract pumper as the buyer.** For both GreaseBook and TinyPumper, the buyer is the producer (the operating company). Pumpers are users. If copy frames TinyPumper as "for contract pumpers managing multiple operators" or GreaseBook as "a pumper tool," rewrite. See Section 1 bright-line rule.
+- **Never gate TinyPumper by well count.** It is not "for small operators" and it is not "the tool you use until you hit 500 wells." It is the SCADA alternative for conventional wells at any scale. The value prop — ~99% of SCADA upside without the cost or complexity — holds for a 50-well operator and a 5,000-well operator. Copy that buckets TinyPumper into a well-count band (e.g., "5 to 50 wells, TinyPumper; 50 to 200, SCADA") is wrong on its face and must be rewritten. See Section 2 well-count-agnostic rule.
+- **Quorum rules (refined by Greg, 2026-07-11).** What Quorum actually objected to: advertising the integration and using their logo on our integrations wall. The rules: (1) **never the Quorum logo, anywhere**; (2) **never advertise the GreaseBook–Quorum integration** — Quorum does not appear in integration lists or logo walls (use "and more" / "any other major platform"); (3) never the Quorum name in ad copy (covered by the platform-wide no-trademarks-in-ads rule anyway); (4) **naming Quorum on a landing page for truthful comparison is FINE** (nominative fair use — no affiliation implied, no logo); (5) **bidding on Quorum keyword terms continues** (settled law; trademark owners can restrict ad copy, not keyword targeting). Why we honor the integration-advertising ask beyond legal necessity: cheap diplomacy with a vendor whose ecosystem our clients live in. **The allusion pattern (Greg-approved, 2026-07-11) — how to tell a Quorum shop we integrate without naming Quorum:** category-total claim + named partial list that conspicuously stops short + self-identify invite. House copy: "Greasebook integrates with every major oil and gas accounting platform on the market. WolfePak, OGsys, Bolo, SSI, P2, PHDwin, and the rest of the majors you'd expect. Run something we didn't name? If it's a major platform, we already talk to it — tell us yours on the quiz and we'll confirm on the spot." The reader draws the inference; no name, no logo, no integration advertised. On the phone, say Quorum freely.
+- **SSI and P2 are separate systems.** Never write "SSI/P2." Integration lists include PHDwin (engineering/decline curves) alongside the accounting platforms: WolfePak, OGsys, Bolo, SSI, P2, PHDwin.
+- **Never run a head-to-head comparison page against an accounting vendor's production module.** We are a component, not a combatant. Comparison pages must use the component frame: we integrate, we handle production, they handle accounting. If the page needs to address the bolt-on production module head-on, the honest line is that we are heads and tails better on the production side specifically — but that is a footnote, not the thesis. See Section 6 comparison-page rule.
+
+---
+================================================================================
+PART 5 - CLAIMS POLICY
+================================================================================
+
+## Audience framing
+
+The audience is always **the oil and gas producing company**. Actors in the workflow (pumper, operator, contractor, field supervisor, accountant) can appear as characters. Do not reframe the audience as "for pumpers" or "for contractors" — those are actors, not the audience.
+
+## Default author (E-E-A-T)
+
+Default author for all blog content is **Greg Archbald, founder of GreaseBook**. Bio line: "Greg Archbald is the founder of GreaseBook. He built the product from inside the oil patch and has spent 15+ years on the operator side of oil and gas technology."
+
+- GreaseBook-led content: Greg Archbald by default.
+- TinyPumper-led content: Greg Archbald by default (same founder, different product emphasis). May be overridden by the user for specific posts with a named contractor voice.
+- Mixed content: Greg Archbald.
+- Never attribute to "GreaseBook Team", "TinyPumper Team", "Editorial Staff", or any anonymous collective — this collapses E-E-A-T.
+- Byline must link to a /team/greg-archbald (or equivalent) author page. If the author page does not exist, the architecture record should flag it as a prerequisite.
+
+## Product-fit honesty
+
+Every article declares a primary product fit in the architecture record. The copy, CTA, and proof points must match that declaration.
+
+- GreaseBook-led sections may use GreaseBook-specific proof.
+- TinyPumper-led sections must stand on TinyPumper's own proof (or no proof) — never borrow GreaseBook's.
+- Mixed articles may use both, but each proof point stays attached to its own product.
+
+## Restricted to GreaseBook-led content
+
+These proof points are GreaseBook-only unless the user provides updated approved proof for TinyPumper:
+- 6% pump-to-net improvement in 6 weeks
+- 98% success rate
+- 200% money-back guarantee
+- pumpers trained in under 10 minutes
+
+Never port these to TinyPumper-led sections or TinyPumper CTAs.
+
+## Require proof or source
+
+Do not state numbers, percentages, or comparative outcomes unless they are:
+- provided by the user
+- already approved in the business context
+- traceable to a real public or internal source
+
+## Restricted claim categories
+
+Be careful with:
+- SCADA replacement claims
+- regulatory or compliance guarantees
+- uptime or downtime reduction promises
+- ROI claims presented as universal
+- competitor performance claims
+
+## Wrong-fit rule
+
+When a page is not a fit for all producing companies, say so directly. Categories that may need a wrong-fit statement:
+- high-volume horizontals
+- heavy SCADA environments
+- enterprise ERP-led workflows
+- producing companies with in-house developed tools
+
+A wrong-fit statement builds trust and improves conversion on the visitors who are the right fit.
+
+## Audience inclusivity — no gatekeeping anchors
+
+Do not anchor scene-setting or example copy to a single basin, a single well-count, or a single operator archetype. Lines like "a 50-well operation in the Permian" or "a 200-well operator in West Texas" read as copy-deck flavor to the writer, but they quietly tell every other reader — a 20-well operator in Oklahoma, a 300-well operator in Pennsylvania, a 15-well operator in California — that this article is not for them. They bounce.
+
+Rules:
+- **Name ranges, not single numbers.** "15 to 500 wells", "a dozen stripper wells to a few hundred", "small and mid-size independents" all work.
+- **Name basins in plural, or skip basin entirely.** If you name one basin, name several ("Texas, Oklahoma, North Dakota, California, Pennsylvania"), or go basin-agnostic with "anywhere oil and gas gets produced in the United States".
+- **Let the reader self-select.** The best copy shows the reader their own operation in the example without ever naming their specific geography or headcount.
+- **Exception:** a page that genuinely is geo- or size-scoped (e.g., a Texas RRC filings pillar, a stripper-well specific page) should anchor — but that anchor must match the target keyword, not be incidental scene-dressing.
+
+## Product-category honesty — allocation has two jobs
+
+Production allocation is widely mis-framed as "only for operators with outside partners or complex working interest structures." That framing is wrong and it excludes a real buyer. Allocation has two jobs, both of which matter independently:
+
+1. **Revenue splitting** — needed when there are outside partners, multiple leases, or royalty owners. This is the obvious one.
+2. **Per-well productivity testing on shared tank batteries** — needed any time two or more wells feed a common tank battery, even when the operator owns 100% of every barrel. Without allocation, the tank reading tells you the battery's total production. With allocation (run against monthly well tests), you catch the well that has been loafing for three months while the good wells carry the battery.
+
+Both jobs should appear in any article that defines or positions allocation. Do not write copy that says "you do not need allocation because there is nothing to allocate" — that denies the productivity-testing use case and excommunicates the operator whose real pain is not knowing which well is underperforming.
+
+The honest nuance: for small operations with a handful of wells on one battery, a spreadsheet built around monthly well tests handles the productivity job. Dedicated allocation software earns its keep when the combinatorics get ugly (multiple batteries, varying ownership, multi-lease). "You may not need allocation software yet" is different from "you may not need allocation" — respect that distinction.
+
+## State reports — ANY oil and gas producing state, never a fixed list (updated 2026-07-11)
+
+GreaseBook auto-files state production reports for **any oil and gas producing state**. On the rare chance a state's form isn't already built, GreaseBook **builds it at no cost to the operator** — Greg: "if you need it, there's a good chance somebody else is going to need it." The free-build promise is what makes the any-state claim honest.
+
+**Copy rules:**
+
+- Standard line: "auto-filed state production reports for any oil and gas producing state," plus the free-build promise where space allows.
+- **NEVER enumerate a short list of states as the coverage.** Naming TX/MS/AL/WY/MI reads as "we don't do Kansas/Oklahoma/Colorado" by negative space — exclusion by omission in the reader's mind (Greg, 2026-07-11; supersedes the 2026-04-19 rule that required naming the five-state list).
+- Geo-scoped pages (a Texas RRC PR pillar) may anchor to that state's form but must carry the any-state line, not a list of other states.
+- Module 7 fail condition updates accordingly: fail a state-reporting article that ENUMERATES a fixed state list as the coverage, or that omits the any-state framing.
+
+## Accounting software positioning — both/and, never either/or
+
+We target keywords like "production allocation software" and "production accounting software" because that is how operators search. We do **not** compete with oil and gas accounting platforms, and SEO copy must never frame it that way.
+
+**The honest picture:**
+
+- Oil and gas accounting suites have production modules bolted on. Those modules serve the accounting workflow, not the field. The buyer landscape has tiers:
+  - **Mid-range (where most of our buyers sit):** OGsys, PakEnergy, Bolo, SSI. Operators running ~1,000 wells or fewer. Primary focus for examples, comparisons, and integration language.
+  - **Next level up:** P2, Quorum (see Quorum rules below — never in integration lists), W Energy. Operators running ~1,000 to 10,000 wells. We work with plenty of clients on these too.
+  - **Top level:** SAP. Majors and supermajors — not our buyer. Ludicrous for an oil and gas producer. Do not position GreaseBook as a peer to or replacement for SAP; do not imply the reader should be on SAP. If SAP comes up at all, the honest line is that it is overkill for a producer.
+- **Never collapse the tiers.** PakEnergy, OGsys, Bolo, and SSI are mid-range (≤1,000 wells). Putting them in the same sentence or comparison band as P2/Quorum/W Energy misreads the market and alienates both audiences. Keep them separate.
+- Operators view their accounting software as a necessary evil. They tolerate it. They do not love it.
+- The bolt-on production tools are **jack of all trades, master of none** — functional if you squint, never built for a pumper in a truck at 5 a.m.
+- GreaseBook is purpose-built for production data capture, pumper accountability, allocations, and field-first workflows. It **integrates with every major oil and gas accounting platform** and engineering / decline-curve tools like PHDwin. Production data flows in, accounting does what accounting does.
+- Many clients with working interest partners came to GreaseBook specifically because things got complex. GreaseBook handles the production gathering cleanly, then hands a clean dataset off to whatever accounting system the operator already runs.
+
+**Rules for copy:**
+
+- Never say "replace your accounting software" or "ditch [vendor]".
+- Never name-and-shame a specific accounting vendor as broken or useless.
+- When the accounting vendors' production modules come up, the honest line is "jack of all trades, master of none" — directed at the *category of bolt-on production tools*, never at the vendor as a whole.
+- Frame every mention as additive: GreaseBook runs alongside the accounting system, feeds it clean production data, makes the accounting side less painful.
+- If the article is commercial-intent on "production accounting software" or "production allocation software" keywords, lead with the integration promise, not a takedown.
+
+**Complexity requires real oil and gas accounting software. Do not push QuickBooks as a substitute.**
+
+Any producing company with real complexity (working interest partners, JIB, multi-lease, royalty owners, AFE management, multi-state tax) needs purpose-built oil and gas accounting software. SEO copy must respect that:
+
+- Operators running OGsys, PakEnergy, Bolo, SSI, P2, or Quorum made the right call. They are the buyers with resources, process, and scale, and they are exactly who we want as clients. Never frame them as over-engineered or wasteful.
+- **Quorum rules (Greg, 2026-07-11):** never the Quorum logo; never advertise the GreaseBook–Quorum integration (Quorum stays OUT of integration lists and logo walls — use "and more"); never the name in ad copy. Naming Quorum in article text for truthful comparison or factual reference is fine (nominative fair use). Their actual objection was integration advertising + logo use, not the name itself.
+- **SSI and P2 are separate systems — never write "SSI/P2."** Integration lists include PHDwin alongside the accounting platforms.
+- Do not position QuickBooks as the "simple" alternative. Operators still running QuickBooks for oil and gas operations are not ahead of the curve — they are setting themselves up for an audit, a missed JIB, or a compliance headache. If QuickBooks comes up, treat it as a stopgap that stops working the minute working-interest complexity enters the picture.
+- Respect the sophisticated reader. Copy that assumes the reader wishes they had something simpler alienates the exact buyer we want.
+- Complexity is a GreaseBook unlock, not a disqualifier. JIB, working-interest partners, multi-lease — that is where GreaseBook's allocation and production-gathering earn their keep, because we hand clean production data to whatever accounting tier the operator runs.
+
+## Vendor naming — one vendor, one name (Greg, 2026-09-08)
+
+WolfePak, PakAccounting, and PakEnergy are the SAME company. WolfePak was the name before they sold, PakEnergy is the name now, and PakAccounting is its accounting module. Treating them as separate vendors is the most common factual error this corpus has made.
+
+- Canonical name is **PakEnergy**. Never Wolfpak, Wolfpack, Wolfe Pak, Pac Energy, or "Pak Energy" with a space.
+- The industry still says WolfePak, and operators who say PakEnergy are usually new to the game, so both names ride together ONCE per article, side by side, on first mention: **PakEnergy (formerly WolfePak)**. PakEnergy alone after that. Keep the gloss out of H2s (they map to LLM sub-queries) and out of JSON-LD (schema text stays stable).
+- **Never list the vendor twice in one series.** "OGsys, WolfePak, Bolo, SSI, Pak Energy" names one company at both ends of the same list. It reads to an operator as two products and inflates the apparent field.
+- Sub-products keep their own names and are not duplicates: PakEnergy Accounting, PakEnergy Allocate, Pak Land, Scout FDC.
+
+**WHY:** Greg caught the double listing on `/blog/oil-and-gas-accounting-software/` on 2026-09-08, where the vendor rundown carried a WolfePak bullet and a PakAccounting bullet back to back. The mid-range tier list in THIS FILE was the source. It read "OGsys, Wolfpak, Bolo, SSI, Pac Energy" and every draft copied it forward. 80 lines across 25 posts had to be repaired.
+
+**Enforced:** `.github/scripts/vendor_name_gate.py` in `greasebook-deploy` blocks the Pages deploy on any legacy spelling, a bare WolfePak outside the gloss, or the vendor listed twice in one comma series.
+
+## SSI — name it as the PakEnergy alternative (Greg, 2026-09-08)
+
+SSI (www.ebassi.com) is a mid-range oil and gas accounting platform and a direct PakEnergy competitor. Wherever an article names PakEnergy in an accounting context, name SSI too: an alternative operators have had a lot of success with, extremely comprehensive, and its Well History profitability reporting tracks per-well profit trends on a rolling twelve months, which is unmatched among oil and gas accounting systems. The capability is sourceable to SSI's own Oil & Gas Operations page (Well History Reporting, the Annual Well History Report's rolling twelve months of profit trend analysis, multi-level profitability tracking).
+
+SSI is an accounting platform, so it is an alternative to PakEnergy Accounting only. It does not compete with Scout FDC (field capture), PakEnergy Allocate, or Pak Land. Do not offer it as an alternative to those.
+
+**Do not link it.** Vendors are named in text and linked only on pages that already link out to other tools. A lone vendor link reads as an endorsement, and at corpus scale identical links to one domain read as a paid-link footprint. Same gate enforces this.
+
+**Comparison pages — component, not combatant.**
+
+Any comparison page that stacks GreaseBook against an oil and gas accounting platform (W Energy, OGsys, PakEnergy, Bolo, SSI, P2, Quorum) must use the **component frame**, not the head-to-head frame:
+
+- We are not a replacement. We are a component. We do the production side. They do the accounting side. We integrate with whatever they run.
+- Do not create head-to-head comparison pages. Do not write "GreaseBook vs [vendor]" scoreboards.
+- If the page needs to address the vendor's bolt-on production module head-on, the honest line is: on the production side specifically, GreaseBook is heads and tails above bolt-on production modules, because production data capture is the only thing we do. But that is a footnote, not the thesis. The thesis is integration.
+- **Article structure on comparison pages:** show a two-column view — (1) what [accounting vendor] does best (accounting, JIB, revenue distribution, taxes), (2) what GreaseBook does best (field capture, pumper accountability, allocation, state reports, real-time production data). Then show the integration.
+- **The pitch line:** "We integrate seamlessly with [vendor]. On the production side we are heads and tails better than their bolt-on module. Use both. Why wouldn't you?"
+
+## Horizontal operators — not alienated
+
+GreaseBook serves a meaningful number of horizontal well operators and does it well. Copy must never imply GreaseBook is "for stripper / vertical ops only."
+
+- GreaseBook integrates with SCADA. Horizontal operators running SCADA on their best wells plug GreaseBook into the same environment. Field-entered data, SCADA-sourced data, and exec dashboards live in one screen.
+- Inside a horizontal op: GreaseBook lives alongside SCADA; it does not try to replace it.
+- TinyPumper's anti-SCADA positioning is correct for TinyPumper, but it does **not** extend to GreaseBook and does not mean horizontal operators are unwelcome. Horizontal operators who want simple centralized production data use GreaseBook on top of SCADA.
+- If the copy knocks SCADA in a way that could read as "GreaseBook is not for you if you run SCADA," rewrite. GreaseBook is absolutely for them.
+- In article examples and scene-setting, avoid anchors that excommunicate horizontals ("small stripper operator", "marginal wells only"). Use ranges and mixed well-type language.
+
+**The three wins to cite when explaining the both/and positioning:**
+
+1. Save money — no need to pay for the pricier "production module" tier of the accounting suite; stop losing production to invisible downtime.
+2. Save time — pumpers in and out faster; back office stops re-keying; month-end reconciliations stop eating weekends.
+3. Save their sanity — production finally works the way it should, so the accounting side stops being the thing that ruins their week.
+
+## Cross-product rule
+
+When mentioning the sibling product in a mixed or single-product article:
+- mention the other product only when it genuinely serves the producing company's journey
+- do not force sibling-product mentions for link-equity reasons
+- explain why the sibling product appears (example: "if the pumper you work with is a contractor managing multiple operators, TinyPumper may be the direct tool they use...")
+- link to the sibling product's site, not a blog post, when the mention is product-fit relevant
+================================================================================
+PART 6 - EDITORIAL STANCE
+================================================================================
+
+The blog has a point of view. Every article should reflect one or more of these positions where the topic calls for it. A safe, neutral article is not top-1% content.
+
+These stances are what separate GreaseBook content from generic oil and gas software content.
+
+## 1. Paper tickets are the enemy
+Paper gauge sheets, paper run tickets, and paper production reports lose data, cost hours at month-end, and drag down lease value by hiding the real numbers. Any article that touches production reporting should treat paper as the problem being solved, not a legitimate alternative.
+
+## 2. Pumpers should be productive in minutes, not days
+If production software takes more than a few minutes for a pumper to learn, it is built wrong. Adoption failure is a design failure, not a training failure. Long rollouts are a vendor problem disguised as a customer problem.
+
+## 3. Enterprise ERP does not fit independent operators
+Quorum, P2, Enertia, PakEnergy and the rest are built for majors and priced like it. Independent operators running stripper wells and small-to-mid-size lease operations need something shaped for their reality: mobile-first, offline-capable, fast to deploy, not six-figure implementations.
+
+## 4. SCADA is overkill for most stripper operations
+Remote monitoring hardware makes sense on high-value, high-volume wells. For the thousands of stripper wells producing a few barrels a day, the math does not work. Mobile-first data capture by the pumper is the right answer for low-volume, high-scatter well counts.
+
+## 5. Spreadsheets cost more than they save
+The "free" Excel workflow costs real money in month-end reconciliation, data errors, version control, and missed barrels. Producing companies that count cost by software license price are counting the wrong thing.
+
+## 6. Monitoring hardware should be right-sized, not enterprise-sized
+Producers running conventional wells get priced out of visibility because SCADA never penciled, or they are paying more to keep aging SCADA alive than it returns. That is why TinyPumper exists as a separate product: roughly 99% of SCADA's upside without the cost or the complexity, at any scale. Articles touching remote monitoring should treat the cost-and-complexity math as the real dividing line, not well count.
+
+**The buyer is the producer, always (Greg, offer guide Section 1).** Pumpers and contract pumpers are *users* of TinyPumper; the producing company buys it and signs the check. Never frame TinyPumper as "the contract pumper's tool" or as a product for pumpers juggling multiple operators.
+
+**WHY this changed (2026-09-11):** this stance previously read "Contract pumpers need their own tool... that is why TinyPumper exists," which directly contradicted the bright-line buyer rule in `gb-tp-offer-overview-guide-for-llm.md` Section 1 and the well-count-agnostic rule in Section 2. The offer guide is newer and Greg-confirmed, so it wins. Any content written off the old stance aimed at the wrong buyer.
+
+## 7. Offline-first is non-negotiable in the oil patch
+If an app stops working when cell signal drops, it stops working where it matters most. Cloud-only tools fail on the lease. Offline sync is a requirement, not a feature.
+
+## How to apply this stance
+
+- Pick the 1–3 stances most relevant to the article and let them shape the opinion, framing, and comparisons.
+- Do not list them as bullet points in the copy. Write from them.
+- If an article genuinely has no position, reconsider whether it should exist.
+- Wrong-fit statements often flow directly from these stances (see SKILL.md Module 6).
+================================================================================
+PART 7 - IMAGERY
+================================================================================
+
+## Operating rule
+
+Before placing any image, answer one question:
+
+**"What confusion does this image remove?"**
+
+If the answer is "none," cut it. This is the test that replaces gut feel and the reason decorative AI art keeps getting rejected at QA.
+
+Every image must pass a second test: name its job as **explain**, **compare**, or **prove**. If it does not do one of those three, it does not ship.
+
+## Teaching-value hierarchy
+
+Ranked by information-per-pixel. Higher ranks beat lower ranks for the same slot.
+
+1. **Explanatory diagrams** — highest teaching value
+2. **Comparison visuals** — decision-content leverage
+3. **Step-by-step process visuals** — procedural clarity
+4. **Annotated conceptual illustrations** — abstraction-to-concrete bridge
+5. **Data charts** — proof, only when the data is the argument
+6. **Decorative AI renders** — not a style, a failure mode
+
+Rank 6 is not an "AI art" category in general. It is specifically: stock-looking futuristic person at a laptop, cinematic drone-over-rig sunset, glossy 3D pumper tablet shot, surreal oilfield scene with no labels. These read as paid ad creative, not editorial content, and oilfield operators read them as agency-produced filler.
+
+## When each type is correct
+
+### Explanatory diagrams
+
+- **Use when**: explaining how a system works, showing relationships between parts, or making an abstract concept concrete
+- **Examples**: pipeline diagrams, before/after architecture, decision trees, annotated flowcharts, layered system visuals
+- **Oilfield subjects**: field-data-to-allocation-to-partner-statement flow; pumper-to-cloud sync path; SCADA + GreaseBook integration topology; horizontal well with data layers labeled; TinyPumper dispatch-to-ticket-to-audit path
+- **Why it works**: high information density; forces scroll-stop; reinforces memory better than decoration; the first image that gets LLM-cited because labels are parseable
+
+### Comparison visuals
+
+- **Use when**: the reader is evaluating options, methods, or vendors
+- **Examples**: manual vs automated side-by-side, legacy vs modern, reactive vs predictive, before/after workflow
+- **Oilfield subjects**: paper gauge sheet vs mobile app intake; spreadsheet allocation vs GreaseBook allocation; contract-pumper coordination with vs without TinyPumper; SCADA-only vs SCADA + field-data hybrid; QuickBooks-stopgap vs real O&G accounting + GreaseBook production
+- **Why it works**: decision content earns longer attention; comparison structure is inherently scannable; supports conversion intent; matches the "decision table" technique from `references/engagement-techniques.md` in visual form
+
+### Step-by-step process visuals
+
+- **Use when**: the post is procedural or describes a transformation over time
+- **Examples**: 3-step implementation sequence, problem → intervention → outcome, checklist rendered as a visual path
+- **Oilfield subjects**: onboarding a new pumper (day 1 → day 10 → day 30); allocation close process; state-report filing sequence (any producing state; anchor to the page's own state, never a fixed list); alert-to-action timeline; partner statement close
+- **Why it works**: reduces cognitive load; creates natural pacing; keeps readers moving through long pillars
+
+### Annotated conceptual illustrations
+
+- **Use when**: the concept is real but not visually obvious, and a full schematic would be overkill
+- **Examples**: "data moving through a field operations stack" with labeled components; "fragmented operations" with labeled failure points; isometric well-pad with data callouts
+- **Oilfield subjects**: tank battery with allocation callouts; gauge-to-ticket-to-partner-statement path; horizontal well with SCADA + field-data layers labeled; well-pad-level alert routing
+- **Why it works**: more engaging than a sterile chart, still explanatory when annotated; best fit for hero slots on pillars where a pure diagram would feel cold
+
+### Data charts (only when the data is the argument)
+
+- **Use when**: the claim depends on real numbers, trends, or deltas, and credibility matters
+- **Examples**: line charts, bar comparisons, benchmark plots, cost/time reduction charts
+- **Oilfield subjects**: pump-to-net improvement timeline (GreaseBook pillars only — 6% stat is GB-only); labor hours before/after; allocation-error rate; state-report filing time; days-to-close-month
+- **Guardrail**: do not use charts to look smart. Low-signal charts waste attention. If you cannot name the number the chart proves, cut it. Fewer than 3 data points = turn it into a sentence.
+- **Hard rule**: **never generate data charts with an image model.** AI image models hallucinate axes and numbers. Use Datawrapper, Flourish, or hand-authored SVG from real numbers. AI-rendered "charts" are an automatic FAIL in Module 7.
+
+## Design traits (non-negotiable)
+
+- one concept per visual (not three)
+- obvious focal point
+- minimal clutter
+- **labels integrated into the image** — captions cannot do the teaching
+- consistent perspective and icon vocabulary across the blog
+- readable typography at 600–800px blog width
+- strong contrast; legible on light and dark renderings
+- enough whitespace to parse in 2–3 seconds
+
+**Hard rule**: if an image needs a paragraph to explain the image, the image failed.
+
+## Style kit (site-wide consistency)
+
+A blog needs a visual system, not one-off images. Lock these once and reuse across every post:
+
+- **Illustration style**: isometric or editorial flat-vector — pick one, stick with it
+- **Palette**: neutral base + one brand accent. **GreaseBook teal `#51A69D`** for GreaseBook-led content; **TinyPumper gold `#C8993B`** for TinyPumper-led content. **Never both in the same image** — it confuses product emphasis. (Corrected 2026-09-11: this line read "GreaseBook orange" for months. GreaseBook has never been orange on any surface. Exact tokens live in `Mission_Control/docs/Infrastructure/Skills/greasebook-design-system.md` and `tinypumper-design-system.md`, which own the palettes; do not restate hexes elsewhere.)
+- **Icon vocabulary**: consistent shapes for well, tank, pumper, dashboard, mobile app, partner statement, SCADA unit, ticket, gauge. Define once; reuse.
+- **Typography in images**: one sans-serif, two sizes max, readable at 600px width
+- **Photography vs illustration**: real oilfield photography is preferred over AI-rendered "oilfield scenes" when available. AI-rendered rigs and pumpers drift into uncanny territory and erode credibility with operators who know what a real lease looks like.
+
+## Prompt templates
+
+Replace bracketed fields. All prompts assume a restrained editorial style, not glossy stock. Paste the body of the relevant block into the `--prompt` flag of the CLI above.
+
+### Explanatory diagram
+
+```
+Isometric technical diagram, clean vector style, muted neutral palette
+with one [brand accent color] accent, labeled components, minimal
+clutter, showing: [subject — e.g., "pumper gauges tank, submits data
+via mobile app, data syncs to cloud dashboard, partner statement
+generated"]. Labels integrated into the illustration with thin leader
+lines. White or light background. No photorealism. No stock-art figures.
+```
+
+### Comparison visual
+
+```
+Side-by-side comparison illustration, editorial flat-vector style,
+two panels separated by a vertical divider. Left panel: [legacy state
+— e.g., "paper tickets, scattered spreadsheets, frustrated pumper"].
+Right panel: [improved state — e.g., "mobile app, single dashboard,
+clear partner statement"]. Each element labeled. Consistent perspective
+and palette across both panels. Neutral background.
+```
+
+### Step-by-step process
+
+```
+Horizontal three-step process illustration, numbered nodes connected
+by arrows, flat-vector editorial style. Step 1: [state]. Step 2:
+[action]. Step 3: [outcome]. Each step labeled and captioned underneath.
+One [brand accent] for active-node highlight. Clean light background.
+```
+
+### Annotated conceptual illustration
+
+```
+Annotated cutaway illustration, isometric perspective, showing
+[subject — e.g., "tank battery with three lease lines, allocation
+meter, and partner statement output"]. Callout labels with thin
+leader lines to each component. Editorial flat-vector style. Muted
+palette with one [brand accent] for labels.
+```
+
+### Summary framework / decision map
+
+```
+Decision map illustration, flat-vector editorial style, branching
+tree layout. Root node: [question — e.g., "Do you share tank batteries
+across wells?"]. Two or three branches with labeled outcomes. One
+[brand accent] for the recommended path. Clean background, readable
+at 600px width.
+```
+
+### What not to prompt
+
+- "futuristic AI oilfield" — purely decorative, no teaching content
+- "cinematic drone shot of a well pad at sunset" — mood, not information
+- "3D render of a pumper looking at a tablet" — stock aesthetic, no labels
+- "surreal abstract representation of data flowing through pipes" — interpretive, not explanatory
+- any prompt that does not name labeled components, a specific comparison, or a specific step sequence
+
+These prompts are the direct cause of most Module 7 imagery FAILs. If the prompt reads like an ad concept, the image will too.
+
+## Oilfield subject library
+
+Pre-approved subjects keyed to GreaseBook and TinyPumper content. Pull from this list in Module 6 briefs; extend only when a pillar genuinely needs a new subject.
+
+### GreaseBook-led
+
+- pumper-to-cloud data sync (mobile app → dashboard)
+- tank battery with allocation callouts (shared-battery allocation)
+- field-data-to-partner-statement path
+- state-report filing flow (anchor to the page's own state form, e.g. TX RRC PR; never a fixed five-state list)
+- daily production reporting timeline (yesterday's numbers → today's decisions)
+- integration topology with O&G accounting (OGsys / PakEnergy / Bolo / SSI / P2 / Quorum / W Energy as integration partners, not competitors)
+- horizontal well with SCADA + GreaseBook field-data layers labeled
+- pumper onboarding timeline (under-10-minute training claim — GB-only)
+- well-pad-level alert routing
+
+### TinyPumper-led
+
+- SCADA-alternative coverage map (per-well visibility without SCADA capital)
+- self-install sequence (gateway, radar tank sensor, pressure sensor, 10 minutes)
+- solar gateway with up to 8 sensors over Bluetooth, cellular or satellite uplink
+- what the producer sees between pumper visits (tank level, pressure, runtime, on one timeline)
+- threshold-crossing alert path (sensor wakes, gateway pushes, phone lights up)
+- legacy SCADA maintenance drag vs drop-in replacement
+- route planning from live site status (which leases need attention today, which can be skipped)
+- radar-on-top-of-tank vs submersible (no fluid contact, no corrosion, no freezing)
+
+**Buyer rule for every TinyPumper visual (2026-09-11):** the subject is the **producer's** operation and the producer's economics. Pumpers may appear as characters in the scene, never as the customer. The previous list here ("contract-pumper dispatch board", "route optimization across a contract-pumper's operators", "price/invoice workflow for contract pumpers") framed the contract pumper as the buyer, which contradicts the bright-line rule in `gb-tp-offer-overview-guide-for-llm.md` Section 1 and has been replaced.
+
+### Shared (either product depending on emphasis)
+
+- workflow bottleneck diagram (manual → automated)
+- alert-to-action process
+- month-end close timeline
+- before/after operational comparison
+
+## Accessibility and technical requirements
+
+- **alt text**: mandatory on every image. Describe the **teaching job**, not the subject. "Image of well pad" fails. "Pumper's mobile app syncing daily gauge data to a cloud dashboard, with the partner statement generated downstream" passes.
+- **file format**: SVG for diagrams and charts (scales cleanly, small file); WebP for photography; PNG for illustrations with embedded text (preserves text rendering)
+- **dimensions**: deliver at 1600px wide, display at 800px for retina crispness
+- **ImageObject JSON-LD**: pillar hero images get structured data (see `references/schema-templates.md`)
+- **lazy loading**: everything below the first body visual
+- **file naming**: `slug-imagetype-subject.ext` — e.g., `production-allocation-software-diagram-tank-battery.svg`. Helps Google Images match the image to the page's topic.
+
+## FAIL triggers (feed Module 7)
+
+Fail the draft if any of these are true:
+
+- **decorative image on a pillar or comparison page** — a hero or body image whose teaching job cannot be named as explain / compare / prove
+- **stock-style AI render on a pillar hero** — glossy person-at-laptop, surreal cinematic scene, oilfield-sunset drone shot, or any image that is aesthetic without being instructive
+- **AI-generated data chart** — charts must come from real numbers via a chart tool (Datawrapper / Flourish / hand-authored SVG), not from an image model. AI chart renders hallucinate data and are an automatic fail.
+- **image plan missing from pillar or comparison brief** — Module 6 requires a named plan per image slot; "we'll add hero later" is not a plan
+- **alt text absent or generic** — "image of well" fails; alt text must describe the teaching job
+- **image requires a paragraph to explain itself** — the image failed its job
+- **style drift** — illustration style, palette, or icon vocabulary inconsistent with the rest of the blog
+- **mixed brand accent on the same image** — GreaseBook teal and TinyPumper gold in one visual; confuses product emphasis
+- **cross-product proof-point leakage in imagery** — GreaseBook-only stat (6% pump-to-net, 98% success rate, 200% money-back) visualized on a TinyPumper-led page
+- **single-basin or single-well-count visual anchor** — a hero scene labeled "Permian 50-well operator" violates the audience-inclusivity rule in `references/claims-policy.md`. Name ranges or skip the anchor.
+- **accounting-vendor hit-piece imagery** — a visual that pits GreaseBook head-to-head against an O&G accounting platform's production module violates the comparison-pages rule in `references/claims-policy.md`. Use the integration/component frame in visual form too.
+
+### Borderline (flag, not fail)
+
+- more than 5 images on a 2000-word pillar
+- hero is a photo when the concept is abstract (a diagram would teach better)
+- chart with fewer than 3 data points (probably should be a sentence)
+- decorative hero on a **supporting article** (not ideal, but not pillar-grade content so it does not block publish)
+================================================================================
+PART 8 - THE OTHER BRAND
+================================================================================
+
+## 4. Color
+
+The brand lives on a near-black and off-white spine with a single teal accent. There is no secondary accent. Restraint is the point: teal only ever marks the thing you want the reader to act on or notice.
+
+### Tokens (exact, from the homepage `:root`)
+
+| Token | Hex | Role |
+|---|---|---|
+| `--accent` | `#51A69D` | The teal. CTAs, links, icons, emphasis, map pins, the "with GreaseBook" column |
+| `--accent-hover` | `#448F87` | Button and link hover |
+| `--accent-glow` | `rgba(81,166,157,0.15)` | Soft teal wash behind accent elements |
+| `--bg-dark` / `--text-dark` | `#0F1114` | Dark section background. Primary text on light. |
+| `--bg-dark-card` | `#1A1D23` | Cards and panels inside dark sections |
+| `--bg-light` / `--text-light` | `#FAFAF9` | Light section background. Text on dark. |
+| `--bg-light-alt` | `#F3F2EF` | Alternate light panel, feature cards |
+| `--text-muted-dark` | `#9CA3AF` | Secondary text on dark |
+| `--text-muted-light` | `#6B7280` | Secondary text on light |
+| `--red-muted` | `#DC2626` | The "without GreaseBook" column, the old way, warnings |
+| `--red-bg` | `rgba(220,38,38,0.08)` | Fill behind the "without" column |
+| `--green-bg` | `rgba(81,166,157,0.08)` | Fill behind the "with" column |
+| `--border-dark` | `rgba(255,255,255,0.08)` | Hairlines on dark |
+| `--border-light` | `rgba(0,0,0,0.08)` | Hairlines on light |
+| Star gold | `#F59E0B` | Review stars only. Not a brand accent. |
+
+### Two teals are in production, on purpose
+
+Logo art is `#22A89D`. UI accent is `#51A69D`.
+
+- **Build everything with `#51A69D`.** It is the token the entire site and blog run on.
+- **Use `#22A89D` only when reproducing the logo** or matching artwork to the mark.
+- Do not "correct" one to the other in existing assets.
+
+### Rules
+
+- **One accent.** Teal is the only accent in a GreaseBook layout. Red appears only in before/after contrast and warnings. Gold appears only as review stars.
+- **Never use TinyPumper gold (`#C8993B`) in a GreaseBook layout.** Two brands, two systems.
+- **Never put two brand accents in one image.** It confuses which product the piece is about.
+- Dark and light sections alternate down the page. That rhythm is the layout, not decoration. Hero is dark. Final CTA is dark.
+- Reference every color as a CSS custom property. Never hardcode a hex inline.
+
+---
+
+## 5. Typography
+
+Two families do all the work. There is no third font.
+
+| Family | Weights | Role | Fallback |
+|---|---|---|---|
+| **DM Serif Display** | 400 only | All headings (h1 to h3), pull quotes, big numbers in stat blocks | `Georgia, serif` |
+| **DM Sans** | 300, 400, 500, 600, 700, plus italic 400 | Body, UI, buttons, labels, nav, captions | `-apple-system, sans-serif` |
+
+Google Fonts load:
+
+```
+https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display&display=swap
+```
+
+### Scale
+
+| Element | Setting |
+|---|---|
+| Body | `17px` / line-height `1.7` / DM Sans 400 |
+| h1 | `clamp(2.2rem, 5vw, 3.6rem)` / 400 / `1.2` / letter-spacing `-0.02em` |
+| h2 | `clamp(1.8rem, 3.5vw, 2.6rem)` / 400 / `1.2` / letter-spacing `-0.01em` / margin-bottom `32px` |
+| h3 | `clamp(1.1rem, 2vw, 1.35rem)` / 400 / margin-bottom `12px` |
+| Kicker | `12px` / DM Sans 700 / uppercase / letter-spacing `0.14em` / accent color |
+| Micro copy | `14px` / muted token |
+| Stats strip | `14px` / DM Sans 700 / muted / `5px` teal dot separators |
+
+### Rules
+
+- **DM Serif Display has one weight (400). Never fake-bold it.** If a heading needs more presence, make it bigger, not heavier.
+- **Max sans weight is 700.** No 800, no 900.
+- **Emphasis in body copy is bold DM Sans (600/700), not teal type.** Teal is for links and UI, never for coloring words inside a paragraph. (The "bold the key phrases" rule itself is owned by the brand tone guide.)
+- **Headings are sentence case** and carry a full stop when they are a full sentence. The homepage h1 is the standing exception.
+- Italic DM Sans 400 is for the promise line and map subtitle only.
+
+---
+================================================================================
+PROVENANCE
+================================================================================
+
+This file was assembled from the sources below. Do not edit this file. Edit the
+owner and rebuild.
+
+  PART 1 - VISUAL SYSTEM
+    owner: Mission_Control/docs/Infrastructure/Skills/tinypumper-design-system.md (9 sections)
+
+  PART 2 - VOICE
+    owner: Mission_Control/docs/Infrastructure/Skills/gb-tp-brand-tone-for-llm.md (7 sections)
+
+  PART 3 - AI TELLS TO STRIP
+    owner: ~/.claude/skills/seo-content-operator/references/llm-tells.md (entire document)
+
+  PART 4 - WHAT WE SAY
+    owner: Mission_Control/docs/Infrastructure/Skills/gb-tp-offer-overview-guide-for-llm.md (8 sections)
+
+  PART 5 - CLAIMS POLICY
+    owner: ~/.claude/skills/seo-content-operator/references/claims-policy.md (entire document)
+
+  PART 6 - EDITORIAL STANCE
+    owner: ~/.claude/skills/seo-content-operator/references/editorial-stance.md (entire document)
+
+  PART 7 - IMAGERY
+    owner: ~/.claude/skills/seo-content-operator/references/imagery-system.md (9 sections)
+
+  PART 8 - THE OTHER BRAND
+    owner: Mission_Control/docs/Infrastructure/Skills/greasebook-design-system.md (2 sections)
+
+Compiler: Mission_Control/scripts/build-brand-llm.py
+Published: https://www.greasebook.com/brand/llms.txt
