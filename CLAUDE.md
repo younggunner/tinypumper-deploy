@@ -29,9 +29,12 @@ what must never cross over from Greasebook). That doc is the OWNER: do not
 restate its rules here or anywhere else. Moved out of `Mission_Control/CLAUDE.md`
 on 2026-09-11 so both brands' visual systems sit side by side in `Skills/`.
 
-The public brand page is `/brand/`, and `/brand/llms.txt` is the AI paste file,
-**generated** by `Mission_Control/scripts/build-brand-llm.py`. Never hand-edit
-`llms.txt`: change the rule at its owner doc and rebuild.
+**Never publish a brand file here (Greg, 2026-09-11).** The brand file and its
+companion page live in `Mission_Control/docs/Infrastructure/Skills/brand/`, which
+is git-only. They carry the offer guide, claim rules, pricing model, competitor
+positioning and proof library, so git access is the access boundary. A `/brand/`
+page shipped here on 2026-09-11 and was removed the same hour: anything in this
+repo publishes to GitHub Pages.
 
 Canonical beacon rule + full WHY:
 `Mission_Control/docs/Infrastructure/Hosting/hosting_architecture.md`.
