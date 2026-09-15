@@ -11,6 +11,15 @@ Every published HTML page must load the engagement beacon:
 directly before `</head>`. This repo has no build step — the include goes in
 every page file.
 
+**Homepage ordering exception (KIOGA, 2026-09-15):** `index.html` loads this
+same script once immediately after the charset declaration, before any analytics
+tag. Greg retained the existing printed `?comet_custom=KIOGA` QR; its source must
+be normalized before the first analytics page view. Keep the single include and
+the engagement beacon enabled. The prior homepage already placed the include
+among the tracking tags, rather than directly before `</head>`; this exception
+documents the required ordering and is enforced by the attribution regression
+test. Other pages retain the placement rule above.
+
 **WHY:** `tp-attr.js` feeds the `lander_engagement` telemetry (scroll depth,
 active seconds, word count) that KVS keyword scoring, the weekly traffic-quality
 digest, and paid-ads cut/hold decisions read. A page without it is invisible to
