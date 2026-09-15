@@ -6,6 +6,30 @@
    Read by:   instapage-embed-snippet-tinypumper.html on quiz.tinypumper.com → Typeform
               hidden fields origin_referrer + page_journey → typeform-ga4-relay v15
               → visitor_attribution.{origin_referrer,page_journey}. */
+/* Existing printed KIOGA QR codes encode ?comet_custom=KIOGA. Greg asked
+   to keep that artwork (2026-09-15). Translate this one legacy alias into
+   our current attribution fields before homepage analytics initializes.
+   No Comet service is used; explicit campaign tags/click IDs always win. */
+(function () {
+  try {
+    var url = new URL(window.location.href);
+    var params = url.searchParams;
+    if ((params.get('comet_custom') || '').trim().toLowerCase() !== 'kioga') return;
+    var hasAttribution = false;
+    params.forEach(function (value, key) {
+      if (/^utm_/i.test(key) || /^(gclid|dclid|msclkid|fbclid|gbraid|wbraid)$/i.test(key)) {
+        hasAttribution = true;
+      }
+    });
+    if (hasAttribution) return;
+    params.delete('comet_custom');
+    params.set('utm_source', 'kioga');
+    params.set('utm_medium', 'print');
+    params.set('utm_campaign', 'tp-kioga');
+    window.history.replaceState(window.history.state, '', url.href);
+  } catch (e) { /* Attribution must never block the destination page. */ }
+})();
+
 (function () {
   try {
     var COOKIE = 'tp_attr';
