@@ -1,0 +1,173 @@
+{
+ "source": "docs/Infrastructure/Skills/gb-tp-offer-overview-guide-for-llm.md",
+ "source_sha256": "271f476ae801a7cbe7308ba92e5248627ca99018a5b40578af514f1821d76f76",
+ "compiled_at": "2026-10-19T00:35:20Z",
+ "rules": [
+  {
+   "id": "install-8-min",
+   "brand": "any",
+   "kind": "refuse",
+   "pattern": "\\b(?!(?:8|10)\\b)\\d+[- ]?min(?:ute)?s?\\.?\\s*(?:install|setup|set-up)|install\\w*\\s+(?:in\\s+)?(?:about\\s+|under\\s+)?(?!(?:8|10)\\b)\\d+[- ]?min|\\b(?:five|fifteen)[- ]?min\\w*\\s+(?:install|setup)",
+   "why": "Install time may be stated as 8 or 10 minutes; both are fine (Greg 2026-10-18: 'Either 8 min or 10 min is FINE'). Other numbers are not approved."
+  },
+  {
+   "id": "no-warranty",
+   "brand": "any",
+   "kind": "refuse",
+   "pattern": "\\bwarrant(?:y|ies|ied)\\b",
+   "why": "The offer is Lifetime Hardware Replacement: if it breaks, we send a new one. Never 'warranty'. Matches warranty words only, so ordinary 'warrants it' passes (2026-10-19)."
+  },
+  {
+   "id": "349-is-hardware",
+   "brand": "any",
+   "kind": "refuse",
+   "pattern": "\\$349(?![^.]{0,25}(?:sensor|hardware))",
+   "why": "$349 is hardware per sensor, one time. Never a setup fee."
+  },
+  {
+   "id": "349-not-setup",
+   "brand": "any",
+   "kind": "refuse",
+   "pattern": "\\$349[^.]{0,15}set-?up",
+   "why": "$349 is hardware per sensor, one time. Never a setup fee."
+  },
+  {
+   "id": "no-self-alternative-tp",
+   "brand": "tp",
+   "kind": "refuse",
+   "pattern": "tiny ?pumper alternative",
+   "why": "A TinyPumper ad never offers itself as an alternative to TinyPumper."
+  },
+  {
+   "id": "no-self-alternative-gb",
+   "brand": "gb",
+   "kind": "refuse",
+   "pattern": "grease ?book alternative",
+   "why": "A GreaseBook ad never offers itself as an alternative to GreaseBook."
+  },
+  {
+   "id": "tp-no-200",
+   "brand": "tp",
+   "kind": "refuse",
+   "pattern": "200%",
+   "why": "200% money-back is GreaseBook only; TinyPumper is a straight 60-day money-back."
+  },
+  {
+   "id": "tp-no-6pct",
+   "brand": "tp",
+   "kind": "refuse",
+   "pattern": "\\b6%",
+   "why": "The 6% stat is GreaseBook only."
+  },
+  {
+   "id": "tp-we-install",
+   "brand": "tp",
+   "kind": "refuse",
+   "pattern": "\\bwe install\\b|\\binstalled by us\\b|\\bour (?:techs?|crew) install",
+   "why": "The client self-installs TinyPumper. Never 'we install it'."
+  },
+  {
+   "id": "tp-cell-extra",
+   "brand": "tp",
+   "kind": "refuse",
+   "pattern": "cellular (?:is )?(?:extra|sold separately|not included)",
+   "why": "Cellular is included."
+  },
+  {
+   "id": "gb-no-price-page",
+   "brand": "gb",
+   "kind": "refuse",
+   "surface": "page",
+   "pattern": "\\$\\s?\\d[\\d,.]*\\s*k?\\s*(?:/\\s*|a |an |per |each )\\s*(?:mo\\b|month|well|user|seat|pumper|year|yr\\b)",
+   "why": "GreaseBook publishes the pricing model, never a number. On pages a price is a dollar figure per month, well, user or year; articles may still cite industry costs such as a $200k cloud bill (2026-10-19)."
+  },
+  {
+   "id": "tp-lever-speed",
+   "brand": "tp",
+   "kind": "require",
+   "pattern": "\\b(?:8|10)[- ]?min",
+   "why": "Speed lever: installs in 8 or 10 minutes (Greg 2026-10-18: \"Either 8 min or 10 min is FINE\")."
+  },
+  {
+   "id": "tp-lever-likelihood",
+   "brand": "tp",
+   "kind": "require",
+   "pattern": "60[- ]day",
+   "why": "Likelihood lever: 60-day money-back."
+  },
+  {
+   "id": "tp-lever-coverage",
+   "brand": "tp",
+   "kind": "require",
+   "pattern": "dead ?zone|satellite|no cell|without cell|where cell",
+   "why": "Coverage lever: works in dead zones (satellite, 100% continental US coverage)."
+  },
+  {
+   "id": "tp-lever-lifetime",
+   "brand": "tp",
+   "kind": "require",
+   "pattern": "lifetime",
+   "why": "Lifetime Hardware Replacement lever."
+  },
+  {
+   "id": "gb-lever-likelihood",
+   "brand": "gb",
+   "kind": "require",
+   "pattern": "200%",
+   "why": "Likelihood lever: 200% money-back."
+  },
+  {
+   "id": "gb-lever-speed",
+   "brand": "gb",
+   "kind": "require",
+   "pattern": "\\b8[- ]?min",
+   "why": "Speed lever: 8-minute pumper learning curve."
+  },
+  {
+   "id": "gb-lever-effort",
+   "brand": "gb",
+   "kind": "require",
+   "pattern": "engineer|done for you|we build|set ?up (?:done|by)",
+   "why": "Effort lever: our petroleum engineers do the setup."
+  },
+  {
+   "id": "gb-lever-proof",
+   "brand": "gb",
+   "kind": "require",
+   "pattern": "600\\+|98%",
+   "why": "Proof lever: 600+ producers, 98% success rate."
+  },
+  {
+   "id": "gb-prepares-reports",
+   "brand": "any",
+   "kind": "refuse",
+   "surface": "page",
+   "pattern": "\\bauto-?fil(?:e|es|ed|ing)\\b|\\bfiles? (?:your |the |their )?(?:state|federal|production|regulatory)[a-z ]{0,30}reports?\\b|\\breports? (?:that )?files? themselves\\b|\\bfile themselves\\b|\\breport filer\\b|\\b(?:generated|prepared|created) and filed\\b",
+   "why": "GreaseBook prepares state production reports; the operator submits them (Greg 2026-10-17: \"prepare for operator to submit\"). Never files, auto-files or files themselves."
+  },
+  {
+   "id": "any-state-no-list",
+   "brand": "any",
+   "kind": "refuse",
+   "surface": "page",
+   "pattern": "Mississippi, Alabama|\\bTX, MS, AL\\b|\\bMS, AL, WY\\b",
+   "why": "State reports cover any producing state; a fixed list reads as exclusion (Greg 2026-07-11)."
+  },
+  {
+   "id": "tp-satellite-only",
+   "brand": "tp",
+   "kind": "refuse",
+   "surface": "page",
+   "pattern": "auto-?switch|multi-carrier|dual-connectivity|cellular (?:and|or|plus|\\+) satellite|satellite (?:and|or|plus|\\+) cellular|\\bcellular (?:is )?included\\b",
+   "why": "Prospect copy says satellite gives 100% continental US coverage and never mentions cellular (Greg 2026-10-15)."
+  },
+  {
+   "id": "tp-radar-only",
+   "brand": "tp",
+   "kind": "refuse",
+   "surface": "page",
+   "pattern": "\\bultrasonic\\b",
+   "why": "Radar is the only TinyPumper tank sensor (Greg 2026-10-17)."
+  }
+ ]
+}
