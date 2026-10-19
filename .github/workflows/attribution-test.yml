@@ -11,3 +11,4 @@ jobs:
         with:
           node-version: '22'
       - run: node --test .github/scripts/test-kioga-attribution.cjs
+      - run: node --test .github/scripts/test-no-cometly.cjs
