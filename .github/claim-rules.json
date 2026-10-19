@@ -1,7 +1,7 @@
 {
  "source": "docs/Infrastructure/Skills/gb-tp-offer-overview-guide-for-llm.md",
- "source_sha256": "75c4847707c7debd31f2e617ce7cee04d9e8d47ba382b4688d827f260d825fee",
- "compiled_at": "2026-10-19T00:44:40Z",
+ "source_sha256": "46cda48b17be56f0e4fa402a35f49b43f5e3fc8d96ab2af8cc28b7319fef6f5c",
+ "compiled_at": "2026-10-19T14:25:31Z",
  "rules": [
   {
    "id": "install-8-min",
