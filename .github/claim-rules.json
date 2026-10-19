@@ -1,7 +1,7 @@
 {
  "source": "docs/Infrastructure/Skills/gb-tp-offer-overview-guide-for-llm.md",
- "source_sha256": "df37930a2abe94bf72f4b11b9ce3085f5dcf21201705851b63930a3b26c020a1",
- "compiled_at": "2026-10-19T17:01:08Z",
+ "source_sha256": "b15cfb9cc43156f9e28b6b761eea63ac8809111fa3d6392a78f78549df9dba33",
+ "compiled_at": "2026-10-19T21:29:26Z",
  "rules": [
   {
    "id": "install-8-min",
@@ -157,8 +157,16 @@
    "id": "tp-satellite-only",
    "brand": "tp",
    "kind": "refuse",
-   "pattern": "auto-?switch|multi-carrier|dual-connectivity|cellular (?:and|or|plus|\\+) satellite|satellite (?:and|or|plus|\\+) cellular|\\bcellular (?:is )?included\\b",
+   "competitor": "skip",
+   "pattern": "multi-carrier|dual-connectivity|cellular (?:and|or|plus|\\+) satellite|satellite (?:and|or|plus|\\+) cellular|\\bcell (?:and|or|plus|&|\\+) satellite|satellite (?:and|or|plus|&|\\+) cell\\b|\\bcellular (?:is )?included\\b",
    "why": "Prospect copy says satellite gives 100% continental US coverage and never mentions cellular (Greg 2026-10-15)."
+  },
+  {
+   "id": "tp-no-auto-switch",
+   "brand": "tp",
+   "kind": "refuse",
+   "pattern": "auto-?switch",
+   "why": "Cellular and satellite do not switch on their own: each gateway uses one connection or the other (Greg 2026-10-15). A false fact on every ad and page, competitor ads included."
   },
   {
    "id": "tp-radar-only",
