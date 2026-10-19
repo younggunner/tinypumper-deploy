@@ -1,7 +1,7 @@
 {
  "source": "docs/Infrastructure/Skills/gb-tp-offer-overview-guide-for-llm.md",
- "source_sha256": "94d6ab2984f9fb70ccb016163c99a053ecf663b8819a5883b61ec61639d440a7",
- "compiled_at": "2026-10-19T14:34:55Z",
+ "source_sha256": "df37930a2abe94bf72f4b11b9ce3085f5dcf21201705851b63930a3b26c020a1",
+ "compiled_at": "2026-10-19T17:01:08Z",
  "rules": [
   {
    "id": "install-8-min",
@@ -157,7 +157,6 @@
    "id": "tp-satellite-only",
    "brand": "tp",
    "kind": "refuse",
-   "surface": "page",
    "pattern": "auto-?switch|multi-carrier|dual-connectivity|cellular (?:and|or|plus|\\+) satellite|satellite (?:and|or|plus|\\+) cellular|\\bcellular (?:is )?included\\b",
    "why": "Prospect copy says satellite gives 100% continental US coverage and never mentions cellular (Greg 2026-10-15)."
   },
