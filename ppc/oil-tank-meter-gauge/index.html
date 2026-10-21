@@ -287,7 +287,7 @@ window.addEventListener?window.addEventListener("load",a,!1):window.attachEvent(
       <div class="field-install__video">
         <div class="field-install__phone" onclick="document.getElementById('ryan-modal').classList.add('active');document.getElementById('ryan-modal-vid').play()" style="cursor:pointer;position:relative">
           <div class="field-install__screen">
-            <video autoplay muted loop playsinline src="../shared/915e880d873a.mp4"></video>
+            <video data-light-video muted loop playsinline preload="none" poster="../shared/915e880d873a-poster.webp" data-src="../shared/915e880d873a-light.mp4"></video>
           </div>
         </div>
       </div>
@@ -606,7 +606,7 @@ window.addEventListener?window.addEventListener("load",a,!1):window.attachEvent(
       <div class="integration__video reveal">
         <div class="phone-frame">
             <div class="phone-screen">
-              <video autoplay muted loop playsinline src="../shared/90e75fcd67fe.mp4"></video>
+              <video data-light-video muted loop playsinline preload="none" poster="../shared/90e75fcd67fe-poster.webp" data-src="../shared/90e75fcd67fe-light.mp4"></video>
             </div>
           </div>
       </div>
@@ -843,7 +843,7 @@ document.querySelectorAll('.faq-q').forEach(function(q){
 <div class="video-modal" id="ryan-modal" onclick="this.classList.remove('active');document.getElementById('ryan-modal-vid').pause()">
   <div class="video-modal__inner" onclick="event.stopPropagation()">
     <div class="video-modal__close" onclick="document.getElementById('ryan-modal').classList.remove('active');document.getElementById('ryan-modal-vid').pause()">&times;</div>
-    <video id="ryan-modal-vid" controls playsinline src="../shared/31de572528e1.mp4"></video>
+    <video id="ryan-modal-vid" controls playsinline preload="none" src="../shared/31de572528e1.mp4"></video>
   </div>
 </div>
 
@@ -854,5 +854,6 @@ document.querySelectorAll('.faq-q').forEach(function(q){
     <iframe id="travis-modal-iframe" src="" style="width:100%;aspect-ratio:16/9;border:0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
   </div>
 </div>
+<script src="/assets/js/light-media.js" defer></script>
 </body>
 </html>
