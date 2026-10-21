@@ -20,6 +20,6 @@ jobs:
         with:
           python-version: "3.11"
       - name: Gate self-test (each rule fails a planted page)
-        run: python3 -m unittest discover -s tests -p 'test_page_weight_gate.py' -v
+        run: python3 -m unittest discover -s tests -v  # every test file, so new site checks run too (2026-10-21)
       - name: Gate every published page
         run: python3 scripts/check-page-weight.py .

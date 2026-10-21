@@ -56,6 +56,18 @@ class IndexablePages(unittest.TestCase):
         self.assertIn('id="yt-player"', html)
         self.assertRegex(html, r'<div id="yt-player"[^>]*><button type="button" aria-label="Play video: TinyPumper Overview"[^>]*onclick="this\.parentNode\.innerHTML=')
 
+    def test_more_from_tinypumper_links_point_at_greasebook_blog_posts(self):
+        html = (ROOT / "index.html").read_text()
+        block = html[html.index("More from TinyPumper"):]
+        block = block[:block.index("</ul>")]
+        links = re.findall(r'<a href="([^"]+)">([^<]+)</a>', block)
+        self.assertGreaterEqual(len(links), 10)
+        for href, text in links:
+            with self.subTest(href=href):
+                self.assertRegex(href, r"^https://www\.greasebook\.com/blog/[a-z0-9-]+/$")
+                self.assertTrue(text.strip())
+        self.assertEqual(len({h for h, _t in links}), len(links))
+
 
 if __name__ == "__main__":
     unittest.main()
