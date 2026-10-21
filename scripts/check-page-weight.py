@@ -87,7 +87,10 @@ for root, dirs, files in os.walk(site):
 
         refs = re.findall(r"""<img\b[^>]*?\ssrc\s*=\s*["']([^"']+)["']""", body, re.I)
         refs += re.findall(r"""\s(?:poster|data-bg)\s*=\s*["']([^"']+)["']""", body, re.I)
-        refs += re.findall(r"""background-image:\s*url\(\s*['"]?([^'")]+)""", body, re.I)
+        # every url() inside a background / background-image value, in style attributes and <style>
+        # blocks, including after a gradient or in the shorthand
+        for value in re.findall(r"""background(?:-image)?\s*:\s*([^;}<>]+)""", body, re.I):
+            refs += re.findall(r"""url\(\s*['"]?([^'")]+)""", value, re.I)
         for ref in set(refs):
             if "raw.githubusercontent.com" in ref:
                 fails.append(f"{rel}: image from {ref}; host a copy on this site")
