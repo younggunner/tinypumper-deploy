@@ -65,7 +65,7 @@ ul,ol{list-style:none}
 .section{padding:var(--sec) 0}
 .section--dark{background:var(--bg-dark);color:var(--ink-light)}
 .section--warm{background:var(--bg-warm)}
-.section--first{padding-top:calc(60px + var(--sec));position:relative;background:url('../../assets/hero_banner_greasebook.jpg') center/cover no-repeat}
+.section--first{padding-top:calc(60px + var(--sec));position:relative;background:url('../../assets/hero_banner_greasebook.webp') center/cover no-repeat}
 .section--first::before{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(28,27,24,.93) 0%,rgba(28,27,24,.8) 40%,rgba(50,38,10,.65) 100%);z-index:1}
 .section--first::after{content:'';position:absolute;inset:0;background:rgba(140,110,30,.15);mix-blend-mode:color;z-index:1}
 .section--first>.container{position:relative;z-index:2}

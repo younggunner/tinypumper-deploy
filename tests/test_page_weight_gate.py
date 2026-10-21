@@ -76,6 +76,19 @@ class PageWeightGate(unittest.TestCase):
         remote = GOOD_VIDEO.replace('data-src="/assets/video/x.mp4"', "data-src='https://cdn.example.com/v.mp4'")
         self.assertFails(remote + LOADER, "host a light copy on this site")
 
+    def test_heavy_or_github_hosted_images_fail(self):
+        with tempfile.TemporaryDirectory() as d:
+            site = Path(d)
+            (site / "big.webp").write_bytes(b"0" * (260 * 1024))
+            (site / "small.webp").write_bytes(b"0" * 1000)
+            (site / "page").mkdir()
+            (site / "page/index.html").write_text('<img src="/big.webp" loading="lazy"><img src="../small.webp">'
+                                                  '<img src="https://raw.githubusercontent.com/a/b/main/x.png" loading="lazy">')
+            out = subprocess.run([sys.executable, str(GATE), str(site)], capture_output=True, text=True).stdout
+        self.assertIn("is 260 KB, over 250 KB", out)
+        self.assertIn("host a copy on this site", out)
+        self.assertNotIn("small.webp", out)
+
     def test_heavy_html_fails(self):
         self.assertFails("<p>" + "x" * (601 * 1024) + "</p>", "over 600 KB")
 
