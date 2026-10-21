@@ -59,6 +59,9 @@ Allow: /
 User-agent: Diffbot
 Allow: /
 
+User-agent: meta-webindexer
+Allow: /
+
 User-agent: *
 Allow: /
 
