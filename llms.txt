@@ -9,7 +9,6 @@
 - [SCADA albatross](https://www.tinypumper.com/reads/scada-albatross/): inherited SCADA cost and complexity for independents.
 - [Silent bleed](https://www.tinypumper.com/reads/silent-bleed/): production lost between pumper visits.
 - [Windshield time](https://www.tinypumper.com/reads/windshield-time/): driving leases just to read a gauge.
-- [Partner program](https://www.tinypumper.com/partner-program/): recurring revenue share for service companies.
 
 ## Canonical facts
 

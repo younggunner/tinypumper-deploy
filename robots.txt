@@ -59,6 +59,7 @@ Allow: /
 User-agent: Diffbot
 Allow: /
 
+# meta-webindexer: Meta AI search crawler; named so Meta AI can cite us (2026-10-21).
 User-agent: meta-webindexer
 Allow: /
 
