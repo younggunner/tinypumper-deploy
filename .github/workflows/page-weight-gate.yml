@@ -1,0 +1,25 @@
+# Page-weight gate (Greg, 2026-10-21). Many prospects open these pages on phones in rural and remote
+# areas with weak signal. Fails any push or PR where a page plays video on open, loops a video that
+# isn't a light local file (600 KB max) loaded only on a good connection, loads more than 12 images
+# on open, or has HTML over 600 KB. Rules and WHY: scripts/check-page-weight.py (same script as
+# greasebook-deploy; change both together). Its tests: tests/test_page_weight_gate.py.
+name: Page-weight gate
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  page-weight-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Gate self-test (each rule fails a planted page)
+        run: python3 -m unittest discover -s tests -p 'test_page_weight_gate.py' -v
+      - name: Gate every published page
+        run: python3 scripts/check-page-weight.py .
