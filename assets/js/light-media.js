@@ -68,13 +68,15 @@
     });
   }
 
-  // Signal got worse (or better) after the page opened: pause or resume what is on screen.
+  // Signal or reduced-motion setting changed after the page opened: pause or resume what is on screen.
+  function recheck() { onScreen.forEach(function (v) { fast() ? startVideo(v) : stopVideo(v); }); }
   try {
-    if (navigator.connection && navigator.connection.addEventListener) {
-      navigator.connection.addEventListener('change', function () {
-        onScreen.forEach(function (v) { fast() ? startVideo(v) : stopVideo(v); });
-      });
-    }
+    if (navigator.connection && navigator.connection.addEventListener) navigator.connection.addEventListener('change', recheck);
+  } catch (e) {}
+  try {
+    var rm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)');
+    if (rm && rm.addEventListener) rm.addEventListener('change', recheck);
+    else if (rm && rm.addListener) rm.addListener(recheck);
   } catch (e) {}
 
   window.gbLight = { fast: fast, observe: observe };
