@@ -219,7 +219,7 @@ window.addEventListener?window.addEventListener("load",a,!1):window.attachEvent(
     <h2 class="sh sh--lg sh--light mb-24 reveal">Hear It Straight from the Founder</h2>
     <p class="reveal reveal-d1" style="color:var(--ink-muted-lt);max-width:560px;margin:0 auto 32px;font-size:16px;line-height:1.7">Ten minutes. No fluff. Just a plain-spoken walkthrough of what TinyPumper does, why we built it, and why it works for operators like you.</p>
     <div id="yt-player" class="reveal reveal-d2" style="position:relative;width:100%;max-width:720px;margin:0 auto;aspect-ratio:16/9;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.4);background:#000;cursor:pointer" onclick="this.innerHTML='<iframe src=\'https://www.youtube.com/embed/8Bbas9bTxoc?autoplay=1&rel=0&modestbranding=1\' title=\'TinyPumper Overview\' frameborder=\'0\' allow=\'accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture\' allowfullscreen style=\'position:absolute;top:0;left:0;width:100%;height:100%\'></iframe>';this.style.cursor='default';this.onclick=null">
-      <img src="/assets/economics-cover.webp" alt="TinyPumper Overview Video" style="width:100%;height:100%;object-fit:cover">
+      <img src="https://img.youtube.com/vi/8Bbas9bTxoc/maxresdefault.jpg" alt="TinyPumper Overview Video" style="width:100%;height:100%;object-fit:cover">
       <svg style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:72px;height:72px;opacity:.9;filter:drop-shadow(0 4px 12px rgba(0,0,0,.5))" viewBox="0 0 68 48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="red"/><path d="M45 24L27 14v20" fill="#fff"/></svg>
     </div>
   </div>
@@ -289,7 +289,7 @@ window.addEventListener?window.addEventListener("load",a,!1):window.attachEvent(
       <div class="field-install__video">
         <div class="field-install__phone" onclick="document.getElementById('ryan-modal').classList.add('active');document.getElementById('ryan-modal-vid').play()" style="cursor:pointer;position:relative">
           <div class="field-install__screen">
-            <video data-light-video muted loop playsinline preload="none" poster="../shared/915e880d873a-poster.webp" data-src="../shared/915e880d873a-light.mp4"></video>
+            <video autoplay muted loop playsinline src="../shared/915e880d873a.mp4"></video>
           </div>
         </div>
       </div>
@@ -608,7 +608,7 @@ window.addEventListener?window.addEventListener("load",a,!1):window.attachEvent(
       <div class="integration__video reveal">
         <div class="phone-frame">
             <div class="phone-screen">
-              <video data-light-video muted loop playsinline preload="none" poster="../shared/90e75fcd67fe-poster.webp" data-src="../shared/90e75fcd67fe-light.mp4"></video>
+              <video autoplay muted loop playsinline src="../shared/90e75fcd67fe.mp4"></video>
             </div>
           </div>
       </div>
@@ -717,13 +717,13 @@ window.addEventListener?window.addEventListener("load",a,!1):window.attachEvent(
     <p style="text-align:center;max-width:620px;margin:0 auto 48px;font-size:16px;color:var(--ink-muted);line-height:1.65" class="reveal">We get it. Sounds too good to be true. So don't take our word for it. Here's what operators say after they plug in.</p>
     <div class="testimonials">
       <div class="testimonial-card testimonial-card--wide reveal">
-        <img src="../../assets/tinypumper-marketing/email-steven.webp" alt="Customer email: impressed with data transmission to GreaseBook, wants to put one on every heater treater" style="width:100%;display:block;border-radius:8px">
+        <img src="../../assets/tinypumper-marketing/email-steven.png" alt="Customer email: impressed with data transmission to GreaseBook, wants to put one on every heater treater" style="width:100%;display:block;border-radius:8px">
       </div>
       <div class="testimonial-card reveal reveal-d1">
-        <img src="../../assets/tinypumper-marketing/email-edward.webp" alt="Customer email: TinyPumper install successful, everything working great" style="width:100%;display:block;border-radius:8px">
+        <img src="../../assets/tinypumper-marketing/email-edward.png" alt="Customer email: TinyPumper install successful, everything working great" style="width:100%;display:block;border-radius:8px">
       </div>
       <div class="testimonial-card reveal reveal-d2">
-        <img src="../../assets/tinypumper-marketing/email-james.webp" alt="Customer email: 3 tank sensors working great, wants to add more" style="width:100%;display:block;border-radius:8px">
+        <img src="../../assets/tinypumper-marketing/email-james.png" alt="Customer email: 3 tank sensors working great, wants to add more" style="width:100%;display:block;border-radius:8px">
       </div>
     </div>
   </div>
@@ -845,7 +845,7 @@ document.querySelectorAll('.faq-q').forEach(function(q){
 <div class="video-modal" id="ryan-modal" onclick="this.classList.remove('active');document.getElementById('ryan-modal-vid').pause()">
   <div class="video-modal__inner" onclick="event.stopPropagation()">
     <div class="video-modal__close" onclick="document.getElementById('ryan-modal').classList.remove('active');document.getElementById('ryan-modal-vid').pause()">&times;</div>
-    <video id="ryan-modal-vid" controls playsinline preload="none" src="../shared/31de572528e1.mp4"></video>
+    <video id="ryan-modal-vid" controls playsinline src="../shared/31de572528e1.mp4"></video>
   </div>
 </div>
 
@@ -856,6 +856,5 @@ document.querySelectorAll('.faq-q').forEach(function(q){
     <iframe id="travis-modal-iframe" src="" style="width:100%;aspect-ratio:16/9;border:0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
   </div>
 </div>
-<script src="/assets/js/light-media.js" defer></script>
 </body>
 </html>
