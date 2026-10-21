@@ -11,7 +11,8 @@ one does not deploy.
 
 Rules, checked on every built HTML page (markup inside <script>, <noscript> and comments is ignored):
 1. HTML document at most 600 KB (same ceiling as the PPC lander gate).
-2. No <video autoplay>. A looping video uses data-light-video (or the older data-lazy-autoplay):
+2. No <video autoplay>, and no looping <video> outside the loader (a tap-to-play video with
+   controls is fine). A looping video uses data-light-video (or the older data-lazy-autoplay):
    it has a poster (or data-overlay when it sits on its own data-bg thumbnail), no src on the tag, and its sources use data-src, so assets/js/gb-light-media.js
    plays it only on screen and only on a good connection.
 3. Every looping video's file is on this site (no outside host) and at most 600 KB.
@@ -52,15 +53,20 @@ for root, dirs, files in os.walk(site):
             attrs, inner = m.group(1), m.group(2)
             if re.search(r"\sautoplay\b", attrs, re.I):
                 fails.append(f"{rel}: <video autoplay> plays on open; use data-light-video with data-src and a poster")
-            if not re.search(r"data-light-video|data-lazy-autoplay", attrs, re.I):
+            marked = re.search(r"data-light-video|data-lazy-autoplay", attrs, re.I)
+            if not marked:
+                # A tap-to-play video (controls) is fine. A loop without the marker is ambient video
+                # that skipped the loader and its checks.
+                if re.search(r"\sloop\b", attrs, re.I) and not re.search(r"\scontrols\b", attrs, re.I):
+                    fails.append(f"{rel}: looping <video> without data-light-video; it must go through the loader")
                 continue
             loops += 1
             # data-overlay: the clip sits on its own thumbnail (data-bg), which is its still.
             if not re.search(r"\sposter=|\sdata-overlay\b", attrs, re.I):
                 fails.append(f"{rel}: looping video without a poster")
-            if re.search(r"\ssrc=", attrs, re.I) or re.search(r"<source\b[^>]*\ssrc=", inner, re.I):
+            if re.search(r"\ssrc\s*=", attrs, re.I) or re.search(r"<source\b[^>]*\ssrc\s*=", inner, re.I):
                 fails.append(f"{rel}: looping video has src; use data-src so it loads only on a good connection")
-            for src in re.findall(r'data-src="([^"]+)"', attrs + inner):
+            for src in re.findall(r"""data-src\s*=\s*["']([^"']+)["']""", attrs + inner):
                 if re.match(r"(https?:)?//", src):
                     fails.append(f"{rel}: looping video from {src}; host a light copy on this site")
                     continue
