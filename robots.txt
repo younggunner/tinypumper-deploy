@@ -62,4 +62,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://tinypumper.com/sitemap.xml
+Sitemap: https://www.tinypumper.com/sitemap.xml
