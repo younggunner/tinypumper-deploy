@@ -76,6 +76,39 @@ class PageWeightGate(unittest.TestCase):
         remote = GOOD_VIDEO.replace('data-src="/assets/video/x.mp4"', "data-src='https://cdn.example.com/v.mp4'")
         self.assertFails(remote + LOADER, "host a light copy on this site")
 
+    def run_images(self, html):
+        with tempfile.TemporaryDirectory() as d:
+            site = Path(d)
+            (site / "big.webp").write_bytes(b"0" * (260 * 1024))
+            (site / "small.webp").write_bytes(b"0" * 1000)
+            (site / "page").mkdir()
+            (site / "page/index.html").write_text(f"<html><body>{html}</body></html>")
+            r = subprocess.run([sys.executable, str(GATE), str(site)], capture_output=True, text=True)
+            return r.returncode, r.stdout
+
+    def test_heavy_images_fail_in_every_place_a_page_uses_them(self):
+        for html in ('<img src="/big.webp" loading="lazy">',
+                     '<video data-light-video controls poster="/big.webp"></video>' + LOADER,
+                     '<div data-bg="/big.webp"></div>' + LOADER,
+                     '<div style="background-image:url(/big.webp)"></div>',
+                     "<style>.h{background-image:linear-gradient(#000,#111),url('/big.webp')}</style>",
+                     '<style>.h{background:#000 url("../big.webp") no-repeat}</style>'):
+            with self.subTest(html=html):
+                code, out = self.run_images(html)
+                self.assertEqual(code, 1, out)
+                self.assertIn("is 260 KB, over 250 KB", out)
+
+    def test_light_images_pass_in_every_place(self):
+        html = ('<img src="../small.webp"><div data-bg="/small.webp"></div>'
+                "<style>.h{background:linear-gradient(#000,#111),url('/small.webp')}</style>" + LOADER)
+        code, out = self.run_images(html)
+        self.assertEqual(code, 0, out)
+
+    def test_github_hosted_images_fail(self):
+        code, out = self.run_images('<img src="https://raw.githubusercontent.com/a/b/main/x.png" loading="lazy">')
+        self.assertEqual(code, 1, out)
+        self.assertIn("host a copy on this site", out)
+
     def test_heavy_html_fails(self):
         self.assertFails("<p>" + "x" * (601 * 1024) + "</p>", "over 600 KB")
 

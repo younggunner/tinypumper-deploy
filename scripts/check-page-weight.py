@@ -20,6 +20,9 @@ Rules, checked on every built HTML page (markup inside <script>, <noscript> and 
    (gb-light-media.js on greasebook.com, light-media.js on tinypumper.com).
 5. At most 12 images load on open: <img> without loading="lazy" plus inline style
    background-image urls. Everything else loads as it scrolls in (loading="lazy" or data-bg).
+6. Every image file on this site that a page uses (<img src>, poster, data-bg, inline background)
+   is at most 250 KB. On 2026-10-21 single images of 1.2 MB were loading on phones.
+7. No image is loaded from raw.githubusercontent.com: host a copy on this site.
 Usage: check-page-weight.py [site_dir] (default _site). Exit 1 on any failure.
 Folders skipped: .git, vendor, node_modules (never published).
 """
@@ -30,6 +33,7 @@ import sys
 MAX_HTML = 600 * 1024
 MAX_VIDEO = 600 * 1024
 MAX_EAGER_IMAGES = 12
+MAX_IMAGE = 250 * 1024
 
 site = sys.argv[1] if len(sys.argv) > 1 else "_site"
 fails = []
@@ -80,6 +84,24 @@ for root, dirs, files in os.walk(site):
 
         if (loops or re.search(r"\sdata-bg=", body)) and "light-media.js" not in html:
             fails.append(f"{rel}: has looping videos or data-bg thumbnails but does not load the light-media loader")
+
+        refs = re.findall(r"""<img\b[^>]*?\ssrc\s*=\s*["']([^"']+)["']""", body, re.I)
+        refs += re.findall(r"""\s(?:poster|data-bg)\s*=\s*["']([^"']+)["']""", body, re.I)
+        # every url() inside a background / background-image value, in style attributes and <style>
+        # blocks, including after a gradient or in the shorthand
+        for value in re.findall(r"""background(?:-image)?\s*:\s*([^;}<>]+)""", body, re.I):
+            refs += re.findall(r"""url\(\s*['"]?([^'")]+)""", value, re.I)
+        for ref in set(refs):
+            if "raw.githubusercontent.com" in ref:
+                fails.append(f"{rel}: image from {ref}; host a copy on this site")
+                continue
+            if re.match(r"(https?:)?//|data:", ref):
+                continue
+            clean = ref.split("?")[0].split("#")[0].replace("&amp;", "&")
+            f = (os.path.join(site, clean.lstrip("/")) if clean.startswith("/")
+                 else os.path.normpath(os.path.join(os.path.dirname(path), clean)))
+            if os.path.isfile(f) and os.path.getsize(f) > MAX_IMAGE:
+                fails.append(f"{rel}: image {ref} is {os.path.getsize(f) // 1024} KB, over 250 KB")
 
         imgs = re.findall(r"<img\b[^>]*>", body, re.I)
         eager = [i for i in imgs if not re.search(r"loading\s*=\s*[\"']lazy", i, re.I)]
