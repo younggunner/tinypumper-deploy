@@ -6,6 +6,9 @@
 
 - [TinyPumper homepage](https://tinypumper.com/): how it works, pricing, install videos, FAQ.
 - [60-second fit quiz](https://quiz.tinypumper.com/quiz): matches site conditions (connectivity, sensor count, well type) to the right kit.
+- [SCADA albatross](https://www.tinypumper.com/reads/scada-albatross/): inherited SCADA cost and complexity for independents.
+- [Silent bleed](https://www.tinypumper.com/reads/silent-bleed/): production lost between pumper visits.
+- [Windshield time](https://www.tinypumper.com/reads/windshield-time/): driving leases just to read a gauge.
 
 ## Canonical facts
 

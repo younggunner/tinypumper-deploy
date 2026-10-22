@@ -149,6 +149,7 @@ ul,ol{list-style:none}
 @keyframes runUp{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
 @media(max-width:900px){.hero{flex-direction:column;gap:24px}.hero__runner{min-height:400px;order:2;width:100%}.hero__product img{width:70vw;height:70vw;max-width:300px;max-height:300px}.hero__copy{width:100%;order:1}}
 .hero__sub{font-size:clamp(17px,2.5vw,21px);color:var(--ink-muted-lt);margin:20px 0 32px;line-height:1.55}
+.hero__sub + .hero__sub{margin-top:0}
 .hero__bullets{margin:0 0 36px;display:flex;flex-direction:column;gap:12px}
 .hero__bullets li{font-size:16px;color:var(--ink-muted-lt);padding-left:24px;position:relative;line-height:1.55}
 .hero__bullets li::before{content:'';position:absolute;left:0;top:8px;width:10px;height:10px;border-radius:50%;background:var(--gold)}
@@ -321,6 +322,9 @@ ul,ol{list-style:none}
 .field-install{display:flex;align-items:center;justify-content:center;gap:48px;max-width:900px;margin:48px auto 0}
 .field-install__video{flex-shrink:0}
 .field-install__phone{width:240px;border:3px solid #1a1a1a;border-radius:32px;box-shadow:0 20px 60px rgba(0,0,0,.18),0 0 0 1px rgba(0,0,0,.06);overflow:hidden;background:#1a1a1a}
+button.field-install__phone{display:block;padding:0;font:inherit;color:inherit;appearance:none;-webkit-appearance:none;cursor:pointer}
+.field-install__play-caption{margin-top:12px;font-size:14px;font-weight:600;color:var(--gold);cursor:pointer;background:none;border:none;padding:0;font-family:inherit;text-align:left;display:block;width:100%}
+button#yt-player{display:block;width:100%;padding:0;border:none;background:#000;cursor:pointer;font:inherit;color:inherit;appearance:none;-webkit-appearance:none}
 .field-install__screen{border-radius:29px;overflow:hidden}
 .field-install__screen video{width:100%;display:block}
 .field-install__caption{flex:1;min-width:0}
@@ -342,7 +346,7 @@ ul,ol{list-style:none}
 .video-modal.active{display:flex}
 .video-modal__inner{position:relative;max-width:400px;width:90%;border-radius:32px;overflow:hidden;border:3px solid #1a1a1a;background:#000}
 .video-modal__inner video{width:100%;display:block;border-radius:29px}
-.video-modal__close{position:absolute;top:10px;right:10px;color:#fff;font-size:24px;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;opacity:.85;transition:opacity .2s,background .2s;background:rgba(0,0,0,.5);border-radius:50%;z-index:10;line-height:1}
+.video-modal__close{position:absolute;top:10px;right:10px;color:#fff;font-size:24px;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;opacity:.85;transition:opacity .2s,background .2s;background:rgba(0,0,0,.5);border-radius:50%;z-index:10;line-height:1;border:none;padding:0;font-family:inherit}
 .video-modal__close:hover{opacity:1;background:rgba(0,0,0,.75)}
 
 /* Video loading shimmer */
@@ -363,6 +367,7 @@ ul,ol{list-style:none}
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5PQGM83" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- NAV -->
+<header>
 <nav class="nav" role="navigation">
   <div class="nav__inner">
     <a href="#hero" class="nav__logo"><img src="/wp-content/uploads/2023/03/logo_yellow.svg" alt="TinyPumper"></a>
@@ -376,7 +381,9 @@ ul,ol{list-style:none}
     <button class="nav__burger" aria-label="Menu"><span></span></button>
   </div>
 </nav>
+</header>
 
+<main>
 <!-- S1: HERO -->
 <section class="section section--dark section--first" id="hero">
   <div class="container hero">
@@ -397,6 +404,7 @@ ul,ol{list-style:none}
     <div class="hero__copy">
     <p class="hero__primer reveal" style="font-size:14px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:16px">For independent oil &amp; gas producers running wells at any scale</p>
     <h1 class="sh sh--hero sh--light reveal">Your Pumper Calls in Sick Tomorrow (or doesn't call at all...)<br>Do You Know What Happened on Your Wells Yesterday?</h1>
+    <p class="hero__sub reveal reveal-d1">TinyPumper is a remote well monitoring system for oil and gas producers running conventional wells where SCADA never paid off or costs too much to keep alive. A solar-powered gateway and wireless radar and pressure sensors report tank levels, pressures and engine runtime to your phone, and alert you within minutes when a reading crosses the line you set. You install it yourself in 8 minutes, with no wires and no electrician, and it covers 100% of the continental US over satellite.</p>
     <p class="hero__sub reveal reveal-d1">24/7 well monitoring that installs in 8 minutes. No wires. No SCADA. No kidding.</p>
     <p class="hero__authority reveal reveal-d1" style="font-style:italic;font-size:15px;color:var(--ink-muted-lt);margin-top:8px;margin-bottom:24px">Built in the oil patch by pumpers, field supervisors, engineers, and operators like you. 15 years of feedback from the people who actually do the work.</p>
     <ul class="hero__bullets reveal reveal-d2">
@@ -507,10 +515,10 @@ ul,ol{list-style:none}
   <div class="container text-center">
     <h2 class="sh sh--lg sh--light mb-24 reveal">Hear It Straight from the Founder</h2>
     <p class="reveal reveal-d1" style="color:var(--ink-muted-lt);max-width:560px;margin:0 auto 32px;font-size:16px;line-height:1.7">Ten minutes. No fluff. Just a plain-spoken walkthrough of what TinyPumper does, why we built it, and why it works for operators like you.</p>
-    <div id="yt-player" class="reveal reveal-d2" style="position:relative;width:100%;max-width:720px;margin:0 auto;aspect-ratio:16/9;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.4);background:#000;cursor:pointer" onclick="this.innerHTML='<iframe src=\'https://www.youtube.com/embed/8Bbas9bTxoc?autoplay=1&rel=0&modestbranding=1\' title=\'TinyPumper Overview\' frameborder=\'0\' allow=\'accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture\' allowfullscreen style=\'position:absolute;top:0;left:0;width:100%;height:100%\'></iframe>';this.style.cursor='default';this.onclick=null">
+    <div id="yt-player" class="reveal reveal-d2" style="position:relative;width:100%;max-width:720px;margin:0 auto;aspect-ratio:16/9;border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.4);background:#000;cursor:pointer"><button type="button" aria-label="Play video: TinyPumper Overview" style="display:block;position:relative;width:100%;height:100%;padding:0;border:0;background:none;cursor:pointer" onclick="this.parentNode.innerHTML='<iframe src=\'https://www.youtube.com/embed/8Bbas9bTxoc?autoplay=1&rel=0&modestbranding=1\' title=\'TinyPumper Overview\' frameborder=\'0\' allow=\'accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture\' allowfullscreen style=\'position:absolute;top:0;left:0;width:100%;height:100%\'></iframe>';this.style.cursor='default';this.onclick=null">
       <img src="/assets/economics-cover.webp" alt="TinyPumper Overview Video" style="width:100%;height:100%;object-fit:cover" loading="lazy">
       <svg style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:72px;height:72px;opacity:.9;filter:drop-shadow(0 4px 12px rgba(0,0,0,.5))" viewBox="0 0 68 48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="red"/><path d="M45 24L27 14v20" fill="#fff"/></svg>
-    </div>
+    </button></div>
   </div>
 </section>
 
@@ -575,26 +583,26 @@ ul,ol{list-style:none}
     <div class="text-center mt-24"><a href="https://quiz.tinypumper.com/quiz" class="cta">Take the 60-Second Quiz →</a></div>
     <div class="field-install reveal">
       <div class="field-install__video">
-        <div class="field-install__phone" onclick="document.getElementById('ryan-modal').classList.add('active');document.getElementById('ryan-modal-iframe').src='https://www.youtube.com/embed/SwHX04pOATg?autoplay=1&rel=0&playsinline=1'" style="cursor:pointer;position:relative">
+        <button type="button" class="field-install__phone" aria-label="Play video: Ryan TinyPumper install" onclick="document.getElementById('ryan-modal').classList.add('active');document.getElementById('ryan-modal-iframe').src='https://www.youtube.com/embed/SwHX04pOATg?autoplay=1&rel=0&playsinline=1'" style="cursor:pointer;position:relative">
           <div class="field-install__screen"><img src="https://i.ytimg.com/vi/SwHX04pOATg/hq2.jpg" style="width:100%;display:block" alt="Ryan TinyPumper install" loading="lazy"></div>
-        </div>
+        </button>
       </div>
       <div class="field-install__caption">
         <h3>See It in Action</h3>
         <p>Ryan from Texas mounting several radar tank sensors in the field. No tools. No wiring. No crew. Just screw it in and walk away.</p>
-        <p style="margin-top:12px;font-size:14px;font-weight:600;color:var(--gold);cursor:pointer" onclick="document.getElementById('ryan-modal').classList.add('active');document.getElementById('ryan-modal-iframe').src='https://www.youtube.com/embed/SwHX04pOATg?autoplay=1&rel=0&playsinline=1'">&#9654; Click the video to watch the full install</p>
+        <button type="button" class="field-install__play-caption" aria-label="Play video: Ryan TinyPumper install" onclick="document.getElementById('ryan-modal').classList.add('active');document.getElementById('ryan-modal-iframe').src='https://www.youtube.com/embed/SwHX04pOATg?autoplay=1&rel=0&playsinline=1'">&#9654; Click the video to watch the full install</button>
       </div>
     </div>
     <div class="field-install reveal" style="margin-top:32px">
       <div class="field-install__video">
-        <div class="field-install__phone" onclick="document.getElementById('travis-modal').classList.add('active');document.getElementById('travis-modal-iframe').src='https://www.youtube.com/embed/MsUf7K8_vjA?autoplay=1&rel=0&playsinline=1'" style="cursor:pointer;position:relative">
+        <button type="button" class="field-install__phone" aria-label="Play video: Travis from Illinois TinyPumper install" onclick="document.getElementById('travis-modal').classList.add('active');document.getElementById('travis-modal-iframe').src='https://www.youtube.com/embed/MsUf7K8_vjA?autoplay=1&rel=0&playsinline=1'" style="cursor:pointer;position:relative">
           <div class="field-install__screen"><img src="https://i.ytimg.com/vi/MsUf7K8_vjA/hq2.jpg" style="width:100%;display:block" alt="Travis from Illinois TinyPumper install" loading="lazy"></div>
-        </div>
+        </button>
       </div>
       <div class="field-install__caption">
         <h3>See It in Action</h3>
         <p>Travis from Illinois getting live readings from a tank battery he set up that morning. Three sensors. One gateway. One bar of cell signal. He knows what his wells are doing — without setting foot on the lease.</p>
-        <p style="margin-top:12px;font-size:14px;font-weight:600;color:var(--gold);cursor:pointer" onclick="document.getElementById('travis-modal').classList.add('active');document.getElementById('travis-modal-iframe').src='https://www.youtube.com/embed/MsUf7K8_vjA?autoplay=1&rel=0&playsinline=1'">&#9654; Click the video to watch the full install</p>
+        <button type="button" class="field-install__play-caption" aria-label="Play video: Travis from Illinois TinyPumper install" onclick="document.getElementById('travis-modal').classList.add('active');document.getElementById('travis-modal-iframe').src='https://www.youtube.com/embed/MsUf7K8_vjA?autoplay=1&rel=0&playsinline=1'">&#9654; Click the video to watch the full install</button>
       </div>
     </div>
   </div>
@@ -1033,12 +1041,36 @@ ul,ol{list-style:none}
     </div>
   </div>
 </section>
+</main>
 
 <!-- FOOTER -->
 <footer class="footer section--dark">
   <div class="container">
     <p>&copy; 2026 TinyPumper. All rights reserved. Oklahoma City, Oklahoma.</p>
     <p style="margin:8px 0 0;">&middot;&nbsp; <a href="/privacy/">Privacy Policy</a> &nbsp;&middot;&nbsp; <a href="/terms/">Terms of Service</a></p>
+    <div class="footer-more" style="margin-top:24px;text-align:left;max-width:720px;margin-left:auto;margin-right:auto">
+      <p style="font-size:14px;font-weight:600;margin-bottom:8px">More from TinyPumper</p>
+      <ul style="list-style:none;padding:0;margin:0;font-size:14px;line-height:1.7">
+        <li><a href="https://www.greasebook.com/blog/oilfield-monitoring/">Oil Well Monitoring System: Remote Well and Production Monitoring for Producers</a></li>
+        <li><a href="https://www.greasebook.com/blog/oil-and-gas-scada/">Oil and Gas SCADA: Systems, Cost, Companies, and Low-Cost Alternatives</a></li>
+        <li><a href="https://www.greasebook.com/blog/oilfield-monitoring-alternatives/">Oilfield Monitoring Alternatives: Tank and Well Monitoring Systems Compared</a></li>
+        <li><a href="https://www.greasebook.com/blog/tank-sentinel-alternative/">Tank Sentinel Alternative: When You Need the Whole Site, Not Just the Tank</a></li>
+        <li><a href="https://www.greasebook.com/blog/tankscan-alternative/">TankScan Alternative: Tank Inventory Tool or Production Monitor?</a></li>
+        <li><a href="https://www.greasebook.com/blog/amplified-industries-alternative/">Amplified Industries Alternative: Monitoring Without the Controller</a></li>
+        <li><a href="https://www.greasebook.com/blog/ignition-scada-alternative/">Ignition SCADA Alternative: When Ignition Is Too Much for Your Operation</a></li>
+        <li><a href="https://www.greasebook.com/blog/oilfield-tank-monitoring/">Oilfield Tank Monitoring: Tank Battery Levels, Alarms, and Sensors That Hold Up in the Field</a></li>
+        <li><a href="https://www.greasebook.com/blog/saltwater-disposal-monitoring/">Saltwater Disposal Monitoring: Tank Levels, Flow, and Injection Pressure Between Pumper Visits</a></li>
+        <li><a href="https://www.greasebook.com/blog/oilfield-monitoring-software/">Oilfield Monitoring Software: What It Does and When It Pays Off</a></li>
+        <li><a href="https://www.greasebook.com/blog/oilfield-monitoring-app/">Oilfield Monitoring App: What a Phone-First Monitoring Tool Should Do</a></li>
+        <li><a href="https://www.greasebook.com/blog/what-is-scada/">What Is SCADA? A Plain Explanation for Oil and Gas Operators</a></li>
+        <li><a href="https://www.greasebook.com/blog/oilfield-automation/">Oilfield Automation: What It Covers and Where to Start</a></li>
+        <li><a href="https://www.greasebook.com/blog/automation-in-oil-and-gas-industry/">Oil and Gas Automation: Levels, Costs, and the Companies Behind Them</a></li>
+        <li><a href="https://www.greasebook.com/blog/wellsite-automation/">Wellsite Automation: What It Covers and Where to Start Small</a></li>
+        <li><a href="https://www.greasebook.com/blog/pump-off-controller/">Pump Off Controller: How POCs Work on Rod Pump Wells</a></li>
+        <li><a href="https://www.greasebook.com/blog/digital-oilfield/">Digital Oilfield: What the Term Actually Means and What It Doesn't</a></li>
+        <li><a href="https://www.greasebook.com/blog/iot-oil-and-gas-products/">IoT in Oil and Gas: Oilfield IoT Sensors, Products, and Where They Pay Back</a></li>
+      </ul>
+    </div>
   </div>
 </footer>
 
@@ -1126,14 +1158,14 @@ document.querySelectorAll('.faq-q').forEach(function(q){
 
 <div class="video-modal" id="ryan-modal" onclick="document.getElementById('ryan-modal-iframe').src='';this.classList.remove('active')">
   <div class="video-modal__inner travis-modal-inner" onclick="event.stopPropagation()">
-    <div class="video-modal__close" onclick="document.getElementById('ryan-modal-iframe').src='';document.getElementById('ryan-modal').classList.remove('active')">&times;</div>
+    <button type="button" class="video-modal__close" aria-label="Close" onclick="document.getElementById('ryan-modal-iframe').src='';document.getElementById('ryan-modal').classList.remove('active')">&times;</button>
     <iframe id="ryan-modal-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:29px"></iframe>
   </div>
 </div>
 
 <div class="video-modal" id="travis-modal" onclick="document.getElementById('travis-modal-iframe').src='';this.classList.remove('active')">
   <div class="video-modal__inner travis-modal-inner" onclick="event.stopPropagation()">
-    <div class="video-modal__close" onclick="document.getElementById('travis-modal-iframe').src='';document.getElementById('travis-modal').classList.remove('active')">&times;</div>
+    <button type="button" class="video-modal__close" aria-label="Close" onclick="document.getElementById('travis-modal-iframe').src='';document.getElementById('travis-modal').classList.remove('active')">&times;</button>
     <iframe id="travis-modal-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:29px"></iframe>
   </div>
 </div>
