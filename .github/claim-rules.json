@@ -1,7 +1,7 @@
 {
  "source": "docs/Infrastructure/Skills/gb-tp-offer-overview-guide-for-llm.md",
- "source_sha256": "0d6b071f8a29ce4b3477dfe827d8756eae1cc79d3bb2d488aaaf0ac3e311979e",
- "compiled_at": "2026-10-20T23:06:02Z",
+ "source_sha256": "9750deb5bdd2baee2fbb3938b958dc67a5079976b0beef32c801ffca40652986",
+ "compiled_at": "2026-10-25T15:40:56Z",
  "rules": [
   {
    "id": "install-8-min",
@@ -175,6 +175,13 @@
    "surface": "page",
    "pattern": "\\bultrasonic\\b",
    "why": "Radar is the only TinyPumper tank sensor (Greg 2026-10-17)."
+  },
+  {
+   "id": "free-gb-sensor-wells-only",
+   "brand": "any",
+   "kind": "refuse",
+   "pattern": "every tiny ?pumper (?:includes|comes with|gets) (?:a )?free grease ?book|free grease ?book (?:subscription|account)(?! (?:on|for) (?:every|each|the|your) (?:well|wells) (?:with|that ha(?:s|ve)) (?:a )?tiny ?pumper)|grease ?book (?:subscription )?(?:is )?(?:free|included) with every tiny ?pumper",
+   "why": "Free GreaseBook comes only on the wells that have TinyPumper sensors, not the whole operation (Greg 2026-10-25). Say: Every well with a TinyPumper sensor gets free Greasebook."
   }
  ]
 }
