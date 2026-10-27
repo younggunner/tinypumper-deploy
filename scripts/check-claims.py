@@ -18,12 +18,6 @@ from collections import Counter
 from typing import Any, Dict, List, Optional, Tuple
 
 SCOPE_PAGE_TYPES = frozenset({"pillar", "supporting", "comparison"})
-# GB /ppc/ landers and the two layouts that render them (2026-10-24). About 25
-# of them promised "auto-filed state reports" because this gate never looked
-# there. They are scanned for these rules only: gb-no-price-page would flag the
-# competitor prices the comparison pages cite on purpose.
-GB_PPC_LAYOUTS = ("_layouts/ad-landing.html", "_layouts/competitor-landing.html")
-GB_PPC_RULES = frozenset({"gb-prepares-reports"})
 ALLOW_BECAUSE = re.compile(
     r"<!--\s*claims-allow:\s*(?P<id>\S+)\s+because\s+\S",
     re.I,
@@ -124,12 +118,8 @@ def gb_brand(rel: str, text: str) -> str:
     return "gb"
 
 
-def gb_is_ppc(rel: str) -> bool:
-    return rel.startswith("ppc/") or rel in GB_PPC_LAYOUTS
-
-
 def gb_in_scope(rel: str, text: str) -> bool:
-    if rel == "index.html" or gb_is_ppc(rel):
+    if rel == "index.html":
         return True
     if not (rel.startswith("_posts/") and rel.endswith(".md")):
         return False
@@ -146,9 +136,6 @@ def list_scope_paths(repo: str, root: str) -> List[str]:
         for p in sorted(glob.glob(os.path.join(root, "_posts", "*.md"))):
             rel = os.path.relpath(p, root).replace(os.sep, "/")
             found.append(rel)
-        for p in sorted(glob.glob(os.path.join(root, "ppc", "*", "index.html"))):
-            found.append(os.path.relpath(p, root).replace(os.sep, "/"))
-        found.extend(rel for rel in GB_PPC_LAYOUTS if os.path.isfile(os.path.join(root, rel)))
     else:
         for p in sorted(glob.glob(os.path.join(root, "ppc", "*", "index.html"))):
             rel = os.path.relpath(p, root).replace(os.sep, "/")
@@ -234,7 +221,6 @@ def scan_page(
     text: str,
     brand: str,
     rules: List[Dict[str, Any]],
-    only: Optional[frozenset] = None,
 ) -> List[Dict[str, Any]]:
     prepared = prepare_html(text) if rel.endswith(".html") else prepare_md(text)
     hits: List[Dict[str, Any]] = []
@@ -242,8 +228,6 @@ def scan_page(
         allows = {m.group("id") for m in ALLOW_BECAUSE.finditer(line)}
         for rule in rules:
             if rule["kind"] != "refuse":
-                continue
-            if only is not None and rule["id"] not in only:
                 continue
             rbrand = rule["brand"]
             if rbrand != "any" and rbrand != brand:
@@ -340,9 +324,8 @@ def main(argv: Optional[List[str]] = None) -> int:
         else:
             brand = "tp"
 
-        only = GB_PPC_RULES if args.repo == "gb" and gb_is_ppc(rel) else None
         scanned.append(rel)
-        hits = scan_page(rel, text, brand, rules, only)
+        hits = scan_page(rel, text, brand, rules)
         if rel in touched:
             failures.extend(hits)
         else:

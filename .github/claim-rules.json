@@ -1,7 +1,7 @@
 {
  "source": "docs/Infrastructure/Skills/gb-tp-offer-overview-guide-for-llm.md",
- "source_sha256": "9750deb5bdd2baee2fbb3938b958dc67a5079976b0beef32c801ffca40652986",
- "compiled_at": "2026-10-25T15:40:56Z",
+ "source_sha256": "63df34b6f474757216d57380a05f209d7564199d3756d5ce1510790ae1e9c442",
+ "compiled_at": "2026-10-27T17:11:53Z",
  "rules": [
   {
    "id": "install-8-min",
@@ -18,18 +18,18 @@
    "why": "The offer is Lifetime Hardware Replacement: if it breaks, we send a new one. Never 'warranty'. Matches warranty words only, so ordinary 'warrants it' passes (2026-10-19)."
   },
   {
-   "id": "349-is-hardware",
+   "id": "349-is-setup",
    "brand": "any",
    "kind": "refuse",
-   "pattern": "\\$349(?![^.]{0,25}(?:sensor|hardware))",
-   "why": "$349 is hardware per sensor, one time. Never a setup fee."
+   "pattern": "\\$349(?![^.]{0,30}(?:sensor|set-?up))",
+   "why": "The $349 is a one-time setup investment per sensor (Greg 2026-10-27, D-20261027-TP-SETUP-349), so a $349 must be tied to a sensor or to setup in the same sentence. Replaces 349-is-hardware, which tied it to hardware."
   },
   {
-   "id": "349-not-setup",
+   "id": "349-not-hardware",
    "brand": "any",
    "kind": "refuse",
-   "pattern": "\\$349[^.]{0,15}set-?up",
-   "why": "$349 is hardware per sensor, one time. Never a setup fee."
+   "pattern": "\\$349[^.]{0,15}\\b(?:hardware|equipment|device|purchase)|\\b(?:hardware|equipment|device|gateway)(?: cost| price)?\\s*(?:\\([^)]{0,30}\\))?\\s*(?::|is|=|costs?|for)\\s*\\$349|\\b(?:buy|buys|bought|purchase|purchases|own|owns)\\b[^.]{0,25}\\$349|\\$349[^.]{0,30}\\b(?:you own|yours to keep|to buy)\\b",
+   "why": "The client buys nothing; the gear is rented and the $349 pays for cellular setup, sensor selection, shipping and handling, and a one-on-one engineer build-out (Greg 2026-10-27: \"They don't 'buy' anything. It's simply a sensor set up investment\"). Never call the $349 hardware, a device price or a purchase. Replaces 349-not-setup, which refused the setup wording this ruling requires."
   },
   {
    "id": "no-self-alternative-tp",
