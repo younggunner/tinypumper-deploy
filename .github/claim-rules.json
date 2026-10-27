@@ -1,7 +1,7 @@
 {
  "source": "docs/Infrastructure/Skills/gb-tp-offer-overview-guide-for-llm.md",
- "source_sha256": "63df34b6f474757216d57380a05f209d7564199d3756d5ce1510790ae1e9c442",
- "compiled_at": "2026-10-27T17:11:53Z",
+ "source_sha256": "58105486ab691aa1d0bce6b1b33836c000503b479d3d39c47ed5d69167cac304",
+ "compiled_at": "2026-10-27T19:16:15Z",
  "rules": [
   {
    "id": "install-8-min",
@@ -22,14 +22,50 @@
    "brand": "any",
    "kind": "refuse",
    "pattern": "\\$349(?![^.]{0,30}(?:sensor|set-?up))",
-   "why": "The $349 is a one-time setup investment per sensor (Greg 2026-10-27, D-20261027-TP-SETUP-349), so a $349 must be tied to a sensor or to setup in the same sentence. Replaces 349-is-hardware, which tied it to hardware."
+   "why": "The $349 is a one-time setup investment per sensor (Greg 2026-10-27, D-20261027-TP-SETUP-349), so a $349 must be tied to a sensor or to setup in the same sentence. Replaces 349-is-hardware, which tied it to hardware. Grandfathered (Greg 2026-10-27 1:41 PM CT: \"nah, we don't need to beat a dead horse. $349 device is vague and could mean anything, the devil is in the details and again this is better reserved for personal conversations, not ads.\"): the listed phrases are the live ads and published pages that said hardware on the day of the ruling. They are left as they are and never flagged; new copy may not use hardware wording. A \"live ads\" entry counts only as a whole asset of an existing ad being checked, and a page entry only on the page it is listed under, so new ads and new pages get no exception. The list may only shrink.",
+   "grandfathered": {
+    "live ads": [
+     "$349 Hardware. Flat Rate.",
+     "$349 Per Sensor Hardware",
+     "$349 hardware. One flat rate per site, unlimited sensors. 60-day money back guarantee.",
+     "$349 per sensor hardware, one time. 100% continental US coverage, even in dead zones.",
+     "$349 per sensor hardware, one time. unlimited sensors. 60 days to try it.",
+     "$349 per sensor hardware. Lifetime replacement. Works where cell service doesn't.",
+     "$349 per sensor hardware. One flat monthly rate per site, unlimited sensors.",
+     "Monitor oil, water, and saltwater tanks 24/7. $349 per sensor hardware, one time."
+    ],
+    "_posts/2026-10-17-saltwater-disposal-monitoring.md": [
+     "$349 hardware per meter, one time"
+    ],
+    "_posts/2026-04-18-iot-oil-and-gas-products.md": [
+     "Hardware is $349 a sensor, one time"
+    ]
+   }
   },
   {
    "id": "349-not-hardware",
    "brand": "any",
    "kind": "refuse",
    "pattern": "\\$349[^.]{0,15}\\b(?:hardware|equipment|device|purchase)|\\b(?:hardware|equipment|device|gateway)(?: cost| price)?\\s*(?:\\([^)]{0,30}\\))?\\s*(?::|is|=|costs?|for)\\s*\\$349|\\b(?:buy|buys|bought|purchase|purchases|own|owns)\\b[^.]{0,25}\\$349|\\$349[^.]{0,30}\\b(?:you own|yours to keep|to buy)\\b",
-   "why": "The client buys nothing; the gear is rented and the $349 pays for cellular setup, sensor selection, shipping and handling, and a one-on-one engineer build-out (Greg 2026-10-27: \"They don't 'buy' anything. It's simply a sensor set up investment\"). Never call the $349 hardware, a device price or a purchase. Replaces 349-not-setup, which refused the setup wording this ruling requires."
+   "why": "The client buys nothing; the gear is rented and the $349 pays for cellular setup, sensor selection, shipping and handling, and a one-on-one engineer build-out (Greg 2026-10-27: \"They don't 'buy' anything. It's simply a sensor set up investment\"). Never call the $349 hardware, a device price or a purchase. Replaces 349-not-setup, which refused the setup wording this ruling requires. Grandfathered (Greg 2026-10-27 1:41 PM CT: \"nah, we don't need to beat a dead horse. $349 device is vague and could mean anything, the devil is in the details and again this is better reserved for personal conversations, not ads.\"): the listed phrases are the live ads and published pages that said hardware on the day of the ruling. They are left as they are and never flagged; new copy may not use hardware wording. A \"live ads\" entry counts only as a whole asset of an existing ad being checked, and a page entry only on the page it is listed under, so new ads and new pages get no exception. The list may only shrink.",
+   "grandfathered": {
+    "live ads": [
+     "$349 Hardware. Flat Rate.",
+     "$349 Per Sensor Hardware",
+     "$349 hardware. One flat rate per site, unlimited sensors. 60-day money back guarantee.",
+     "$349 per sensor hardware, one time. 100% continental US coverage, even in dead zones.",
+     "$349 per sensor hardware, one time. unlimited sensors. 60 days to try it.",
+     "$349 per sensor hardware. Lifetime replacement. Works where cell service doesn't.",
+     "$349 per sensor hardware. One flat monthly rate per site, unlimited sensors.",
+     "Monitor oil, water, and saltwater tanks 24/7. $349 per sensor hardware, one time."
+    ],
+    "_posts/2026-10-17-saltwater-disposal-monitoring.md": [
+     "$349 hardware per meter, one time"
+    ],
+    "_posts/2026-04-18-iot-oil-and-gas-products.md": [
+     "Hardware is $349 a sensor, one time"
+    ]
+   }
   },
   {
    "id": "no-self-alternative-tp",

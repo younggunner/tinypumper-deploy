@@ -216,6 +216,15 @@ def git_touched(root: str) -> List[str]:
     return [ln.strip().replace(os.sep, "/") for ln in proc.stdout.splitlines() if ln.strip()]
 
 
+def without_grandfathered(line: str, rule: Dict[str, Any], rel: str) -> str:
+    # Greg 2026-10-27: copy already published when a rule changed is never
+    # flagged. Only the phrases listed under this page's path count, so a new
+    # page cannot reuse them.
+    for phrase in (rule.get("grandfathered") or {}).get(rel) or ():
+        line = re.sub(re.escape(phrase), " ", line, flags=re.I)
+    return line
+
+
 def scan_page(
     rel: str,
     text: str,
@@ -232,7 +241,7 @@ def scan_page(
             rbrand = rule["brand"]
             if rbrand != "any" and rbrand != brand:
                 continue
-            if not rule["_re"].search(line):
+            if not rule["_re"].search(without_grandfathered(line, rule, rel)):
                 continue
             if rule["id"] in allows:
                 continue
