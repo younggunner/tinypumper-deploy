@@ -1,0 +1,5 @@
+{
+  "effort": "base",
+  "autoReview": ["open"],
+  "ignoreKeywords": "[no-greptile]"
+}
