@@ -853,10 +853,17 @@ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
   // Calendly webhook can recover it after the booking POST.
   function buildAttrToken(){
     var parts = [];
+    var gbUid = '';
+    try {
+      gbUid = params.get('gb_uid') || localStorage.getItem('gb_uid') || '';
+    } catch (e) {
+      gbUid = params.get('gb_uid') || '';
+    }
     if (content)    parts.push(content);
     if (gaClientId) parts.push('gacid_' + gaClientId);
     if (gclid)      parts.push('gclid_' + gclid);
     if (fbclid)     parts.push('fbclid_' + fbclid);
+    if (gbUid)      parts.push('gbuid_' + gbUid);
     return parts.join('|');
   }
   var attrToken = buildAttrToken();
